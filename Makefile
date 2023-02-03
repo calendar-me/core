@@ -23,14 +23,17 @@ js:
 
 schema: golang js
 
+publish:
+	@npm publish
+
 add:
 	@git add .
 
 commit:
 	@git commit -m "release ${RELEASE_VERSION}"
 
-publish:
-	@npm publish
+push:
+	@git push origin master
 
 createtag:
 	@git tag ${RELEASE_VERSION}
@@ -38,5 +41,5 @@ createtag:
 pushtag:
 	@git push origin ${RELEASE_VERSION}
 
-release: publish add commit createtag pushtag
+release: publish add commit push createtag pushtag
 
