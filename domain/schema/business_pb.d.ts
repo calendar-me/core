@@ -41,8 +41,8 @@ export class Availability extends jspb.Message {
   getFrequency(): number;
   setFrequency(value: number): void;
 
-  getRepeat(): number;
-  setRepeat(value: number): void;
+  getTimes(): number;
+  setTimes(value: number): void;
 
   getSlots(): number;
   setSlots(value: number): void;
@@ -73,7 +73,7 @@ export namespace Availability {
     duration?: google_protobuf_duration_pb.Duration.AsObject,
     step?: google_protobuf_duration_pb.Duration.AsObject,
     frequency: number,
-    repeat: number,
+    times: number,
     slots: number,
     service?: Service.AsObject,
   }
