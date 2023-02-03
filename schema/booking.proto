@@ -1,0 +1,15 @@
+syntax = "proto3";
+package booking;
+option go_package = "github.com/calendar-me/core/domain/schema";
+import "google/protobuf/timestamp.proto";
+import "schema/users.proto";
+import "schema/business.proto";
+
+message Slot {
+    string id = 1;
+    business.Availability.Type type = 2;
+    google.protobuf.Timestamp start = 3;
+
+    users.User user = 4; 
+    business.Availability availability = 5;
+}

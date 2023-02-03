@@ -1,0 +1,12 @@
+{
+  "name": "calendar-me-core",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "https://github.com/calendar-me/services",
+  "author": "Amaury Diaz",
+  "license": "MIT",
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "ts-protoc-gen": "^0.15.0"
+  }
+}

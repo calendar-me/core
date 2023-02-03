@@ -1,0 +1,131 @@
+syntax = "proto3";
+package business;
+option go_package = "github.com/calendar-me/core/domain/schema";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+/* models */
+message Availability {
+    enum Type {
+        AVAILABLE = 0;
+        UNAVAILABLE = 1;
+    }
+
+    string id = 1;
+    string name = 2;
+    bool active = 3;
+    Type type = 4;
+
+    google.protobuf.Timestamp start = 5;
+    google.protobuf.Timestamp end = 6;
+    google.protobuf.Duration duration = 7;
+    google.protobuf.Duration step = 8;
+    int64 frequency = 9;
+    int32 repeat = 10;
+    int32 slots = 11;
+
+    Service service = 12;
+}
+
+message Service {
+    string id = 1;
+    string name = 2;
+    bool active = 3;
+
+    Business business = 4;
+    repeated Availability availabilities = 5;
+}
+
+message Business {
+    string id = 1;
+    string name = 2;
+    bool active = 3;
+
+    repeated Service services = 4;
+}
+
+/* filters */
+
+message AvailabilityFilter {}
+message AvailabilitiesFilter {}
+
+message ServiceFilter {}
+message ServicesFilter {}
+
+message BusinessFilter {}
+message BusinessesFilter {}
+
+/* service */ 
+
+service BusinessService {
+    rpc RegisterBusiness(RegisterBusinessRequest) returns (RegisterBusinessResponse);
+    rpc GetBusiness(GetBusinessRequest) returns (GetBusinessResponse);
+    rpc GetBusinesses(GetBusinessesRequest) returns (GetBusinessesResponse);
+    rpc RegisterService(RegisterServiceRequest) returns (RegisterServiceResponse);
+    rpc GetService(GetServiceRequest) returns (GetServiceResponse);
+    rpc GetServices(GetServicesRequest) returns (GetServicesResponse);
+    
+    rpc AddAvailability(AddAvailabilityRequest) returns (AddAvailabilityResponse); 
+    rpc GetAvailability(GetAvailabilityRequest) returns (GetAvailabilityResponse); 
+   
+    rpc Book(BookRequest) returns (BookResponse);
+    rpc Confirm(ConfirmRequest) returns (ConfirmResponse);
+    rpc CheckIn(CheckInRequest) returns (CheckInResponse);
+    rpc Cancel(CancelRequest) returns (CancelResponse);
+    rpc Shift(ShiftRequest) returns (ShiftResponse);
+
+    rpc GrantRoles(GrantRolesRequest) returns (GrantRolesResponse);
+    rpc RevokeRoles(RevokeRolesRequest) returns (RevokeRolesResponse);
+    rpc GetRoles(GetRolesRequest) returns (GetRolesResponse);
+}
+
+message RegisterBusinessRequest {}
+message RegisterBusinessResponse {}
+
+message GetBusinessRequest {}
+message GetBusinessResponse {}
+
+message GetBusinessesRequest{}
+message GetBusinessesResponse{}
+
+message RegisterServiceRequest {}
+message RegisterServiceResponse {}
+
+message GetServiceRequest {}
+message GetServiceResponse {}
+
+message GetServicesRequest{}
+message GetServicesResponse{}
+
+message AddAvailabilityRequest {}
+message AddAvailabilityResponse {}
+
+message GetAvailabilityRequest {}
+message GetAvailabilityResponse {}
+
+message BookRequest {}
+message BookResponse {}
+
+message ConfirmRequest{}
+message ConfirmResponse{}
+
+message CheckInRequest{}
+message CheckInResponse{}
+
+message CancelRequest {}
+message CancelResponse {}
+
+message ShiftRequest {}
+message ShiftResponse {}
+
+
+message GrantRolesRequest {}
+message GrantRolesResponse {}
+
+message RevokeRolesRequest {}
+message RevokeRolesResponse {}
+
+message GetRolesRequest {}
+message GetRolesResponse {}
+
+/* storage */

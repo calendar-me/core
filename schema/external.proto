@@ -1,0 +1,7 @@
+syntax = "proto3";
+package external;
+option go_package = "github.com/calendar-me/core/domain/schema";
+
+message Provider {
+   
+}
