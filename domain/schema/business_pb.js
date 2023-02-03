@@ -963,7 +963,7 @@ proto.business.Availability.toObject = function(includeInstance, msg) {
     duration: (f = msg.getDuration()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
     step: (f = msg.getStep()) && google_protobuf_duration_pb.Duration.toObject(includeInstance, f),
     frequency: jspb.Message.getFieldWithDefault(msg, 9, 0),
-    times: jspb.Message.getFieldWithDefault(msg, 10, 0),
+    repeat: jspb.Message.getFieldWithDefault(msg, 10, 0),
     slots: jspb.Message.getFieldWithDefault(msg, 11, 0),
     service: (f = msg.getService()) && proto.business.Service.toObject(includeInstance, f)
   };
@@ -1044,7 +1044,7 @@ proto.business.Availability.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 10:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setTimes(value);
+      msg.setRepeat(value);
       break;
     case 11:
       var value = /** @type {number} */ (reader.readInt32());
@@ -1151,7 +1151,7 @@ proto.business.Availability.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getTimes();
+  f = message.getRepeat();
   if (f !== 0) {
     writer.writeInt32(
       10,
@@ -1423,10 +1423,10 @@ proto.business.Availability.prototype.setFrequency = function(value) {
 
 
 /**
- * optional int32 times = 10;
+ * optional int32 repeat = 10;
  * @return {number}
  */
-proto.business.Availability.prototype.getTimes = function() {
+proto.business.Availability.prototype.getRepeat = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
@@ -1435,7 +1435,7 @@ proto.business.Availability.prototype.getTimes = function() {
  * @param {number} value
  * @return {!proto.business.Availability} returns this
  */
-proto.business.Availability.prototype.setTimes = function(value) {
+proto.business.Availability.prototype.setRepeat = function(value) {
   return jspb.Message.setProto3IntField(this, 10, value);
 };
 

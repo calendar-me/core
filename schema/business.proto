@@ -21,7 +21,7 @@ message Availability {
     google.protobuf.Duration duration = 7;
     google.protobuf.Duration step = 8;
     int64 frequency = 9;
-    int32 times = 10;
+    int32 repeat = 10;
     int32 slots = 11;
 
     Service service = 12;
