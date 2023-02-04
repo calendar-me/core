@@ -9,6 +9,7 @@ package schema
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -100,6 +101,1920 @@ func (x *Slot) GetAvailability() *Availability {
 	return nil
 }
 
+type Ticket struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id     string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Number int32  `protobuf:"varint,2,opt,name=number,proto3" json:"number,omitempty"`
+	Slot   *Slot  `protobuf:"bytes,3,opt,name=slot,proto3" json:"slot,omitempty"`
+}
+
+func (x *Ticket) Reset() {
+	*x = Ticket{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Ticket) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Ticket) ProtoMessage() {}
+
+func (x *Ticket) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Ticket.ProtoReflect.Descriptor instead.
+func (*Ticket) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Ticket) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Ticket) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+func (x *Ticket) GetSlot() *Slot {
+	if x != nil {
+		return x.Slot
+	}
+	return nil
+}
+
+type SlotFilter struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *SlotFilter) Reset() {
+	*x = SlotFilter{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SlotFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SlotFilter) ProtoMessage() {}
+
+func (x *SlotFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SlotFilter.ProtoReflect.Descriptor instead.
+func (*SlotFilter) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{2}
+}
+
+type SlotsFilter struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *SlotsFilter) Reset() {
+	*x = SlotsFilter{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SlotsFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SlotsFilter) ProtoMessage() {}
+
+func (x *SlotsFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SlotsFilter.ProtoReflect.Descriptor instead.
+func (*SlotsFilter) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{3}
+}
+
+type TicketFilter struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *TicketFilter) Reset() {
+	*x = TicketFilter{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TicketFilter) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TicketFilter) ProtoMessage() {}
+
+func (x *TicketFilter) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TicketFilter.ProtoReflect.Descriptor instead.
+func (*TicketFilter) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{4}
+}
+
+type GetSlotsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServiceId string                 `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	From      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
+	To        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
+}
+
+func (x *GetSlotsRequest) Reset() {
+	*x = GetSlotsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSlotsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSlotsRequest) ProtoMessage() {}
+
+func (x *GetSlotsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSlotsRequest.ProtoReflect.Descriptor instead.
+func (*GetSlotsRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetSlotsRequest) GetServiceId() string {
+	if x != nil {
+		return x.ServiceId
+	}
+	return ""
+}
+
+func (x *GetSlotsRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *GetSlotsRequest) GetTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.To
+	}
+	return nil
+}
+
+type GetSlotsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slots []*Slot `protobuf:"bytes,1,rep,name=slots,proto3" json:"slots,omitempty"`
+}
+
+func (x *GetSlotsResponse) Reset() {
+	*x = GetSlotsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSlotsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSlotsResponse) ProtoMessage() {}
+
+func (x *GetSlotsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSlotsResponse.ProtoReflect.Descriptor instead.
+func (*GetSlotsResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetSlotsResponse) GetSlots() []*Slot {
+	if x != nil {
+		return x.Slots
+	}
+	return nil
+}
+
+type PreviewSlotsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServiceId      string                 `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	From           *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
+	To             *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
+	Availabilities []*Availability        `protobuf:"bytes,4,rep,name=availabilities,proto3" json:"availabilities,omitempty"`
+}
+
+func (x *PreviewSlotsRequest) Reset() {
+	*x = PreviewSlotsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PreviewSlotsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PreviewSlotsRequest) ProtoMessage() {}
+
+func (x *PreviewSlotsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PreviewSlotsRequest.ProtoReflect.Descriptor instead.
+func (*PreviewSlotsRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *PreviewSlotsRequest) GetServiceId() string {
+	if x != nil {
+		return x.ServiceId
+	}
+	return ""
+}
+
+func (x *PreviewSlotsRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *PreviewSlotsRequest) GetTo() *timestamppb.Timestamp {
+	if x != nil {
+		return x.To
+	}
+	return nil
+}
+
+func (x *PreviewSlotsRequest) GetAvailabilities() []*Availability {
+	if x != nil {
+		return x.Availabilities
+	}
+	return nil
+}
+
+type PreviewSlotsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slots []*Slot `protobuf:"bytes,1,rep,name=slots,proto3" json:"slots,omitempty"`
+}
+
+func (x *PreviewSlotsResponse) Reset() {
+	*x = PreviewSlotsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PreviewSlotsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PreviewSlotsResponse) ProtoMessage() {}
+
+func (x *PreviewSlotsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PreviewSlotsResponse.ProtoReflect.Descriptor instead.
+func (*PreviewSlotsResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *PreviewSlotsResponse) GetSlots() []*Slot {
+	if x != nil {
+		return x.Slots
+	}
+	return nil
+}
+
+type BookRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ServiceId string                 `protobuf:"bytes,1,opt,name=service_id,json=serviceId,proto3" json:"service_id,omitempty"`
+	From      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
+	Duration  *durationpb.Duration   `protobuf:"bytes,3,opt,name=duration,proto3" json:"duration,omitempty"`
+}
+
+func (x *BookRequest) Reset() {
+	*x = BookRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BookRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BookRequest) ProtoMessage() {}
+
+func (x *BookRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BookRequest.ProtoReflect.Descriptor instead.
+func (*BookRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *BookRequest) GetServiceId() string {
+	if x != nil {
+		return x.ServiceId
+	}
+	return ""
+}
+
+func (x *BookRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *BookRequest) GetDuration() *durationpb.Duration {
+	if x != nil {
+		return x.Duration
+	}
+	return nil
+}
+
+type BookResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+}
+
+func (x *BookResponse) Reset() {
+	*x = BookResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BookResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BookResponse) ProtoMessage() {}
+
+func (x *BookResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BookResponse.ProtoReflect.Descriptor instead.
+func (*BookResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *BookResponse) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+type GetBookingRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter *SlotFilter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *GetBookingRequest) Reset() {
+	*x = GetBookingRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetBookingRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBookingRequest) ProtoMessage() {}
+
+func (x *GetBookingRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBookingRequest.ProtoReflect.Descriptor instead.
+func (*GetBookingRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *GetBookingRequest) GetFilter() *SlotFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type GetBookingResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slot *Slot `protobuf:"bytes,1,opt,name=slot,proto3" json:"slot,omitempty"`
+}
+
+func (x *GetBookingResponse) Reset() {
+	*x = GetBookingResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetBookingResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBookingResponse) ProtoMessage() {}
+
+func (x *GetBookingResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBookingResponse.ProtoReflect.Descriptor instead.
+func (*GetBookingResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *GetBookingResponse) GetSlot() *Slot {
+	if x != nil {
+		return x.Slot
+	}
+	return nil
+}
+
+type GetBookingsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter *SlotsFilter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *GetBookingsRequest) Reset() {
+	*x = GetBookingsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetBookingsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBookingsRequest) ProtoMessage() {}
+
+func (x *GetBookingsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBookingsRequest.ProtoReflect.Descriptor instead.
+func (*GetBookingsRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetBookingsRequest) GetFilter() *SlotsFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type GetBookingsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slots []*Slot `protobuf:"bytes,1,rep,name=slots,proto3" json:"slots,omitempty"`
+}
+
+func (x *GetBookingsResponse) Reset() {
+	*x = GetBookingsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetBookingsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBookingsResponse) ProtoMessage() {}
+
+func (x *GetBookingsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBookingsResponse.ProtoReflect.Descriptor instead.
+func (*GetBookingsResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *GetBookingsResponse) GetSlots() []*Slot {
+	if x != nil {
+		return x.Slots
+	}
+	return nil
+}
+
+type ConfirmRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+}
+
+func (x *ConfirmRequest) Reset() {
+	*x = ConfirmRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ConfirmRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConfirmRequest) ProtoMessage() {}
+
+func (x *ConfirmRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConfirmRequest.ProtoReflect.Descriptor instead.
+func (*ConfirmRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ConfirmRequest) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+type ConfirmResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ConfirmResponse) Reset() {
+	*x = ConfirmResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ConfirmResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConfirmResponse) ProtoMessage() {}
+
+func (x *ConfirmResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConfirmResponse.ProtoReflect.Descriptor instead.
+func (*ConfirmResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{16}
+}
+
+type CheckInRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+}
+
+func (x *CheckInRequest) Reset() {
+	*x = CheckInRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckInRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckInRequest) ProtoMessage() {}
+
+func (x *CheckInRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckInRequest.ProtoReflect.Descriptor instead.
+func (*CheckInRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *CheckInRequest) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+type CheckInResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ticket *Ticket `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
+}
+
+func (x *CheckInResponse) Reset() {
+	*x = CheckInResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckInResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckInResponse) ProtoMessage() {}
+
+func (x *CheckInResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckInResponse.ProtoReflect.Descriptor instead.
+func (*CheckInResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *CheckInResponse) GetTicket() *Ticket {
+	if x != nil {
+		return x.Ticket
+	}
+	return nil
+}
+
+type CancelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+}
+
+func (x *CancelRequest) Reset() {
+	*x = CancelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CancelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CancelRequest) ProtoMessage() {}
+
+func (x *CancelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CancelRequest.ProtoReflect.Descriptor instead.
+func (*CancelRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *CancelRequest) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+type CancelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CancelResponse) Reset() {
+	*x = CancelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CancelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CancelResponse) ProtoMessage() {}
+
+func (x *CancelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CancelResponse.ProtoReflect.Descriptor instead.
+func (*CancelResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{20}
+}
+
+type ShiftRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string                 `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+	From   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
+}
+
+func (x *ShiftRequest) Reset() {
+	*x = ShiftRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ShiftRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ShiftRequest) ProtoMessage() {}
+
+func (x *ShiftRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ShiftRequest.ProtoReflect.Descriptor instead.
+func (*ShiftRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *ShiftRequest) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+func (x *ShiftRequest) GetFrom() *timestamppb.Timestamp {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+type ShiftResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ShiftResponse) Reset() {
+	*x = ShiftResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ShiftResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ShiftResponse) ProtoMessage() {}
+
+func (x *ShiftResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ShiftResponse.ProtoReflect.Descriptor instead.
+func (*ShiftResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{22}
+}
+
+type GetTicketRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter *TicketFilter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *GetTicketRequest) Reset() {
+	*x = GetTicketRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTicketRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTicketRequest) ProtoMessage() {}
+
+func (x *GetTicketRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTicketRequest.ProtoReflect.Descriptor instead.
+func (*GetTicketRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetTicketRequest) GetFilter() *TicketFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type GetTicketResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ticket *Ticket `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
+}
+
+func (x *GetTicketResponse) Reset() {
+	*x = GetTicketResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTicketResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTicketResponse) ProtoMessage() {}
+
+func (x *GetTicketResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTicketResponse.ProtoReflect.Descriptor instead.
+func (*GetTicketResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetTicketResponse) GetTicket() *Ticket {
+	if x != nil {
+		return x.Ticket
+	}
+	return nil
+}
+
+type CheckTicketRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter *TicketFilter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *CheckTicketRequest) Reset() {
+	*x = CheckTicketRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckTicketRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckTicketRequest) ProtoMessage() {}
+
+func (x *CheckTicketRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckTicketRequest.ProtoReflect.Descriptor instead.
+func (*CheckTicketRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *CheckTicketRequest) GetFilter() *TicketFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type CheckTicketResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ticket *Ticket `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
+}
+
+func (x *CheckTicketResponse) Reset() {
+	*x = CheckTicketResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CheckTicketResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckTicketResponse) ProtoMessage() {}
+
+func (x *CheckTicketResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckTicketResponse.ProtoReflect.Descriptor instead.
+func (*CheckTicketResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *CheckTicketResponse) GetTicket() *Ticket {
+	if x != nil {
+		return x.Ticket
+	}
+	return nil
+}
+
+type CreateSlotRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slot *Slot `protobuf:"bytes,1,opt,name=slot,proto3" json:"slot,omitempty"`
+}
+
+func (x *CreateSlotRequest) Reset() {
+	*x = CreateSlotRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateSlotRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateSlotRequest) ProtoMessage() {}
+
+func (x *CreateSlotRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateSlotRequest.ProtoReflect.Descriptor instead.
+func (*CreateSlotRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *CreateSlotRequest) GetSlot() *Slot {
+	if x != nil {
+		return x.Slot
+	}
+	return nil
+}
+
+type CreateSlotResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+}
+
+func (x *CreateSlotResponse) Reset() {
+	*x = CreateSlotResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateSlotResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateSlotResponse) ProtoMessage() {}
+
+func (x *CreateSlotResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateSlotResponse.ProtoReflect.Descriptor instead.
+func (*CreateSlotResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *CreateSlotResponse) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+type UpdateSlotRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+	Slot   *Slot  `protobuf:"bytes,2,opt,name=slot,proto3" json:"slot,omitempty"`
+}
+
+func (x *UpdateSlotRequest) Reset() {
+	*x = UpdateSlotRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateSlotRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateSlotRequest) ProtoMessage() {}
+
+func (x *UpdateSlotRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateSlotRequest.ProtoReflect.Descriptor instead.
+func (*UpdateSlotRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *UpdateSlotRequest) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+func (x *UpdateSlotRequest) GetSlot() *Slot {
+	if x != nil {
+		return x.Slot
+	}
+	return nil
+}
+
+type UpdateSlotResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slot *Slot `protobuf:"bytes,1,opt,name=slot,proto3" json:"slot,omitempty"`
+}
+
+func (x *UpdateSlotResponse) Reset() {
+	*x = UpdateSlotResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateSlotResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateSlotResponse) ProtoMessage() {}
+
+func (x *UpdateSlotResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateSlotResponse.ProtoReflect.Descriptor instead.
+func (*UpdateSlotResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *UpdateSlotResponse) GetSlot() *Slot {
+	if x != nil {
+		return x.Slot
+	}
+	return nil
+}
+
+type DeleteSlotRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	SlotId string `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
+}
+
+func (x *DeleteSlotRequest) Reset() {
+	*x = DeleteSlotRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteSlotRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteSlotRequest) ProtoMessage() {}
+
+func (x *DeleteSlotRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteSlotRequest.ProtoReflect.Descriptor instead.
+func (*DeleteSlotRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *DeleteSlotRequest) GetSlotId() string {
+	if x != nil {
+		return x.SlotId
+	}
+	return ""
+}
+
+type DeleteSlotResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slot *Slot `protobuf:"bytes,1,opt,name=slot,proto3" json:"slot,omitempty"`
+}
+
+func (x *DeleteSlotResponse) Reset() {
+	*x = DeleteSlotResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteSlotResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteSlotResponse) ProtoMessage() {}
+
+func (x *DeleteSlotResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteSlotResponse.ProtoReflect.Descriptor instead.
+func (*DeleteSlotResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *DeleteSlotResponse) GetSlot() *Slot {
+	if x != nil {
+		return x.Slot
+	}
+	return nil
+}
+
+type FindSlotRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter *SlotFilter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *FindSlotRequest) Reset() {
+	*x = FindSlotRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindSlotRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindSlotRequest) ProtoMessage() {}
+
+func (x *FindSlotRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindSlotRequest.ProtoReflect.Descriptor instead.
+func (*FindSlotRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *FindSlotRequest) GetFilter() *SlotFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type FindSlotResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slot *Slot `protobuf:"bytes,1,opt,name=slot,proto3" json:"slot,omitempty"`
+}
+
+func (x *FindSlotResponse) Reset() {
+	*x = FindSlotResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindSlotResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindSlotResponse) ProtoMessage() {}
+
+func (x *FindSlotResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindSlotResponse.ProtoReflect.Descriptor instead.
+func (*FindSlotResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *FindSlotResponse) GetSlot() *Slot {
+	if x != nil {
+		return x.Slot
+	}
+	return nil
+}
+
+type FindSlotsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter *SlotsFilter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *FindSlotsRequest) Reset() {
+	*x = FindSlotsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[35]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindSlotsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindSlotsRequest) ProtoMessage() {}
+
+func (x *FindSlotsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[35]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindSlotsRequest.ProtoReflect.Descriptor instead.
+func (*FindSlotsRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *FindSlotsRequest) GetFilter() *SlotsFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type FindSlotsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Slots []*Slot `protobuf:"bytes,1,rep,name=slots,proto3" json:"slots,omitempty"`
+}
+
+func (x *FindSlotsResponse) Reset() {
+	*x = FindSlotsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[36]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindSlotsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindSlotsResponse) ProtoMessage() {}
+
+func (x *FindSlotsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[36]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindSlotsResponse.ProtoReflect.Descriptor instead.
+func (*FindSlotsResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *FindSlotsResponse) GetSlots() []*Slot {
+	if x != nil {
+		return x.Slots
+	}
+	return nil
+}
+
+type CreateTicketRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ticket *Ticket `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
+}
+
+func (x *CreateTicketRequest) Reset() {
+	*x = CreateTicketRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[37]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateTicketRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTicketRequest) ProtoMessage() {}
+
+func (x *CreateTicketRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[37]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTicketRequest.ProtoReflect.Descriptor instead.
+func (*CreateTicketRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *CreateTicketRequest) GetTicket() *Ticket {
+	if x != nil {
+		return x.Ticket
+	}
+	return nil
+}
+
+type CreateTicketResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TicketId string `protobuf:"bytes,1,opt,name=ticket_id,json=ticketId,proto3" json:"ticket_id,omitempty"`
+}
+
+func (x *CreateTicketResponse) Reset() {
+	*x = CreateTicketResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[38]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateTicketResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTicketResponse) ProtoMessage() {}
+
+func (x *CreateTicketResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[38]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTicketResponse.ProtoReflect.Descriptor instead.
+func (*CreateTicketResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{38}
+}
+
+func (x *CreateTicketResponse) GetTicketId() string {
+	if x != nil {
+		return x.TicketId
+	}
+	return ""
+}
+
+type FindTicketRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Filter *TicketFilter `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+}
+
+func (x *FindTicketRequest) Reset() {
+	*x = FindTicketRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[39]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindTicketRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindTicketRequest) ProtoMessage() {}
+
+func (x *FindTicketRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[39]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindTicketRequest.ProtoReflect.Descriptor instead.
+func (*FindTicketRequest) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{39}
+}
+
+func (x *FindTicketRequest) GetFilter() *TicketFilter {
+	if x != nil {
+		return x.Filter
+	}
+	return nil
+}
+
+type FindTicketResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Ticket *Ticket `protobuf:"bytes,1,opt,name=ticket,proto3" json:"ticket,omitempty"`
+}
+
+func (x *FindTicketResponse) Reset() {
+	*x = FindTicketResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_schema_booking_proto_msgTypes[40]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindTicketResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindTicketResponse) ProtoMessage() {}
+
+func (x *FindTicketResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_schema_booking_proto_msgTypes[40]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindTicketResponse.ProtoReflect.Descriptor instead.
+func (*FindTicketResponse) Descriptor() ([]byte, []int) {
+	return file_schema_booking_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *FindTicketResponse) GetTicket() *Ticket {
+	if x != nil {
+		return x.Ticket
+	}
+	return nil
+}
+
 var File_schema_booking_proto protoreflect.FileDescriptor
 
 var file_schema_booking_proto_rawDesc = []byte{
@@ -107,6 +2022,8 @@ var file_schema_booking_proto_rawDesc = []byte{
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x07, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x1a,
 	0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
 	0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x1a, 0x1e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x1a, 0x12, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x73, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x15, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x2f, 0x62, 0x75, 0x73,
 	0x69, 0x6e, 0x65, 0x73, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xd6, 0x01, 0x0a, 0x04,
@@ -123,10 +2040,243 @@ var file_schema_booking_proto_rawDesc = []byte{
 	0x6c, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16,
 	0x2e, 0x62, 0x75, 0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x2e, 0x41, 0x76, 0x61, 0x69, 0x6c, 0x61,
 	0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x52, 0x0c, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x69,
-	0x6c, 0x69, 0x74, 0x79, 0x42, 0x2b, 0x5a, 0x29, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
-	0x6f, 0x6d, 0x2f, 0x63, 0x61, 0x6c, 0x65, 0x6e, 0x64, 0x61, 0x72, 0x2d, 0x6d, 0x65, 0x2f, 0x63,
-	0x6f, 0x72, 0x65, 0x2f, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x2f, 0x73, 0x63, 0x68, 0x65, 0x6d,
-	0x61, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6c, 0x69, 0x74, 0x79, 0x22, 0x53, 0x0a, 0x06, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x0e,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x16,
+	0x0a, 0x06, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06,
+	0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x21, 0x0a, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53,
+	0x6c, 0x6f, 0x74, 0x52, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x22, 0x0c, 0x0a, 0x0a, 0x53, 0x6c, 0x6f,
+	0x74, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x0d, 0x0a, 0x0b, 0x53, 0x6c, 0x6f, 0x74, 0x73,
+	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x0e, 0x0a, 0x0c, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74,
+	0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x8c, 0x01, 0x0a, 0x0f, 0x47, 0x65, 0x74, 0x53, 0x6c,
+	0x6f, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
+	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x64, 0x12, 0x2e, 0x0a, 0x04, 0x66, 0x72, 0x6f,
+	0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74,
+	0x61, 0x6d, 0x70, 0x52, 0x04, 0x66, 0x72, 0x6f, 0x6d, 0x12, 0x2a, 0x0a, 0x02, 0x74, 0x6f, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
+	0x70, 0x52, 0x02, 0x74, 0x6f, 0x22, 0x37, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x53, 0x6c, 0x6f, 0x74,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x05, 0x73, 0x6c, 0x6f,
+	0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69,
+	0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x05, 0x73, 0x6c, 0x6f, 0x74, 0x73, 0x22, 0xd0,
+	0x01, 0x0a, 0x13, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
+	0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x73, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x49, 0x64, 0x12, 0x2e, 0x0a, 0x04, 0x66, 0x72, 0x6f, 0x6d, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52,
+	0x04, 0x66, 0x72, 0x6f, 0x6d, 0x12, 0x2a, 0x0a, 0x02, 0x74, 0x6f, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x02, 0x74,
+	0x6f, 0x12, 0x3e, 0x0a, 0x0e, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74,
+	0x69, 0x65, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x62, 0x75, 0x73, 0x69,
+	0x6e, 0x65, 0x73, 0x73, 0x2e, 0x41, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74,
+	0x79, 0x52, 0x0e, 0x61, 0x76, 0x61, 0x69, 0x6c, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x69, 0x65,
+	0x73, 0x22, 0x3b, 0x0a, 0x14, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x53, 0x6c, 0x6f, 0x74,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x05, 0x73, 0x6c, 0x6f,
+	0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69,
+	0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x05, 0x73, 0x6c, 0x6f, 0x74, 0x73, 0x22, 0x93,
+	0x01, 0x0a, 0x0b, 0x42, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1d,
+	0x0a, 0x0a, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x64, 0x12, 0x2e, 0x0a,
+	0x04, 0x66, 0x72, 0x6f, 0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x04, 0x66, 0x72, 0x6f, 0x6d, 0x12, 0x35, 0x0a,
+	0x08, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x08, 0x64, 0x75, 0x72, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x22, 0x27, 0x0a, 0x0c, 0x42, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x6c, 0x6f, 0x74, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x6c, 0x6f, 0x74, 0x49, 0x64, 0x22, 0x40, 0x0a,
+	0x11, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x2b, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x13, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f,
+	0x74, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22,
+	0x37, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x21, 0x0a, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c,
+	0x6f, 0x74, 0x52, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x22, 0x42, 0x0a, 0x12, 0x47, 0x65, 0x74, 0x42,
+	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c,
+	0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x46, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x3a, 0x0a, 0x13,
+	0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x23, 0x0a, 0x05, 0x73, 0x6c, 0x6f, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f,
+	0x74, 0x52, 0x05, 0x73, 0x6c, 0x6f, 0x74, 0x73, 0x22, 0x29, 0x0a, 0x0e, 0x43, 0x6f, 0x6e, 0x66,
+	0x69, 0x72, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x6c,
+	0x6f, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x6c, 0x6f,
+	0x74, 0x49, 0x64, 0x22, 0x11, 0x0a, 0x0f, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x29, 0x0a, 0x0e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x49,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x6c, 0x6f, 0x74,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x6c, 0x6f, 0x74, 0x49,
+	0x64, 0x22, 0x3a, 0x0a, 0x0f, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x27, 0x0a, 0x06, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x54,
+	0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x06, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x22, 0x28, 0x0a,
+	0x0d, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17,
+	0x0a, 0x07, 0x73, 0x6c, 0x6f, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x06, 0x73, 0x6c, 0x6f, 0x74, 0x49, 0x64, 0x22, 0x10, 0x0a, 0x0e, 0x43, 0x61, 0x6e, 0x63, 0x65,
+	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x57, 0x0a, 0x0c, 0x53, 0x68, 0x69,
+	0x66, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x6c, 0x6f,
+	0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x6c, 0x6f, 0x74,
+	0x49, 0x64, 0x12, 0x2e, 0x0a, 0x04, 0x66, 0x72, 0x6f, 0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x04, 0x66, 0x72,
+	0x6f, 0x6d, 0x22, 0x0f, 0x0a, 0x0d, 0x53, 0x68, 0x69, 0x66, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x22, 0x41, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2d, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e,
+	0x67, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x06,
+	0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x3c, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x54, 0x69, 0x63,
+	0x6b, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x27, 0x0a, 0x06, 0x74,
+	0x69, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x06, 0x74, 0x69,
+	0x63, 0x6b, 0x65, 0x74, 0x22, 0x43, 0x0a, 0x12, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x69, 0x63,
+	0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2d, 0x0a, 0x06, 0x66, 0x69,
+	0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x62, 0x6f, 0x6f,
+	0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x46, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x3e, 0x0a, 0x13, 0x43, 0x68, 0x65,
+	0x63, 0x6b, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x27, 0x0a, 0x06, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x0f, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65,
+	0x74, 0x52, 0x06, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x22, 0x36, 0x0a, 0x11, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21,
+	0x0a, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62,
+	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x04, 0x73, 0x6c, 0x6f,
+	0x74, 0x22, 0x2d, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x6c, 0x6f, 0x74, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x6c, 0x6f, 0x74, 0x49, 0x64,
+	0x22, 0x4f, 0x0a, 0x11, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x73, 0x6c, 0x6f, 0x74, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x73, 0x6c, 0x6f, 0x74, 0x49, 0x64, 0x12, 0x21,
+	0x0a, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62,
+	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x04, 0x73, 0x6c, 0x6f,
+	0x74, 0x22, 0x37, 0x0a, 0x12, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x21, 0x0a, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e,
+	0x53, 0x6c, 0x6f, 0x74, 0x52, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x22, 0x2c, 0x0a, 0x11, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x17, 0x0a, 0x07, 0x73, 0x6c, 0x6f, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x73, 0x6c, 0x6f, 0x74, 0x49, 0x64, 0x22, 0x37, 0x0a, 0x12, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x21,
+	0x0a, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62,
+	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x04, 0x73, 0x6c, 0x6f,
+	0x74, 0x22, 0x3e, 0x0a, 0x0f, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x2b, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53,
+	0x6c, 0x6f, 0x74, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65,
+	0x72, 0x22, 0x35, 0x0a, 0x10, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x21, 0x0a, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c,
+	0x6f, 0x74, 0x52, 0x04, 0x73, 0x6c, 0x6f, 0x74, 0x22, 0x40, 0x0a, 0x10, 0x46, 0x69, 0x6e, 0x64,
+	0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2c, 0x0a, 0x06,
+	0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x62,
+	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x46, 0x69, 0x6c, 0x74,
+	0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x38, 0x0a, 0x11, 0x46, 0x69,
+	0x6e, 0x64, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x23, 0x0a, 0x05, 0x73, 0x6c, 0x6f, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x05, 0x73,
+	0x6c, 0x6f, 0x74, 0x73, 0x22, 0x3e, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69,
+	0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x0a, 0x06, 0x74,
+	0x69, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x06, 0x74, 0x69,
+	0x63, 0x6b, 0x65, 0x74, 0x22, 0x33, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69,
+	0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09,
+	0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x08, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x49, 0x64, 0x22, 0x42, 0x0a, 0x11, 0x46, 0x69, 0x6e,
+	0x64, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2d,
+	0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x46,
+	0x69, 0x6c, 0x74, 0x65, 0x72, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x22, 0x3d, 0x0a,
+	0x12, 0x46, 0x69, 0x6e, 0x64, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x27, 0x0a, 0x06, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x54, 0x69,
+	0x63, 0x6b, 0x65, 0x74, 0x52, 0x06, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x32, 0xe1, 0x05, 0x0a,
+	0x0e, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12,
+	0x3f, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x12, 0x18, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e,
+	0x47, 0x65, 0x74, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x4b, 0x0a, 0x0c, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x53, 0x6c, 0x6f, 0x74, 0x73,
+	0x12, 0x1c, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x50, 0x72, 0x65, 0x76, 0x69,
+	0x65, 0x77, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77,
+	0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x33, 0x0a,
+	0x04, 0x42, 0x6f, 0x6f, 0x6b, 0x12, 0x14, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e,
+	0x42, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x15, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x42, 0x6f, 0x6f, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x45, 0x0a, 0x0a, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67,
+	0x12, 0x1a, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f,
+	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x62,
+	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e,
+	0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x48, 0x0a, 0x0b, 0x47, 0x65, 0x74,
+	0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x73, 0x12, 0x1b, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69,
+	0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e,
+	0x47, 0x65, 0x74, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x3c, 0x0a, 0x07, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x12, 0x17,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e,
+	0x67, 0x2e, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x3c, 0x0a, 0x07, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x49, 0x6e, 0x12, 0x17, 0x2e, 0x62,
+	0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x49, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e,
+	0x43, 0x68, 0x65, 0x63, 0x6b, 0x49, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x39, 0x0a, 0x06, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x12, 0x16, 0x2e, 0x62, 0x6f, 0x6f, 0x6b,
+	0x69, 0x6e, 0x67, 0x2e, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x17, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x61, 0x6e, 0x63,
+	0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x05, 0x53, 0x68,
+	0x69, 0x66, 0x74, 0x12, 0x15, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x68,
+	0x69, 0x66, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x16, 0x2e, 0x62, 0x6f, 0x6f,
+	0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x53, 0x68, 0x69, 0x66, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x42, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x12,
+	0x19, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x69, 0x63,
+	0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x62, 0x6f, 0x6f,
+	0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x48, 0x0a, 0x0b, 0x43, 0x68, 0x65, 0x63, 0x6b, 0x54,
+	0x69, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x1b, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e,
+	0x43, 0x68, 0x65, 0x63, 0x6b, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x68, 0x65,
+	0x63, 0x6b, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x32, 0xfe, 0x03, 0x0a, 0x0e, 0x42, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x53, 0x74, 0x6f, 0x72,
+	0x61, 0x67, 0x65, 0x12, 0x45, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f,
+	0x74, 0x12, 0x1a, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e,
+	0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x6c,
+	0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x45, 0x0a, 0x0a, 0x55, 0x70,
+	0x64, 0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x12, 0x1a, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69,
+	0x6e, 0x67, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x55,
+	0x70, 0x64, 0x61, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x45, 0x0a, 0x0a, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74, 0x12,
+	0x1a, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
+	0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x53, 0x6c, 0x6f, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3f, 0x0a, 0x08, 0x46, 0x69, 0x6e, 0x64,
+	0x53, 0x6c, 0x6f, 0x74, 0x12, 0x18, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x53, 0x6c, 0x6f, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19,
+	0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x6c, 0x6f,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x42, 0x0a, 0x09, 0x46, 0x69, 0x6e,
+	0x64, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x12, 0x19, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67,
+	0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1a, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x46, 0x69, 0x6e, 0x64,
+	0x53, 0x6c, 0x6f, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4b, 0x0a,
+	0x0c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x1c, 0x2e,
+	0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69,
+	0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1d, 0x2e, 0x62, 0x6f,
+	0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x69, 0x63, 0x6b,
+	0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x45, 0x0a, 0x0a, 0x46, 0x69,
+	0x6e, 0x64, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x12, 0x1a, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69,
+	0x6e, 0x67, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x62, 0x6f, 0x6f, 0x6b, 0x69, 0x6e, 0x67, 0x2e, 0x46,
+	0x69, 0x6e, 0x64, 0x54, 0x69, 0x63, 0x6b, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x42, 0x2b, 0x5a, 0x29, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
+	0x63, 0x61, 0x6c, 0x65, 0x6e, 0x64, 0x61, 0x72, 0x2d, 0x6d, 0x65, 0x2f, 0x63, 0x6f, 0x72, 0x65,
+	0x2f, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x2f, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -141,24 +2291,132 @@ func file_schema_booking_proto_rawDescGZIP() []byte {
 	return file_schema_booking_proto_rawDescData
 }
 
-var file_schema_booking_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_schema_booking_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_schema_booking_proto_goTypes = []interface{}{
 	(*Slot)(nil),                  // 0: booking.Slot
-	(Availability_Type)(0),        // 1: business.Availability.Type
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
-	(*User)(nil),                  // 3: users.User
-	(*Availability)(nil),          // 4: business.Availability
+	(*Ticket)(nil),                // 1: booking.Ticket
+	(*SlotFilter)(nil),            // 2: booking.SlotFilter
+	(*SlotsFilter)(nil),           // 3: booking.SlotsFilter
+	(*TicketFilter)(nil),          // 4: booking.TicketFilter
+	(*GetSlotsRequest)(nil),       // 5: booking.GetSlotsRequest
+	(*GetSlotsResponse)(nil),      // 6: booking.GetSlotsResponse
+	(*PreviewSlotsRequest)(nil),   // 7: booking.PreviewSlotsRequest
+	(*PreviewSlotsResponse)(nil),  // 8: booking.PreviewSlotsResponse
+	(*BookRequest)(nil),           // 9: booking.BookRequest
+	(*BookResponse)(nil),          // 10: booking.BookResponse
+	(*GetBookingRequest)(nil),     // 11: booking.GetBookingRequest
+	(*GetBookingResponse)(nil),    // 12: booking.GetBookingResponse
+	(*GetBookingsRequest)(nil),    // 13: booking.GetBookingsRequest
+	(*GetBookingsResponse)(nil),   // 14: booking.GetBookingsResponse
+	(*ConfirmRequest)(nil),        // 15: booking.ConfirmRequest
+	(*ConfirmResponse)(nil),       // 16: booking.ConfirmResponse
+	(*CheckInRequest)(nil),        // 17: booking.CheckInRequest
+	(*CheckInResponse)(nil),       // 18: booking.CheckInResponse
+	(*CancelRequest)(nil),         // 19: booking.CancelRequest
+	(*CancelResponse)(nil),        // 20: booking.CancelResponse
+	(*ShiftRequest)(nil),          // 21: booking.ShiftRequest
+	(*ShiftResponse)(nil),         // 22: booking.ShiftResponse
+	(*GetTicketRequest)(nil),      // 23: booking.GetTicketRequest
+	(*GetTicketResponse)(nil),     // 24: booking.GetTicketResponse
+	(*CheckTicketRequest)(nil),    // 25: booking.CheckTicketRequest
+	(*CheckTicketResponse)(nil),   // 26: booking.CheckTicketResponse
+	(*CreateSlotRequest)(nil),     // 27: booking.CreateSlotRequest
+	(*CreateSlotResponse)(nil),    // 28: booking.CreateSlotResponse
+	(*UpdateSlotRequest)(nil),     // 29: booking.UpdateSlotRequest
+	(*UpdateSlotResponse)(nil),    // 30: booking.UpdateSlotResponse
+	(*DeleteSlotRequest)(nil),     // 31: booking.DeleteSlotRequest
+	(*DeleteSlotResponse)(nil),    // 32: booking.DeleteSlotResponse
+	(*FindSlotRequest)(nil),       // 33: booking.FindSlotRequest
+	(*FindSlotResponse)(nil),      // 34: booking.FindSlotResponse
+	(*FindSlotsRequest)(nil),      // 35: booking.FindSlotsRequest
+	(*FindSlotsResponse)(nil),     // 36: booking.FindSlotsResponse
+	(*CreateTicketRequest)(nil),   // 37: booking.CreateTicketRequest
+	(*CreateTicketResponse)(nil),  // 38: booking.CreateTicketResponse
+	(*FindTicketRequest)(nil),     // 39: booking.FindTicketRequest
+	(*FindTicketResponse)(nil),    // 40: booking.FindTicketResponse
+	(Availability_Type)(0),        // 41: business.Availability.Type
+	(*timestamppb.Timestamp)(nil), // 42: google.protobuf.Timestamp
+	(*User)(nil),                  // 43: users.User
+	(*Availability)(nil),          // 44: business.Availability
+	(*durationpb.Duration)(nil),   // 45: google.protobuf.Duration
 }
 var file_schema_booking_proto_depIdxs = []int32{
-	1, // 0: booking.Slot.type:type_name -> business.Availability.Type
-	2, // 1: booking.Slot.start:type_name -> google.protobuf.Timestamp
-	3, // 2: booking.Slot.user:type_name -> users.User
-	4, // 3: booking.Slot.availability:type_name -> business.Availability
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	41, // 0: booking.Slot.type:type_name -> business.Availability.Type
+	42, // 1: booking.Slot.start:type_name -> google.protobuf.Timestamp
+	43, // 2: booking.Slot.user:type_name -> users.User
+	44, // 3: booking.Slot.availability:type_name -> business.Availability
+	0,  // 4: booking.Ticket.slot:type_name -> booking.Slot
+	42, // 5: booking.GetSlotsRequest.from:type_name -> google.protobuf.Timestamp
+	42, // 6: booking.GetSlotsRequest.to:type_name -> google.protobuf.Timestamp
+	0,  // 7: booking.GetSlotsResponse.slots:type_name -> booking.Slot
+	42, // 8: booking.PreviewSlotsRequest.from:type_name -> google.protobuf.Timestamp
+	42, // 9: booking.PreviewSlotsRequest.to:type_name -> google.protobuf.Timestamp
+	44, // 10: booking.PreviewSlotsRequest.availabilities:type_name -> business.Availability
+	0,  // 11: booking.PreviewSlotsResponse.slots:type_name -> booking.Slot
+	42, // 12: booking.BookRequest.from:type_name -> google.protobuf.Timestamp
+	45, // 13: booking.BookRequest.duration:type_name -> google.protobuf.Duration
+	2,  // 14: booking.GetBookingRequest.filter:type_name -> booking.SlotFilter
+	0,  // 15: booking.GetBookingResponse.slot:type_name -> booking.Slot
+	3,  // 16: booking.GetBookingsRequest.filter:type_name -> booking.SlotsFilter
+	0,  // 17: booking.GetBookingsResponse.slots:type_name -> booking.Slot
+	1,  // 18: booking.CheckInResponse.ticket:type_name -> booking.Ticket
+	42, // 19: booking.ShiftRequest.from:type_name -> google.protobuf.Timestamp
+	4,  // 20: booking.GetTicketRequest.filter:type_name -> booking.TicketFilter
+	1,  // 21: booking.GetTicketResponse.ticket:type_name -> booking.Ticket
+	4,  // 22: booking.CheckTicketRequest.filter:type_name -> booking.TicketFilter
+	1,  // 23: booking.CheckTicketResponse.ticket:type_name -> booking.Ticket
+	0,  // 24: booking.CreateSlotRequest.slot:type_name -> booking.Slot
+	0,  // 25: booking.UpdateSlotRequest.slot:type_name -> booking.Slot
+	0,  // 26: booking.UpdateSlotResponse.slot:type_name -> booking.Slot
+	0,  // 27: booking.DeleteSlotResponse.slot:type_name -> booking.Slot
+	2,  // 28: booking.FindSlotRequest.filter:type_name -> booking.SlotFilter
+	0,  // 29: booking.FindSlotResponse.slot:type_name -> booking.Slot
+	3,  // 30: booking.FindSlotsRequest.filter:type_name -> booking.SlotsFilter
+	0,  // 31: booking.FindSlotsResponse.slots:type_name -> booking.Slot
+	1,  // 32: booking.CreateTicketRequest.ticket:type_name -> booking.Ticket
+	4,  // 33: booking.FindTicketRequest.filter:type_name -> booking.TicketFilter
+	1,  // 34: booking.FindTicketResponse.ticket:type_name -> booking.Ticket
+	5,  // 35: booking.BookingService.GetSlots:input_type -> booking.GetSlotsRequest
+	7,  // 36: booking.BookingService.PreviewSlots:input_type -> booking.PreviewSlotsRequest
+	9,  // 37: booking.BookingService.Book:input_type -> booking.BookRequest
+	11, // 38: booking.BookingService.GetBooking:input_type -> booking.GetBookingRequest
+	13, // 39: booking.BookingService.GetBookings:input_type -> booking.GetBookingsRequest
+	15, // 40: booking.BookingService.Confirm:input_type -> booking.ConfirmRequest
+	17, // 41: booking.BookingService.CheckIn:input_type -> booking.CheckInRequest
+	19, // 42: booking.BookingService.Cancel:input_type -> booking.CancelRequest
+	21, // 43: booking.BookingService.Shift:input_type -> booking.ShiftRequest
+	23, // 44: booking.BookingService.GetTicket:input_type -> booking.GetTicketRequest
+	25, // 45: booking.BookingService.CheckTicket:input_type -> booking.CheckTicketRequest
+	27, // 46: booking.BookingStorage.CreateSlot:input_type -> booking.CreateSlotRequest
+	29, // 47: booking.BookingStorage.UpdateSlot:input_type -> booking.UpdateSlotRequest
+	31, // 48: booking.BookingStorage.DeleteSlot:input_type -> booking.DeleteSlotRequest
+	33, // 49: booking.BookingStorage.FindSlot:input_type -> booking.FindSlotRequest
+	35, // 50: booking.BookingStorage.FindSlots:input_type -> booking.FindSlotsRequest
+	37, // 51: booking.BookingStorage.CreateTicket:input_type -> booking.CreateTicketRequest
+	39, // 52: booking.BookingStorage.FindTicket:input_type -> booking.FindTicketRequest
+	6,  // 53: booking.BookingService.GetSlots:output_type -> booking.GetSlotsResponse
+	8,  // 54: booking.BookingService.PreviewSlots:output_type -> booking.PreviewSlotsResponse
+	10, // 55: booking.BookingService.Book:output_type -> booking.BookResponse
+	12, // 56: booking.BookingService.GetBooking:output_type -> booking.GetBookingResponse
+	14, // 57: booking.BookingService.GetBookings:output_type -> booking.GetBookingsResponse
+	16, // 58: booking.BookingService.Confirm:output_type -> booking.ConfirmResponse
+	18, // 59: booking.BookingService.CheckIn:output_type -> booking.CheckInResponse
+	20, // 60: booking.BookingService.Cancel:output_type -> booking.CancelResponse
+	22, // 61: booking.BookingService.Shift:output_type -> booking.ShiftResponse
+	24, // 62: booking.BookingService.GetTicket:output_type -> booking.GetTicketResponse
+	26, // 63: booking.BookingService.CheckTicket:output_type -> booking.CheckTicketResponse
+	28, // 64: booking.BookingStorage.CreateSlot:output_type -> booking.CreateSlotResponse
+	30, // 65: booking.BookingStorage.UpdateSlot:output_type -> booking.UpdateSlotResponse
+	32, // 66: booking.BookingStorage.DeleteSlot:output_type -> booking.DeleteSlotResponse
+	34, // 67: booking.BookingStorage.FindSlot:output_type -> booking.FindSlotResponse
+	36, // 68: booking.BookingStorage.FindSlots:output_type -> booking.FindSlotsResponse
+	38, // 69: booking.BookingStorage.CreateTicket:output_type -> booking.CreateTicketResponse
+	40, // 70: booking.BookingStorage.FindTicket:output_type -> booking.FindTicketResponse
+	53, // [53:71] is the sub-list for method output_type
+	35, // [35:53] is the sub-list for method input_type
+	35, // [35:35] is the sub-list for extension type_name
+	35, // [35:35] is the sub-list for extension extendee
+	0,  // [0:35] is the sub-list for field type_name
 }
 
 func init() { file_schema_booking_proto_init() }
@@ -181,6 +2439,486 @@ func file_schema_booking_proto_init() {
 				return nil
 			}
 		}
+		file_schema_booking_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Ticket); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SlotFilter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SlotsFilter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TicketFilter); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSlotsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSlotsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PreviewSlotsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*PreviewSlotsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BookRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BookResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetBookingRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetBookingResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetBookingsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetBookingsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ConfirmRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ConfirmResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckInRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckInResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CancelRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CancelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ShiftRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ShiftResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetTicketRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetTicketResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckTicketRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CheckTicketResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateSlotRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateSlotResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateSlotRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateSlotResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteSlotRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteSlotResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindSlotRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindSlotResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindSlotsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindSlotsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTicketRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTicketResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[39].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindTicketRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_schema_booking_proto_msgTypes[40].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindTicketResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -188,9 +2926,9 @@ func file_schema_booking_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_schema_booking_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   41,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   2,
 		},
 		GoTypes:           file_schema_booking_proto_goTypes,
 		DependencyIndexes: file_schema_booking_proto_depIdxs,

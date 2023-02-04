@@ -30,11 +30,6 @@ type BusinessServiceClient interface {
 	GetServices(ctx context.Context, in *GetServicesRequest, opts ...grpc.CallOption) (*GetServicesResponse, error)
 	AddAvailability(ctx context.Context, in *AddAvailabilityRequest, opts ...grpc.CallOption) (*AddAvailabilityResponse, error)
 	GetAvailability(ctx context.Context, in *GetAvailabilityRequest, opts ...grpc.CallOption) (*GetAvailabilityResponse, error)
-	Book(ctx context.Context, in *BookRequest, opts ...grpc.CallOption) (*BookResponse, error)
-	Confirm(ctx context.Context, in *ConfirmRequest, opts ...grpc.CallOption) (*ConfirmResponse, error)
-	CheckIn(ctx context.Context, in *CheckInRequest, opts ...grpc.CallOption) (*CheckInResponse, error)
-	Cancel(ctx context.Context, in *CancelRequest, opts ...grpc.CallOption) (*CancelResponse, error)
-	Shift(ctx context.Context, in *ShiftRequest, opts ...grpc.CallOption) (*ShiftResponse, error)
 	GrantRoles(ctx context.Context, in *GrantRolesRequest, opts ...grpc.CallOption) (*GrantRolesResponse, error)
 	RevokeRoles(ctx context.Context, in *RevokeRolesRequest, opts ...grpc.CallOption) (*RevokeRolesResponse, error)
 	GetRoles(ctx context.Context, in *GetRolesRequest, opts ...grpc.CallOption) (*GetRolesResponse, error)
@@ -120,51 +115,6 @@ func (c *businessServiceClient) GetAvailability(ctx context.Context, in *GetAvai
 	return out, nil
 }
 
-func (c *businessServiceClient) Book(ctx context.Context, in *BookRequest, opts ...grpc.CallOption) (*BookResponse, error) {
-	out := new(BookResponse)
-	err := c.cc.Invoke(ctx, "/business.BusinessService/Book", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessServiceClient) Confirm(ctx context.Context, in *ConfirmRequest, opts ...grpc.CallOption) (*ConfirmResponse, error) {
-	out := new(ConfirmResponse)
-	err := c.cc.Invoke(ctx, "/business.BusinessService/Confirm", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessServiceClient) CheckIn(ctx context.Context, in *CheckInRequest, opts ...grpc.CallOption) (*CheckInResponse, error) {
-	out := new(CheckInResponse)
-	err := c.cc.Invoke(ctx, "/business.BusinessService/CheckIn", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessServiceClient) Cancel(ctx context.Context, in *CancelRequest, opts ...grpc.CallOption) (*CancelResponse, error) {
-	out := new(CancelResponse)
-	err := c.cc.Invoke(ctx, "/business.BusinessService/Cancel", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessServiceClient) Shift(ctx context.Context, in *ShiftRequest, opts ...grpc.CallOption) (*ShiftResponse, error) {
-	out := new(ShiftResponse)
-	err := c.cc.Invoke(ctx, "/business.BusinessService/Shift", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *businessServiceClient) GrantRoles(ctx context.Context, in *GrantRolesRequest, opts ...grpc.CallOption) (*GrantRolesResponse, error) {
 	out := new(GrantRolesResponse)
 	err := c.cc.Invoke(ctx, "/business.BusinessService/GrantRoles", in, out, opts...)
@@ -204,11 +154,6 @@ type BusinessServiceServer interface {
 	GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error)
 	AddAvailability(context.Context, *AddAvailabilityRequest) (*AddAvailabilityResponse, error)
 	GetAvailability(context.Context, *GetAvailabilityRequest) (*GetAvailabilityResponse, error)
-	Book(context.Context, *BookRequest) (*BookResponse, error)
-	Confirm(context.Context, *ConfirmRequest) (*ConfirmResponse, error)
-	CheckIn(context.Context, *CheckInRequest) (*CheckInResponse, error)
-	Cancel(context.Context, *CancelRequest) (*CancelResponse, error)
-	Shift(context.Context, *ShiftRequest) (*ShiftResponse, error)
 	GrantRoles(context.Context, *GrantRolesRequest) (*GrantRolesResponse, error)
 	RevokeRoles(context.Context, *RevokeRolesRequest) (*RevokeRolesResponse, error)
 	GetRoles(context.Context, *GetRolesRequest) (*GetRolesResponse, error)
@@ -242,21 +187,6 @@ func (UnimplementedBusinessServiceServer) AddAvailability(context.Context, *AddA
 }
 func (UnimplementedBusinessServiceServer) GetAvailability(context.Context, *GetAvailabilityRequest) (*GetAvailabilityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAvailability not implemented")
-}
-func (UnimplementedBusinessServiceServer) Book(context.Context, *BookRequest) (*BookResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Book not implemented")
-}
-func (UnimplementedBusinessServiceServer) Confirm(context.Context, *ConfirmRequest) (*ConfirmResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
-}
-func (UnimplementedBusinessServiceServer) CheckIn(context.Context, *CheckInRequest) (*CheckInResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckIn not implemented")
-}
-func (UnimplementedBusinessServiceServer) Cancel(context.Context, *CancelRequest) (*CancelResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Cancel not implemented")
-}
-func (UnimplementedBusinessServiceServer) Shift(context.Context, *ShiftRequest) (*ShiftResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Shift not implemented")
 }
 func (UnimplementedBusinessServiceServer) GrantRoles(context.Context, *GrantRolesRequest) (*GrantRolesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GrantRoles not implemented")
@@ -424,96 +354,6 @@ func _BusinessService_GetAvailability_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BusinessService_Book_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BookRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).Book(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.BusinessService/Book",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).Book(ctx, req.(*BookRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessService_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfirmRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).Confirm(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.BusinessService/Confirm",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).Confirm(ctx, req.(*ConfirmRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessService_CheckIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckInRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).CheckIn(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.BusinessService/CheckIn",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).CheckIn(ctx, req.(*CheckInRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessService_Cancel_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CancelRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).Cancel(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.BusinessService/Cancel",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).Cancel(ctx, req.(*CancelRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessService_Shift_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ShiftRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).Shift(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.BusinessService/Shift",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).Shift(ctx, req.(*ShiftRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _BusinessService_GrantRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GrantRolesRequest)
 	if err := dec(in); err != nil {
@@ -606,26 +446,6 @@ var BusinessService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAvailability",
 			Handler:    _BusinessService_GetAvailability_Handler,
-		},
-		{
-			MethodName: "Book",
-			Handler:    _BusinessService_Book_Handler,
-		},
-		{
-			MethodName: "Confirm",
-			Handler:    _BusinessService_Confirm_Handler,
-		},
-		{
-			MethodName: "CheckIn",
-			Handler:    _BusinessService_CheckIn_Handler,
-		},
-		{
-			MethodName: "Cancel",
-			Handler:    _BusinessService_Cancel_Handler,
-		},
-		{
-			MethodName: "Shift",
-			Handler:    _BusinessService_Shift_Handler,
 		},
 		{
 			MethodName: "GrantRoles",
