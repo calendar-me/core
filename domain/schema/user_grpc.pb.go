@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v3.20.3
-// source: schema/users.proto
+// source: schema/user.proto
 
 package schema
 
@@ -209,14 +209,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "schema/users.proto",
+	Metadata: "schema/user.proto",
 }
 
 // UserStorageClient is the client API for UserStorage service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserStorageClient interface {
-	PersistUser(ctx context.Context, in *PersistUserRequest, opts ...grpc.CallOption) (*PersistUserResponse, error)
+	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 	FindUser(ctx context.Context, in *FindUserRequest, opts ...grpc.CallOption) (*FindUserResponse, error)
 	FindUsers(ctx context.Context, in *FindUsersRequest, opts ...grpc.CallOption) (*FindUsersResponse, error)
@@ -230,9 +230,9 @@ func NewUserStorageClient(cc grpc.ClientConnInterface) UserStorageClient {
 	return &userStorageClient{cc}
 }
 
-func (c *userStorageClient) PersistUser(ctx context.Context, in *PersistUserRequest, opts ...grpc.CallOption) (*PersistUserResponse, error) {
-	out := new(PersistUserResponse)
-	err := c.cc.Invoke(ctx, "/users.UserStorage/PersistUser", in, out, opts...)
+func (c *userStorageClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
+	out := new(CreateUserResponse)
+	err := c.cc.Invoke(ctx, "/users.UserStorage/CreateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -270,7 +270,7 @@ func (c *userStorageClient) FindUsers(ctx context.Context, in *FindUsersRequest,
 // All implementations must embed UnimplementedUserStorageServer
 // for forward compatibility
 type UserStorageServer interface {
-	PersistUser(context.Context, *PersistUserRequest) (*PersistUserResponse, error)
+	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	FindUser(context.Context, *FindUserRequest) (*FindUserResponse, error)
 	FindUsers(context.Context, *FindUsersRequest) (*FindUsersResponse, error)
@@ -281,8 +281,8 @@ type UserStorageServer interface {
 type UnimplementedUserStorageServer struct {
 }
 
-func (UnimplementedUserStorageServer) PersistUser(context.Context, *PersistUserRequest) (*PersistUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PersistUser not implemented")
+func (UnimplementedUserStorageServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
 func (UnimplementedUserStorageServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
@@ -306,20 +306,20 @@ func RegisterUserStorageServer(s grpc.ServiceRegistrar, srv UserStorageServer) {
 	s.RegisterService(&UserStorage_ServiceDesc, srv)
 }
 
-func _UserStorage_PersistUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PersistUserRequest)
+func _UserStorage_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserStorageServer).PersistUser(ctx, in)
+		return srv.(UserStorageServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/users.UserStorage/PersistUser",
+		FullMethod: "/users.UserStorage/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserStorageServer).PersistUser(ctx, req.(*PersistUserRequest))
+		return srv.(UserStorageServer).CreateUser(ctx, req.(*CreateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -386,8 +386,8 @@ var UserStorage_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserStorageServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "PersistUser",
-			Handler:    _UserStorage_PersistUser_Handler,
+			MethodName: "CreateUser",
+			Handler:    _UserStorage_CreateUser_Handler,
 		},
 		{
 			MethodName: "DeleteUser",
@@ -403,5 +403,5 @@ var UserStorage_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "schema/users.proto",
+	Metadata: "schema/user.proto",
 }

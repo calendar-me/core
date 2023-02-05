@@ -1,6 +1,7 @@
 syntax = "proto3";
 package users;
 option go_package = "github.com/calendar-me/core/domain/schema";
+import "schema/common.proto";
 
 /* model */ 
 message User {
@@ -45,8 +46,8 @@ message UserDeletedEvent {
 
 /* filters */
 message UsersFilter {
-    int32 page = 10;
-    int32 offset = 11;
+    repeated string ids = 1;
+    optional common.QueryParams params = 2;
 }
 
 message UserFilter {
@@ -89,12 +90,12 @@ message RegisterUserRequest {
     User user = 1;
 }
 message RegisterUserResponse {
-    string id = 1;
+    User user = 1;
 }
 
 /* storage */ 
 service UserStorage {
-    rpc PersistUser(PersistUserRequest) returns (PersistUserResponse);
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
     rpc FindUser(FindUserRequest) returns (FindUserResponse);
     rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
@@ -122,12 +123,12 @@ message DeleteUserRequest {
     }
 }
 message DeleteUserResponse {
-    string id = 1;
+    bool deleted = 1;
 }
 
-message PersistUserRequest {
+message CreateUserRequest {
     User user = 1;
 }
-message PersistUserResponse {
-    string id = 1;
+message CreateUserResponse {
+    User user = 1;
 }

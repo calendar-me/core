@@ -3,8 +3,9 @@ package booking;
 option go_package = "github.com/calendar-me/core/domain/schema";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
-import "schema/users.proto";
+import "schema/user.proto";
 import "schema/business.proto";
+import "schema/common.proto";
 
 /* models */ 
 
@@ -13,27 +14,67 @@ message Slot {
     business.Availability.Type type = 2;
     google.protobuf.Timestamp start = 3;
 
-    users.User user = 4; 
+    users.User user = 4;
     business.Availability availability = 5;
 }
 
 message Ticket {
+    enum Type {
+        IN_LINE = 0;
+        CHECKED = 1;
+        CANCELED = 2;
+    }
+
     string id = 1;
     int32 number = 2;
+    Type type = 3;
     
-    Slot slot = 3;
+    Slot slot = 4;
 }
 
 /* filters */ 
 
-message SlotFilter {}
-message SlotsFilter {}
-message TicketFilter {}
+message SlotFilter {
+    message Index {
+        users.User user = 1;
+        business.Availability availability = 2;
+        google.protobuf.Timestamp start = 3;
+    }
+
+    optional string id = 1;
+    optional Index index = 2;
+    optional business.Availability.Type type = 3;
+}
+message SlotsFilter {
+    repeated string ids = 1;
+    optional users.User user = 2;
+    optional business.Availability availability = 3;
+    optional google.protobuf.Timestamp start = 4;
+    optional business.Availability.Type type = 5;
+    optional common.QueryParams params = 6;
+}
+
+message TicketFilter {
+    message Index {
+        users.User user = 1;
+        Slot slot = 2;
+    }
+
+    optional string id = 1;
+}
+message TicketsFilter {
+    repeated string ids = 1;
+    optional users.User user = 2;
+    optional business.Availability availability = 3;
+    optional google.protobuf.Timestamp start = 4;  
+    optional Ticket.Type type = 5;
+    optional common.QueryParams params = 6;
+}
 
 /* service */ 
 
 service BookingService {
-    rpc GetSlots(GetSlotsRequest) returns (GetSlotsResponse);
+    rpc CalendarSlots(CalendarSlotsRequest) returns (CalendarSlotsResponse);
     rpc PreviewSlots(PreviewSlotsRequest) returns (PreviewSlotsResponse);
     
     rpc Book(BookRequest) returns (BookResponse);
@@ -49,17 +90,17 @@ service BookingService {
     rpc CheckTicket(CheckTicketRequest) returns (CheckTicketResponse);
 }
 
-message GetSlotsRequest {
-    string service_id = 1;
+message CalendarSlotsRequest {
+    business.Service service = 1;
     google.protobuf.Timestamp from = 2;
     google.protobuf.Timestamp to = 3;
 }
-message GetSlotsResponse {
+message CalendarSlotsResponse {
     repeated Slot slots = 1;
 }
 
 message PreviewSlotsRequest {
-    string service_id = 1;
+    business.Service service = 1;
     google.protobuf.Timestamp from = 2;
     google.protobuf.Timestamp to = 3;
     repeated business.Availability availabilities = 4;
@@ -69,12 +110,12 @@ message PreviewSlotsResponse {
 }
 
 message BookRequest {
-    string service_id = 1;
+    business.Service service = 1;
     google.protobuf.Timestamp from = 2;
     google.protobuf.Duration duration = 3;
 }
 message BookResponse {
-    string slot_id = 1;
+    Slot slot = 1;
 }
 
 message GetBookingRequest {
@@ -92,27 +133,33 @@ message GetBookingsResponse {
 }
 
 message ConfirmRequest {
-    string slot_id = 1;
+    Slot slot = 1;
 }
-message ConfirmResponse {}
+message ConfirmResponse {
+    bool confirmed = 1;
+}
 
 message CheckInRequest {
-    string slot_id = 1;
+    Slot slot = 1;
 }
 message CheckInResponse {
     Ticket ticket = 1;
 }
 
 message CancelRequest {
-    string slot_id = 1;
+    Slot slot = 1;
 }
-message CancelResponse {}
+message CancelResponse {
+    bool canceled = 1;
+}
 
 message ShiftRequest {
-    string slot_id = 1;
+    Slot slot = 1;
     google.protobuf.Timestamp from = 2;
 }
-message ShiftResponse {}
+message ShiftResponse {
+    bool shifted = 1;
+}
 
 message GetTicketRequest {
     TicketFilter filter = 1;
@@ -136,30 +183,34 @@ service BookingStorage {
     rpc DeleteSlot(DeleteSlotRequest) returns (DeleteSlotResponse);
     rpc FindSlot(FindSlotRequest) returns (FindSlotResponse);
     rpc FindSlots(FindSlotsRequest) returns (FindSlotsResponse);
+
     rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse);
+    rpc UpdateTicket(UpdateTicketRequest) returns (UpdateTicketResponse);
     rpc FindTicket(FindTicketRequest) returns (FindTicketResponse);
+    rpc FindTickets(FindTicketsRequest) returns (FindTicketsResponse);
+
+    // booking streaming
 }
 
 message CreateSlotRequest{
     Slot slot = 1;
 }
 message CreateSlotResponse{
-    string slot_id = 1;
+    Slot slot = 1;
 }
 
 message UpdateSlotRequest{
-    string slot_id = 1;
     Slot slot = 2;
 }
 message UpdateSlotResponse{
-    Slot slot = 1;
+    bool updated = 1;
 }
 
 message DeleteSlotRequest{
-    string slot_id = 1;
+    Slot slot = 1;
 }
 message DeleteSlotResponse{
-    Slot slot = 1;
+    bool deleted = 1;
 }
 
 message FindSlotRequest{
@@ -183,9 +234,23 @@ message CreateTicketResponse{
     string ticket_id = 1;
 }
 
+message UpdateTicketRequest{
+    Ticket ticket = 1;
+}
+message UpdateTicketResponse{
+    bool updated = 1;
+}
+
 message FindTicketRequest{
     TicketFilter filter = 1;
 }
 message FindTicketResponse{
     Ticket ticket = 1;
+}
+
+message FindTicketsRequest{
+    TicketsFilter filter = 1;
+}
+message FindTicketsResponse{
+    repeated Ticket tickets = 1;
 }

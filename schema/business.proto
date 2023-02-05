@@ -3,6 +3,8 @@ package business;
 option go_package = "github.com/calendar-me/core/domain/schema";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
+import "schema/user.proto";
+import "schema/common.proto";
 
 /* models */
 
@@ -29,32 +31,85 @@ message Availability {
 }
 
 message Service {
+    enum Kind {
+        BUSINESS_KIND_1 = 0;
+    }
+
+    enum Type {
+        BUSINESS_TYPE_1 = 0;
+    }
+
     string id = 1;
     string name = 2;
     bool active = 3;
+    Kind kind = 4;
+    Type type = 5;
 
-    Business business = 4;
-    repeated Availability availabilities = 5;
+    Business business = 6;
+    repeated Availability availabilities = 7;
 }
 
 message Business {
     string id = 1;
     string name = 2;
     bool active = 3;
-
+    
     repeated Service services = 4;
+}
+
+message Role {
+    enum Type {
+        ADMIN = 0;
+        EDITOR = 1;
+    }
+
+    Type type = 1;
+    oneof element {
+        Business business = 2;
+        Service service = 3;
+    }
+    users.User user = 4;
 }
 
 /* filters */
 
-message AvailabilityFilter {}
-message AvailabilitiesFilter {}
+message AvailabilityFilter {
+    string id = 1;
+}
+message AvailabilitiesFilter {
+    Service service = 1;
+    optional google.protobuf.Timestamp from = 2;
+}
 
-message ServiceFilter {}
-message ServicesFilter {}
+message ServiceFilter {
+    string id = 1;
+}
+message ServicesFilter {
+    Business business = 1;
+    optional Service.Kind kind = 2;
+    optional Service.Type type = 3;
+    optional common.QueryParams params = 4;
+}
 
-message BusinessFilter {}
-message BusinessesFilter {}
+message BusinessFilter {
+    string id = 1;
+}
+message BusinessesFilter {
+    optional Service.Kind kind = 1;
+    optional Service.Type type = 2;
+    optional common.QueryParams params = 3;
+}
+
+message RoleFilter {
+    Role role = 1;
+}
+message RolesFilter {
+    repeated Role.Type types = 1;
+    optional Business business = 2;
+    optional Service service = 3;
+    optional users.User user = 4;
+    optional common.QueryParams params = 5;
+}
 
 /* service */ 
 
@@ -67,45 +122,250 @@ service BusinessService {
     rpc GetService(GetServiceRequest) returns (GetServiceResponse);
     rpc GetServices(GetServicesRequest) returns (GetServicesResponse);
     
-    rpc AddAvailability(AddAvailabilityRequest) returns (AddAvailabilityResponse); 
-    rpc GetAvailability(GetAvailabilityRequest) returns (GetAvailabilityResponse); 
+    rpc AddAvailabilities(AddAvailabilitiesRequest) returns (AddAvailabilitiesResponse); 
+    rpc GetAvailabilities(GetAvailabilitiesRequest) returns (GetAvailabilitiesResponse); 
    
     rpc GrantRoles(GrantRolesRequest) returns (GrantRolesResponse);
     rpc RevokeRoles(RevokeRolesRequest) returns (RevokeRolesResponse);
     rpc GetRoles(GetRolesRequest) returns (GetRolesResponse);
+
+    // availability streaming
 }
 
-message RegisterBusinessRequest {}
-message RegisterBusinessResponse {}
+message RegisterBusinessRequest {
+    Business business = 1;
+}
+message RegisterBusinessResponse {
+    string business_id = 1;
+}
 
-message GetBusinessRequest {}
-message GetBusinessResponse {}
+message GetBusinessRequest {
+    BusinessFilter filter = 1;
+}
+message GetBusinessResponse {
+    Business business = 1;
+}
 
-message GetBusinessesRequest{}
-message GetBusinessesResponse{}
+message GetBusinessesRequest{
+    BusinessesFilter filter = 1;
+}
+message GetBusinessesResponse{
+    repeated Business businesses = 1;
+}
 
-message RegisterServiceRequest {}
-message RegisterServiceResponse {}
+message RegisterServiceRequest {
+    Service service = 1;
+}
+message RegisterServiceResponse {
+    string service_id = 1;
+}
 
-message GetServiceRequest {}
-message GetServiceResponse {}
+message GetServiceRequest {
+    ServiceFilter filter = 1;
+}
+message GetServiceResponse {
+    Service service = 1;
+}
 
-message GetServicesRequest{}
-message GetServicesResponse{}
+message GetServicesRequest{
+    ServicesFilter filter = 1;
+}
+message GetServicesResponse{
+    repeated Service services = 1;
+}
 
-message AddAvailabilityRequest {}
-message AddAvailabilityResponse {}
+message AddAvailabilitiesRequest {
+    repeated Availability availabilities = 1;
+}
+message AddAvailabilitiesResponse {
+    repeated string availability_ids = 1;
+}
 
-message GetAvailabilityRequest {}
-message GetAvailabilityResponse {}
+message GetAvailabilitiesRequest {
+    AvailabilitiesFilter filter = 1;
+}
+message GetAvailabilitiesResponse {
+    repeated Availability availabilities = 1;
+}
 
-message GrantRolesRequest {}
-message GrantRolesResponse {}
+message GrantRolesRequest {
+    repeated Role roles = 1;
+}
+message GrantRolesResponse {
+    bool granted = 1;
+}
 
-message RevokeRolesRequest {}
-message RevokeRolesResponse {}
+message RevokeRolesRequest {
+    repeated Role roles = 1;
+}
+message RevokeRolesResponse {
+    bool revoked = 1;
+}
 
-message GetRolesRequest {}
-message GetRolesResponse {}
+message GetRolesRequest {
+    RolesFilter filter = 1;
+}
+message GetRolesResponse {
+    repeated Role roles = 1;
+}
 
 /* storage */
+
+service BusinessStorage {
+    rpc CreateBusiness(CreateBusinessRequest) returns (CreateBusinessResponse);
+    rpc UpdateBusiness(UpdateBusinessRequest) returns (UpdateBusinessResponse);
+    rpc DeleteBusiness(DeleteBusinessRequest) returns (DeleteBusinessResponse);
+    rpc FindBusiness(FindBusinessRequest) returns (FindBusinessResponse);
+    rpc FindBusinesses(FindBusinessesRequest) returns (FindBusinessesResponse);
+
+    rpc CreateService(CreateServiceRequest) returns (CreateServiceResponse);
+    rpc UpdateService(UpdateServiceRequest) returns (UpdateServiceResponse);
+    rpc DeleteService(DeleteServiceRequest) returns (DeleteServiceResponse);
+    rpc FindService(FindServiceRequest) returns (FindServiceResponse);
+    rpc FindServices(FindServicesRequest) returns (FindServicesResponse);
+
+    rpc CreateAvailability(CreateAvailabilityRequest) returns (CreateAvailabilityResponse);
+    rpc UpdateAvailability(UpdateAvailabilityRequest) returns (UpdateAvailabilityResponse);
+    rpc DeleteAvailability(DeleteAvailabilityRequest) returns (DeleteAvailabilityResponse);
+    rpc FindAvailability(FindAvailabilityRequest) returns (FindAvailabilityResponse);
+    rpc FindAvailabilities(FindAvailabilitiesRequest) returns (FindAvailabilitiesResponse);
+
+    rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse);
+    rpc DeleteRole(DeleteRoleRequest) returns (DeleteRoleResponse);
+    rpc FindRole(FindRoleRequest) returns (FindRoleResponse);
+    rpc FindRoles(FindRolesRequest) returns (FindRolesResponse); 
+} 
+
+message CreateBusinessRequest {
+    Business business = 1;
+}
+message CreateBusinessResponse {
+    string business_id = 1;
+}
+
+message UpdateBusinessRequest {
+    Business business = 1;
+}
+message UpdateBusinessResponse {
+    bool updated = 1;
+}
+
+message DeleteBusinessRequest {
+    string business_id = 1;
+}
+message DeleteBusinessResponse {
+    bool deleted = 1;
+}
+
+message FindBusinessRequest {
+    BusinessFilter filter = 1;
+}
+message FindBusinessResponse {
+    Business business = 1;
+}
+
+message FindBusinessesRequest {
+    BusinessesFilter filter = 1;
+}
+message FindBusinessesResponse {
+    repeated Business businesses = 1;
+}
+
+message CreateServiceRequest {
+    Service service = 1;
+}
+message CreateServiceResponse {
+    string service_id = 1;
+}
+
+message UpdateServiceRequest {
+    Service service = 1;
+}
+message UpdateServiceResponse {
+    bool updated = 1;
+}
+
+message DeleteServiceRequest {
+    string service_id = 1;
+}
+message DeleteServiceResponse {
+    bool deleted = 1;
+}
+
+message FindServiceRequest {
+    ServiceFilter filter = 1;
+}
+message FindServiceResponse {
+    Service service = 1;
+}
+
+message FindServicesRequest {
+    ServicesFilter filter = 1;
+}
+message FindServicesResponse {
+    repeated Service services = 1;
+}
+
+message CreateAvailabilityRequest {
+    Availability availability = 1;
+}
+message CreateAvailabilityResponse {
+    string availability_id = 1;
+}
+
+message UpdateAvailabilityRequest {
+    Availability availability = 1;
+}
+message UpdateAvailabilityResponse {
+    bool update = 1;
+}
+
+message DeleteAvailabilityRequest {
+    string availability_id = 1;
+}
+message DeleteAvailabilityResponse {
+    bool deleted = 1;
+}
+
+message FindAvailabilityRequest {
+    AvailabilityFilter filter = 1;
+}
+message FindAvailabilityResponse {
+    Availability availability = 1;
+}
+
+message FindAvailabilitiesRequest {
+    AvailabilitiesFilter filter = 1;
+}
+message FindAvailabilitiesResponse {
+    repeated Availability availabilities = 1;
+}
+
+message CreateRoleRequest {
+    Role role = 1;
+}
+message CreateRoleResponse {
+    bool created = 1;
+}
+
+message DeleteRoleRequest {
+    Role role = 1;
+}
+message DeleteRoleResponse {
+    bool deleted = 1;
+}
+
+message FindRoleRequest {
+    RoleFilter filter = 1;
+}
+message FindRoleResponse {
+    Role role = 1;
+}
+
+message FindRolesRequest {
+    RolesFilter filter = 1;
+}
+message FindRolesResponse {
+    repeated Role roles = 1;
+}
+

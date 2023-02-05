@@ -1,7 +1,8 @@
 // package: users
-// file: schema/users.proto
+// file: schema/user.proto
 
 import * as jspb from "google-protobuf";
+import * as schema_common_pb from "../schema/common_pb";
 
 export class User extends jspb.Message {
   getId(): string;
@@ -139,11 +140,15 @@ export namespace UserDeletedEvent {
 }
 
 export class UsersFilter extends jspb.Message {
-  getPage(): number;
-  setPage(value: number): void;
+  clearIdsList(): void;
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): void;
+  addIds(value: string, index?: number): string;
 
-  getOffset(): number;
-  setOffset(value: number): void;
+  hasParams(): boolean;
+  clearParams(): void;
+  getParams(): schema_common_pb.QueryParams | undefined;
+  setParams(value?: schema_common_pb.QueryParams): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UsersFilter.AsObject;
@@ -157,8 +162,8 @@ export class UsersFilter extends jspb.Message {
 
 export namespace UsersFilter {
   export type AsObject = {
-    page: number,
-    offset: number,
+    idsList: Array<string>,
+    params?: schema_common_pb.QueryParams.AsObject,
   }
 }
 
@@ -353,8 +358,10 @@ export namespace RegisterUserRequest {
 }
 
 export class RegisterUserResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): User | undefined;
+  setUser(value?: User): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RegisterUserResponse.AsObject;
@@ -368,7 +375,7 @@ export class RegisterUserResponse extends jspb.Message {
 
 export namespace RegisterUserResponse {
   export type AsObject = {
-    id: string,
+    user?: User.AsObject,
   }
 }
 
@@ -503,8 +510,8 @@ export namespace DeleteUserRequest {
 }
 
 export class DeleteUserResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+  getDeleted(): boolean;
+  setDeleted(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteUserResponse.AsObject;
@@ -518,49 +525,51 @@ export class DeleteUserResponse extends jspb.Message {
 
 export namespace DeleteUserResponse {
   export type AsObject = {
-    id: string,
+    deleted: boolean,
   }
 }
 
-export class PersistUserRequest extends jspb.Message {
+export class CreateUserRequest extends jspb.Message {
   hasUser(): boolean;
   clearUser(): void;
   getUser(): User | undefined;
   setUser(value?: User): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PersistUserRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: PersistUserRequest): PersistUserRequest.AsObject;
+  toObject(includeInstance?: boolean): CreateUserRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateUserRequest): CreateUserRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: PersistUserRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PersistUserRequest;
-  static deserializeBinaryFromReader(message: PersistUserRequest, reader: jspb.BinaryReader): PersistUserRequest;
+  static serializeBinaryToWriter(message: CreateUserRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateUserRequest;
+  static deserializeBinaryFromReader(message: CreateUserRequest, reader: jspb.BinaryReader): CreateUserRequest;
 }
 
-export namespace PersistUserRequest {
+export namespace CreateUserRequest {
   export type AsObject = {
     user?: User.AsObject,
   }
 }
 
-export class PersistUserResponse extends jspb.Message {
-  getId(): string;
-  setId(value: string): void;
+export class CreateUserResponse extends jspb.Message {
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): User | undefined;
+  setUser(value?: User): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PersistUserResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: PersistUserResponse): PersistUserResponse.AsObject;
+  toObject(includeInstance?: boolean): CreateUserResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CreateUserResponse): CreateUserResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: PersistUserResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PersistUserResponse;
-  static deserializeBinaryFromReader(message: PersistUserResponse, reader: jspb.BinaryReader): PersistUserResponse;
+  static serializeBinaryToWriter(message: CreateUserResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CreateUserResponse;
+  static deserializeBinaryFromReader(message: CreateUserResponse, reader: jspb.BinaryReader): CreateUserResponse;
 }
 
-export namespace PersistUserResponse {
+export namespace CreateUserResponse {
   export type AsObject = {
-    id: string,
+    user?: User.AsObject,
   }
 }
 

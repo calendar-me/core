@@ -4,8 +4,9 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 import * as google_protobuf_duration_pb from "google-protobuf/google/protobuf/duration_pb";
-import * as schema_users_pb from "../schema/users_pb";
+import * as schema_user_pb from "../schema/user_pb";
 import * as schema_business_pb from "../schema/business_pb";
+import * as schema_common_pb from "../schema/common_pb";
 
 export class Slot extends jspb.Message {
   getId(): string;
@@ -21,8 +22,8 @@ export class Slot extends jspb.Message {
 
   hasUser(): boolean;
   clearUser(): void;
-  getUser(): schema_users_pb.User | undefined;
-  setUser(value?: schema_users_pb.User): void;
+  getUser(): schema_user_pb.User | undefined;
+  setUser(value?: schema_user_pb.User): void;
 
   hasAvailability(): boolean;
   clearAvailability(): void;
@@ -44,7 +45,7 @@ export namespace Slot {
     id: string,
     type: schema_business_pb.Availability.TypeMap[keyof schema_business_pb.Availability.TypeMap],
     start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
-    user?: schema_users_pb.User.AsObject,
+    user?: schema_user_pb.User.AsObject,
     availability?: schema_business_pb.Availability.AsObject,
   }
 }
@@ -55,6 +56,9 @@ export class Ticket extends jspb.Message {
 
   getNumber(): number;
   setNumber(value: number): void;
+
+  getType(): Ticket.TypeMap[keyof Ticket.TypeMap];
+  setType(value: Ticket.TypeMap[keyof Ticket.TypeMap]): void;
 
   hasSlot(): boolean;
   clearSlot(): void;
@@ -75,11 +79,35 @@ export namespace Ticket {
   export type AsObject = {
     id: string,
     number: number,
+    type: Ticket.TypeMap[keyof Ticket.TypeMap],
     slot?: Slot.AsObject,
   }
+
+  export interface TypeMap {
+    IN_LINE: 0;
+    CHECKED: 1;
+    CANCELED: 2;
+  }
+
+  export const Type: TypeMap;
 }
 
 export class SlotFilter extends jspb.Message {
+  hasId(): boolean;
+  clearId(): void;
+  getId(): string;
+  setId(value: string): void;
+
+  hasIndex(): boolean;
+  clearIndex(): void;
+  getIndex(): SlotFilter.Index | undefined;
+  setIndex(value?: SlotFilter.Index): void;
+
+  hasType(): boolean;
+  clearType(): void;
+  getType(): schema_business_pb.Availability.TypeMap[keyof schema_business_pb.Availability.TypeMap];
+  setType(value: schema_business_pb.Availability.TypeMap[keyof schema_business_pb.Availability.TypeMap]): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SlotFilter.AsObject;
   static toObject(includeInstance: boolean, msg: SlotFilter): SlotFilter.AsObject;
@@ -92,10 +120,77 @@ export class SlotFilter extends jspb.Message {
 
 export namespace SlotFilter {
   export type AsObject = {
+    id: string,
+    index?: SlotFilter.Index.AsObject,
+    type: schema_business_pb.Availability.TypeMap[keyof schema_business_pb.Availability.TypeMap],
+  }
+
+  export class Index extends jspb.Message {
+    hasUser(): boolean;
+    clearUser(): void;
+    getUser(): schema_user_pb.User | undefined;
+    setUser(value?: schema_user_pb.User): void;
+
+    hasAvailability(): boolean;
+    clearAvailability(): void;
+    getAvailability(): schema_business_pb.Availability | undefined;
+    setAvailability(value?: schema_business_pb.Availability): void;
+
+    hasStart(): boolean;
+    clearStart(): void;
+    getStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setStart(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Index.AsObject;
+    static toObject(includeInstance: boolean, msg: Index): Index.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Index, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Index;
+    static deserializeBinaryFromReader(message: Index, reader: jspb.BinaryReader): Index;
+  }
+
+  export namespace Index {
+    export type AsObject = {
+      user?: schema_user_pb.User.AsObject,
+      availability?: schema_business_pb.Availability.AsObject,
+      start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    }
   }
 }
 
 export class SlotsFilter extends jspb.Message {
+  clearIdsList(): void;
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): void;
+  addIds(value: string, index?: number): string;
+
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): schema_user_pb.User | undefined;
+  setUser(value?: schema_user_pb.User): void;
+
+  hasAvailability(): boolean;
+  clearAvailability(): void;
+  getAvailability(): schema_business_pb.Availability | undefined;
+  setAvailability(value?: schema_business_pb.Availability): void;
+
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStart(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasType(): boolean;
+  clearType(): void;
+  getType(): schema_business_pb.Availability.TypeMap[keyof schema_business_pb.Availability.TypeMap];
+  setType(value: schema_business_pb.Availability.TypeMap[keyof schema_business_pb.Availability.TypeMap]): void;
+
+  hasParams(): boolean;
+  clearParams(): void;
+  getParams(): schema_common_pb.QueryParams | undefined;
+  setParams(value?: schema_common_pb.QueryParams): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SlotsFilter.AsObject;
   static toObject(includeInstance: boolean, msg: SlotsFilter): SlotsFilter.AsObject;
@@ -108,10 +203,21 @@ export class SlotsFilter extends jspb.Message {
 
 export namespace SlotsFilter {
   export type AsObject = {
+    idsList: Array<string>,
+    user?: schema_user_pb.User.AsObject,
+    availability?: schema_business_pb.Availability.AsObject,
+    start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    type: schema_business_pb.Availability.TypeMap[keyof schema_business_pb.Availability.TypeMap],
+    params?: schema_common_pb.QueryParams.AsObject,
   }
 }
 
 export class TicketFilter extends jspb.Message {
+  hasId(): boolean;
+  clearId(): void;
+  getId(): string;
+  setId(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TicketFilter.AsObject;
   static toObject(includeInstance: boolean, msg: TicketFilter): TicketFilter.AsObject;
@@ -124,12 +230,95 @@ export class TicketFilter extends jspb.Message {
 
 export namespace TicketFilter {
   export type AsObject = {
+    id: string,
+  }
+
+  export class Index extends jspb.Message {
+    hasUser(): boolean;
+    clearUser(): void;
+    getUser(): schema_user_pb.User | undefined;
+    setUser(value?: schema_user_pb.User): void;
+
+    hasSlot(): boolean;
+    clearSlot(): void;
+    getSlot(): Slot | undefined;
+    setSlot(value?: Slot): void;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Index.AsObject;
+    static toObject(includeInstance: boolean, msg: Index): Index.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Index, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Index;
+    static deserializeBinaryFromReader(message: Index, reader: jspb.BinaryReader): Index;
+  }
+
+  export namespace Index {
+    export type AsObject = {
+      user?: schema_user_pb.User.AsObject,
+      slot?: Slot.AsObject,
+    }
   }
 }
 
-export class GetSlotsRequest extends jspb.Message {
-  getServiceId(): string;
-  setServiceId(value: string): void;
+export class TicketsFilter extends jspb.Message {
+  clearIdsList(): void;
+  getIdsList(): Array<string>;
+  setIdsList(value: Array<string>): void;
+  addIds(value: string, index?: number): string;
+
+  hasUser(): boolean;
+  clearUser(): void;
+  getUser(): schema_user_pb.User | undefined;
+  setUser(value?: schema_user_pb.User): void;
+
+  hasAvailability(): boolean;
+  clearAvailability(): void;
+  getAvailability(): schema_business_pb.Availability | undefined;
+  setAvailability(value?: schema_business_pb.Availability): void;
+
+  hasStart(): boolean;
+  clearStart(): void;
+  getStart(): google_protobuf_timestamp_pb.Timestamp | undefined;
+  setStart(value?: google_protobuf_timestamp_pb.Timestamp): void;
+
+  hasType(): boolean;
+  clearType(): void;
+  getType(): Ticket.TypeMap[keyof Ticket.TypeMap];
+  setType(value: Ticket.TypeMap[keyof Ticket.TypeMap]): void;
+
+  hasParams(): boolean;
+  clearParams(): void;
+  getParams(): schema_common_pb.QueryParams | undefined;
+  setParams(value?: schema_common_pb.QueryParams): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TicketsFilter.AsObject;
+  static toObject(includeInstance: boolean, msg: TicketsFilter): TicketsFilter.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TicketsFilter, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TicketsFilter;
+  static deserializeBinaryFromReader(message: TicketsFilter, reader: jspb.BinaryReader): TicketsFilter;
+}
+
+export namespace TicketsFilter {
+  export type AsObject = {
+    idsList: Array<string>,
+    user?: schema_user_pb.User.AsObject,
+    availability?: schema_business_pb.Availability.AsObject,
+    start?: google_protobuf_timestamp_pb.Timestamp.AsObject,
+    type: Ticket.TypeMap[keyof Ticket.TypeMap],
+    params?: schema_common_pb.QueryParams.AsObject,
+  }
+}
+
+export class CalendarSlotsRequest extends jspb.Message {
+  hasService(): boolean;
+  clearService(): void;
+  getService(): schema_business_pb.Service | undefined;
+  setService(value?: schema_business_pb.Service): void;
 
   hasFrom(): boolean;
   clearFrom(): void;
@@ -142,48 +331,50 @@ export class GetSlotsRequest extends jspb.Message {
   setTo(value?: google_protobuf_timestamp_pb.Timestamp): void;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSlotsRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSlotsRequest): GetSlotsRequest.AsObject;
+  toObject(includeInstance?: boolean): CalendarSlotsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: CalendarSlotsRequest): CalendarSlotsRequest.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetSlotsRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSlotsRequest;
-  static deserializeBinaryFromReader(message: GetSlotsRequest, reader: jspb.BinaryReader): GetSlotsRequest;
+  static serializeBinaryToWriter(message: CalendarSlotsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CalendarSlotsRequest;
+  static deserializeBinaryFromReader(message: CalendarSlotsRequest, reader: jspb.BinaryReader): CalendarSlotsRequest;
 }
 
-export namespace GetSlotsRequest {
+export namespace CalendarSlotsRequest {
   export type AsObject = {
-    serviceId: string,
+    service?: schema_business_pb.Service.AsObject,
     from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
-export class GetSlotsResponse extends jspb.Message {
+export class CalendarSlotsResponse extends jspb.Message {
   clearSlotsList(): void;
   getSlotsList(): Array<Slot>;
   setSlotsList(value: Array<Slot>): void;
   addSlots(value?: Slot, index?: number): Slot;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetSlotsResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: GetSlotsResponse): GetSlotsResponse.AsObject;
+  toObject(includeInstance?: boolean): CalendarSlotsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: CalendarSlotsResponse): CalendarSlotsResponse.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetSlotsResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetSlotsResponse;
-  static deserializeBinaryFromReader(message: GetSlotsResponse, reader: jspb.BinaryReader): GetSlotsResponse;
+  static serializeBinaryToWriter(message: CalendarSlotsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CalendarSlotsResponse;
+  static deserializeBinaryFromReader(message: CalendarSlotsResponse, reader: jspb.BinaryReader): CalendarSlotsResponse;
 }
 
-export namespace GetSlotsResponse {
+export namespace CalendarSlotsResponse {
   export type AsObject = {
     slotsList: Array<Slot.AsObject>,
   }
 }
 
 export class PreviewSlotsRequest extends jspb.Message {
-  getServiceId(): string;
-  setServiceId(value: string): void;
+  hasService(): boolean;
+  clearService(): void;
+  getService(): schema_business_pb.Service | undefined;
+  setService(value?: schema_business_pb.Service): void;
 
   hasFrom(): boolean;
   clearFrom(): void;
@@ -212,7 +403,7 @@ export class PreviewSlotsRequest extends jspb.Message {
 
 export namespace PreviewSlotsRequest {
   export type AsObject = {
-    serviceId: string,
+    service?: schema_business_pb.Service.AsObject,
     from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     to?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     availabilitiesList: Array<schema_business_pb.Availability.AsObject>,
@@ -242,8 +433,10 @@ export namespace PreviewSlotsResponse {
 }
 
 export class BookRequest extends jspb.Message {
-  getServiceId(): string;
-  setServiceId(value: string): void;
+  hasService(): boolean;
+  clearService(): void;
+  getService(): schema_business_pb.Service | undefined;
+  setService(value?: schema_business_pb.Service): void;
 
   hasFrom(): boolean;
   clearFrom(): void;
@@ -267,15 +460,17 @@ export class BookRequest extends jspb.Message {
 
 export namespace BookRequest {
   export type AsObject = {
-    serviceId: string,
+    service?: schema_business_pb.Service.AsObject,
     from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     duration?: google_protobuf_duration_pb.Duration.AsObject,
   }
 }
 
 export class BookResponse extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
+  hasSlot(): boolean;
+  clearSlot(): void;
+  getSlot(): Slot | undefined;
+  setSlot(value?: Slot): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BookResponse.AsObject;
@@ -289,7 +484,7 @@ export class BookResponse extends jspb.Message {
 
 export namespace BookResponse {
   export type AsObject = {
-    slotId: string,
+    slot?: Slot.AsObject,
   }
 }
 
@@ -382,8 +577,10 @@ export namespace GetBookingsResponse {
 }
 
 export class ConfirmRequest extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
+  hasSlot(): boolean;
+  clearSlot(): void;
+  getSlot(): Slot | undefined;
+  setSlot(value?: Slot): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ConfirmRequest.AsObject;
@@ -397,11 +594,14 @@ export class ConfirmRequest extends jspb.Message {
 
 export namespace ConfirmRequest {
   export type AsObject = {
-    slotId: string,
+    slot?: Slot.AsObject,
   }
 }
 
 export class ConfirmResponse extends jspb.Message {
+  getConfirmed(): boolean;
+  setConfirmed(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ConfirmResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ConfirmResponse): ConfirmResponse.AsObject;
@@ -414,12 +614,15 @@ export class ConfirmResponse extends jspb.Message {
 
 export namespace ConfirmResponse {
   export type AsObject = {
+    confirmed: boolean,
   }
 }
 
 export class CheckInRequest extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
+  hasSlot(): boolean;
+  clearSlot(): void;
+  getSlot(): Slot | undefined;
+  setSlot(value?: Slot): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CheckInRequest.AsObject;
@@ -433,7 +636,7 @@ export class CheckInRequest extends jspb.Message {
 
 export namespace CheckInRequest {
   export type AsObject = {
-    slotId: string,
+    slot?: Slot.AsObject,
   }
 }
 
@@ -460,8 +663,10 @@ export namespace CheckInResponse {
 }
 
 export class CancelRequest extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
+  hasSlot(): boolean;
+  clearSlot(): void;
+  getSlot(): Slot | undefined;
+  setSlot(value?: Slot): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CancelRequest.AsObject;
@@ -475,11 +680,14 @@ export class CancelRequest extends jspb.Message {
 
 export namespace CancelRequest {
   export type AsObject = {
-    slotId: string,
+    slot?: Slot.AsObject,
   }
 }
 
 export class CancelResponse extends jspb.Message {
+  getCanceled(): boolean;
+  setCanceled(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CancelResponse.AsObject;
   static toObject(includeInstance: boolean, msg: CancelResponse): CancelResponse.AsObject;
@@ -492,12 +700,15 @@ export class CancelResponse extends jspb.Message {
 
 export namespace CancelResponse {
   export type AsObject = {
+    canceled: boolean,
   }
 }
 
 export class ShiftRequest extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
+  hasSlot(): boolean;
+  clearSlot(): void;
+  getSlot(): Slot | undefined;
+  setSlot(value?: Slot): void;
 
   hasFrom(): boolean;
   clearFrom(): void;
@@ -516,12 +727,15 @@ export class ShiftRequest extends jspb.Message {
 
 export namespace ShiftRequest {
   export type AsObject = {
-    slotId: string,
+    slot?: Slot.AsObject,
     from?: google_protobuf_timestamp_pb.Timestamp.AsObject,
   }
 }
 
 export class ShiftResponse extends jspb.Message {
+  getShifted(): boolean;
+  setShifted(value: boolean): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ShiftResponse.AsObject;
   static toObject(includeInstance: boolean, msg: ShiftResponse): ShiftResponse.AsObject;
@@ -534,6 +748,7 @@ export class ShiftResponse extends jspb.Message {
 
 export namespace ShiftResponse {
   export type AsObject = {
+    shifted: boolean,
   }
 }
 
@@ -648,8 +863,10 @@ export namespace CreateSlotRequest {
 }
 
 export class CreateSlotResponse extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
+  hasSlot(): boolean;
+  clearSlot(): void;
+  getSlot(): Slot | undefined;
+  setSlot(value?: Slot): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CreateSlotResponse.AsObject;
@@ -663,14 +880,11 @@ export class CreateSlotResponse extends jspb.Message {
 
 export namespace CreateSlotResponse {
   export type AsObject = {
-    slotId: string,
+    slot?: Slot.AsObject,
   }
 }
 
 export class UpdateSlotRequest extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
-
   hasSlot(): boolean;
   clearSlot(): void;
   getSlot(): Slot | undefined;
@@ -688,16 +902,13 @@ export class UpdateSlotRequest extends jspb.Message {
 
 export namespace UpdateSlotRequest {
   export type AsObject = {
-    slotId: string,
     slot?: Slot.AsObject,
   }
 }
 
 export class UpdateSlotResponse extends jspb.Message {
-  hasSlot(): boolean;
-  clearSlot(): void;
-  getSlot(): Slot | undefined;
-  setSlot(value?: Slot): void;
+  getUpdated(): boolean;
+  setUpdated(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateSlotResponse.AsObject;
@@ -711,13 +922,15 @@ export class UpdateSlotResponse extends jspb.Message {
 
 export namespace UpdateSlotResponse {
   export type AsObject = {
-    slot?: Slot.AsObject,
+    updated: boolean,
   }
 }
 
 export class DeleteSlotRequest extends jspb.Message {
-  getSlotId(): string;
-  setSlotId(value: string): void;
+  hasSlot(): boolean;
+  clearSlot(): void;
+  getSlot(): Slot | undefined;
+  setSlot(value?: Slot): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteSlotRequest.AsObject;
@@ -731,15 +944,13 @@ export class DeleteSlotRequest extends jspb.Message {
 
 export namespace DeleteSlotRequest {
   export type AsObject = {
-    slotId: string,
+    slot?: Slot.AsObject,
   }
 }
 
 export class DeleteSlotResponse extends jspb.Message {
-  hasSlot(): boolean;
-  clearSlot(): void;
-  getSlot(): Slot | undefined;
-  setSlot(value?: Slot): void;
+  getDeleted(): boolean;
+  setDeleted(value: boolean): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DeleteSlotResponse.AsObject;
@@ -753,7 +964,7 @@ export class DeleteSlotResponse extends jspb.Message {
 
 export namespace DeleteSlotResponse {
   export type AsObject = {
-    slot?: Slot.AsObject,
+    deleted: boolean,
   }
 }
 
@@ -887,6 +1098,48 @@ export namespace CreateTicketResponse {
   }
 }
 
+export class UpdateTicketRequest extends jspb.Message {
+  hasTicket(): boolean;
+  clearTicket(): void;
+  getTicket(): Ticket | undefined;
+  setTicket(value?: Ticket): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateTicketRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateTicketRequest): UpdateTicketRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateTicketRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateTicketRequest;
+  static deserializeBinaryFromReader(message: UpdateTicketRequest, reader: jspb.BinaryReader): UpdateTicketRequest;
+}
+
+export namespace UpdateTicketRequest {
+  export type AsObject = {
+    ticket?: Ticket.AsObject,
+  }
+}
+
+export class UpdateTicketResponse extends jspb.Message {
+  getUpdated(): boolean;
+  setUpdated(value: boolean): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateTicketResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateTicketResponse): UpdateTicketResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: UpdateTicketResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateTicketResponse;
+  static deserializeBinaryFromReader(message: UpdateTicketResponse, reader: jspb.BinaryReader): UpdateTicketResponse;
+}
+
+export namespace UpdateTicketResponse {
+  export type AsObject = {
+    updated: boolean,
+  }
+}
+
 export class FindTicketRequest extends jspb.Message {
   hasFilter(): boolean;
   clearFilter(): void;
@@ -928,6 +1181,50 @@ export class FindTicketResponse extends jspb.Message {
 export namespace FindTicketResponse {
   export type AsObject = {
     ticket?: Ticket.AsObject,
+  }
+}
+
+export class FindTicketsRequest extends jspb.Message {
+  hasFilter(): boolean;
+  clearFilter(): void;
+  getFilter(): TicketsFilter | undefined;
+  setFilter(value?: TicketsFilter): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FindTicketsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: FindTicketsRequest): FindTicketsRequest.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FindTicketsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FindTicketsRequest;
+  static deserializeBinaryFromReader(message: FindTicketsRequest, reader: jspb.BinaryReader): FindTicketsRequest;
+}
+
+export namespace FindTicketsRequest {
+  export type AsObject = {
+    filter?: TicketsFilter.AsObject,
+  }
+}
+
+export class FindTicketsResponse extends jspb.Message {
+  clearTicketsList(): void;
+  getTicketsList(): Array<Ticket>;
+  setTicketsList(value: Array<Ticket>): void;
+  addTickets(value?: Ticket, index?: number): Ticket;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FindTicketsResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: FindTicketsResponse): FindTicketsResponse.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: FindTicketsResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FindTicketsResponse;
+  static deserializeBinaryFromReader(message: FindTicketsResponse, reader: jspb.BinaryReader): FindTicketsResponse;
+}
+
+export namespace FindTicketsResponse {
+  export type AsObject = {
+    ticketsList: Array<Ticket.AsObject>,
   }
 }
 

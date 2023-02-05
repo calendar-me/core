@@ -1,7 +1,17 @@
 syntax = "proto3";
 package external;
 option go_package = "github.com/calendar-me/core/domain/schema";
+import "schema/booking.proto";
+import "schema/user.proto";
 
-message Provider {
-   
+service ProviderService {
+    rpc RegisterSlots(RegisterSlotsRequest) returns (RegisterSlotsResponse);
+}
+
+message RegisterSlotsRequest {
+    repeated booking.Slot slots = 1;
+    users.User user = 2;
+}
+message RegisterSlotsResponse {
+    bool registered = 1;
 }

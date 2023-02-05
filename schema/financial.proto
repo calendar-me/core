@@ -1,7 +1,0 @@
-syntax = "proto3";
-package financial;
-option go_package = "github.com/calendar-me/core/domain/schema";
-
-message Payment {
-   
-}

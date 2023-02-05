@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BookingServiceClient interface {
-	GetSlots(ctx context.Context, in *GetSlotsRequest, opts ...grpc.CallOption) (*GetSlotsResponse, error)
+	CalendarSlots(ctx context.Context, in *CalendarSlotsRequest, opts ...grpc.CallOption) (*CalendarSlotsResponse, error)
 	PreviewSlots(ctx context.Context, in *PreviewSlotsRequest, opts ...grpc.CallOption) (*PreviewSlotsResponse, error)
 	Book(ctx context.Context, in *BookRequest, opts ...grpc.CallOption) (*BookResponse, error)
 	GetBooking(ctx context.Context, in *GetBookingRequest, opts ...grpc.CallOption) (*GetBookingResponse, error)
@@ -43,9 +43,9 @@ func NewBookingServiceClient(cc grpc.ClientConnInterface) BookingServiceClient {
 	return &bookingServiceClient{cc}
 }
 
-func (c *bookingServiceClient) GetSlots(ctx context.Context, in *GetSlotsRequest, opts ...grpc.CallOption) (*GetSlotsResponse, error) {
-	out := new(GetSlotsResponse)
-	err := c.cc.Invoke(ctx, "/booking.BookingService/GetSlots", in, out, opts...)
+func (c *bookingServiceClient) CalendarSlots(ctx context.Context, in *CalendarSlotsRequest, opts ...grpc.CallOption) (*CalendarSlotsResponse, error) {
+	out := new(CalendarSlotsResponse)
+	err := c.cc.Invoke(ctx, "/booking.BookingService/CalendarSlots", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -146,7 +146,7 @@ func (c *bookingServiceClient) CheckTicket(ctx context.Context, in *CheckTicketR
 // All implementations must embed UnimplementedBookingServiceServer
 // for forward compatibility
 type BookingServiceServer interface {
-	GetSlots(context.Context, *GetSlotsRequest) (*GetSlotsResponse, error)
+	CalendarSlots(context.Context, *CalendarSlotsRequest) (*CalendarSlotsResponse, error)
 	PreviewSlots(context.Context, *PreviewSlotsRequest) (*PreviewSlotsResponse, error)
 	Book(context.Context, *BookRequest) (*BookResponse, error)
 	GetBooking(context.Context, *GetBookingRequest) (*GetBookingResponse, error)
@@ -164,8 +164,8 @@ type BookingServiceServer interface {
 type UnimplementedBookingServiceServer struct {
 }
 
-func (UnimplementedBookingServiceServer) GetSlots(context.Context, *GetSlotsRequest) (*GetSlotsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSlots not implemented")
+func (UnimplementedBookingServiceServer) CalendarSlots(context.Context, *CalendarSlotsRequest) (*CalendarSlotsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CalendarSlots not implemented")
 }
 func (UnimplementedBookingServiceServer) PreviewSlots(context.Context, *PreviewSlotsRequest) (*PreviewSlotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewSlots not implemented")
@@ -210,20 +210,20 @@ func RegisterBookingServiceServer(s grpc.ServiceRegistrar, srv BookingServiceSer
 	s.RegisterService(&BookingService_ServiceDesc, srv)
 }
 
-func _BookingService_GetSlots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSlotsRequest)
+func _BookingService_CalendarSlots_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CalendarSlotsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BookingServiceServer).GetSlots(ctx, in)
+		return srv.(BookingServiceServer).CalendarSlots(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/booking.BookingService/GetSlots",
+		FullMethod: "/booking.BookingService/CalendarSlots",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BookingServiceServer).GetSlots(ctx, req.(*GetSlotsRequest))
+		return srv.(BookingServiceServer).CalendarSlots(ctx, req.(*CalendarSlotsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -416,8 +416,8 @@ var BookingService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*BookingServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetSlots",
-			Handler:    _BookingService_GetSlots_Handler,
+			MethodName: "CalendarSlots",
+			Handler:    _BookingService_CalendarSlots_Handler,
 		},
 		{
 			MethodName: "PreviewSlots",
@@ -474,7 +474,9 @@ type BookingStorageClient interface {
 	FindSlot(ctx context.Context, in *FindSlotRequest, opts ...grpc.CallOption) (*FindSlotResponse, error)
 	FindSlots(ctx context.Context, in *FindSlotsRequest, opts ...grpc.CallOption) (*FindSlotsResponse, error)
 	CreateTicket(ctx context.Context, in *CreateTicketRequest, opts ...grpc.CallOption) (*CreateTicketResponse, error)
+	UpdateTicket(ctx context.Context, in *UpdateTicketRequest, opts ...grpc.CallOption) (*UpdateTicketResponse, error)
 	FindTicket(ctx context.Context, in *FindTicketRequest, opts ...grpc.CallOption) (*FindTicketResponse, error)
+	FindTickets(ctx context.Context, in *FindTicketsRequest, opts ...grpc.CallOption) (*FindTicketsResponse, error)
 }
 
 type bookingStorageClient struct {
@@ -539,9 +541,27 @@ func (c *bookingStorageClient) CreateTicket(ctx context.Context, in *CreateTicke
 	return out, nil
 }
 
+func (c *bookingStorageClient) UpdateTicket(ctx context.Context, in *UpdateTicketRequest, opts ...grpc.CallOption) (*UpdateTicketResponse, error) {
+	out := new(UpdateTicketResponse)
+	err := c.cc.Invoke(ctx, "/booking.BookingStorage/UpdateTicket", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *bookingStorageClient) FindTicket(ctx context.Context, in *FindTicketRequest, opts ...grpc.CallOption) (*FindTicketResponse, error) {
 	out := new(FindTicketResponse)
 	err := c.cc.Invoke(ctx, "/booking.BookingStorage/FindTicket", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *bookingStorageClient) FindTickets(ctx context.Context, in *FindTicketsRequest, opts ...grpc.CallOption) (*FindTicketsResponse, error) {
+	out := new(FindTicketsResponse)
+	err := c.cc.Invoke(ctx, "/booking.BookingStorage/FindTickets", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -558,7 +578,9 @@ type BookingStorageServer interface {
 	FindSlot(context.Context, *FindSlotRequest) (*FindSlotResponse, error)
 	FindSlots(context.Context, *FindSlotsRequest) (*FindSlotsResponse, error)
 	CreateTicket(context.Context, *CreateTicketRequest) (*CreateTicketResponse, error)
+	UpdateTicket(context.Context, *UpdateTicketRequest) (*UpdateTicketResponse, error)
 	FindTicket(context.Context, *FindTicketRequest) (*FindTicketResponse, error)
+	FindTickets(context.Context, *FindTicketsRequest) (*FindTicketsResponse, error)
 	mustEmbedUnimplementedBookingStorageServer()
 }
 
@@ -584,8 +606,14 @@ func (UnimplementedBookingStorageServer) FindSlots(context.Context, *FindSlotsRe
 func (UnimplementedBookingStorageServer) CreateTicket(context.Context, *CreateTicketRequest) (*CreateTicketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTicket not implemented")
 }
+func (UnimplementedBookingStorageServer) UpdateTicket(context.Context, *UpdateTicketRequest) (*UpdateTicketResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTicket not implemented")
+}
 func (UnimplementedBookingStorageServer) FindTicket(context.Context, *FindTicketRequest) (*FindTicketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindTicket not implemented")
+}
+func (UnimplementedBookingStorageServer) FindTickets(context.Context, *FindTicketsRequest) (*FindTicketsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindTickets not implemented")
 }
 func (UnimplementedBookingStorageServer) mustEmbedUnimplementedBookingStorageServer() {}
 
@@ -708,6 +736,24 @@ func _BookingStorage_CreateTicket_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BookingStorage_UpdateTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTicketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BookingStorageServer).UpdateTicket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/booking.BookingStorage/UpdateTicket",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BookingStorageServer).UpdateTicket(ctx, req.(*UpdateTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _BookingStorage_FindTicket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FindTicketRequest)
 	if err := dec(in); err != nil {
@@ -722,6 +768,24 @@ func _BookingStorage_FindTicket_Handler(srv interface{}, ctx context.Context, de
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BookingStorageServer).FindTicket(ctx, req.(*FindTicketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BookingStorage_FindTickets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindTicketsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BookingStorageServer).FindTickets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/booking.BookingStorage/FindTickets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BookingStorageServer).FindTickets(ctx, req.(*FindTicketsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -758,8 +822,16 @@ var BookingStorage_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BookingStorage_CreateTicket_Handler,
 		},
 		{
+			MethodName: "UpdateTicket",
+			Handler:    _BookingStorage_UpdateTicket_Handler,
+		},
+		{
 			MethodName: "FindTicket",
 			Handler:    _BookingStorage_FindTicket_Handler,
+		},
+		{
+			MethodName: "FindTickets",
+			Handler:    _BookingStorage_FindTickets_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
