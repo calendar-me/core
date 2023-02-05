@@ -2,6 +2,7 @@
 // file: schema/user.proto
 
 import * as jspb from "google-protobuf";
+import * as google_protobuf_empty_pb from "google-protobuf/google/protobuf/empty_pb";
 import * as schema_common_pb from "../schema/common_pb";
 
 export class User extends jspb.Message {
@@ -294,22 +295,6 @@ export class GetUserResponse extends jspb.Message {
 export namespace GetUserResponse {
   export type AsObject = {
     user?: User.AsObject,
-  }
-}
-
-export class GetCurrentUserRequest extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): GetCurrentUserRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: GetCurrentUserRequest): GetCurrentUserRequest.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: GetCurrentUserRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): GetCurrentUserRequest;
-  static deserializeBinaryFromReader(message: GetCurrentUserRequest, reader: jspb.BinaryReader): GetCurrentUserRequest;
-}
-
-export namespace GetCurrentUserRequest {
-  export type AsObject = {
   }
 }
 
