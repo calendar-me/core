@@ -1,0 +1,131 @@
+syntax = "proto3";
+package notifications.v1;
+
+import "common/v1/common.proto";
+import "google/protobuf/timestamp.proto";
+import "user/v1/user.proto";
+
+message Notification {
+  enum Type {
+    SUCCESS = 0;
+    INFORMATION = 1;
+    WARNING = 2;
+    ERROR = 3;
+  }
+
+  enum State {
+    SEEN = 0;
+    UNSEEN = 1;
+  }
+
+  message Action {
+    message RegisterUser {}
+
+    oneof action {
+      RegisterUser register_user = 1;
+    }
+  }
+
+  string id = 1;
+  Type type = 2;
+  State state = 3;
+  Action action = 4;
+  google.protobuf.Timestamp created = 5;
+
+  user.v1.User user = 6;
+}
+
+/* filters */
+
+message NotificationFilter {
+  string id = 1;
+}
+message NotificationsFilter {
+  repeated string ids = 1;
+  optional user.v1.User user = 2;
+  optional common.v1.QueryParams params = 3;
+}
+
+/* service */
+
+service NotificationService {
+  rpc AddNotification(AddNotificationRequest) returns (AddNotificationResponse);
+  rpc EditNotification(EditNotificationRequest) returns (EditNotificationResponse);
+  rpc GetNotification(GetNotificationRequest) returns (GetNotificationResponse);
+  rpc GetNotifications(GetNotificationsRequest) returns (GetNotificationsResponse);
+
+  // Notification streaming
+}
+
+message AddNotificationRequest {
+  Notification notification = 1;
+}
+message AddNotificationResponse {
+  bool added = 1;
+}
+
+message EditNotificationRequest {
+  Notification notification = 1;
+}
+message EditNotificationResponse {
+  bool edited = 1;
+}
+
+message GetNotificationRequest {
+  NotificationFilter filter = 1;
+}
+message GetNotificationResponse {
+  Notification notification = 1;
+}
+
+message GetNotificationsRequest {
+  NotificationsFilter filter = 1;
+}
+message GetNotificationsResponse {
+  repeated Notification notifications = 1;
+}
+
+/* storage */
+
+service NotificationStorage {
+  rpc CreateNotification(CreateNotificationRequest) returns (CreateNotificationResponse);
+  rpc UpdateNotification(UpdateNotificationRequest) returns (UpdateNotificationResponse);
+  rpc DeleteNotification(DeleteNotificationRequest) returns (DeleteNotificationResponse);
+  rpc FindNotification(FindNotificationRequest) returns (FindNotificationResponse);
+  rpc FindNotifications(FindNotificationsRequest) returns (FindNotificationsResponse);
+}
+
+message CreateNotificationRequest {
+  Notification notification = 1;
+}
+message CreateNotificationResponse {
+  bool created = 1;
+}
+
+message UpdateNotificationRequest {
+  Notification notification = 1;
+}
+message UpdateNotificationResponse {
+  bool updated = 1;
+}
+
+message DeleteNotificationRequest {
+  Notification notification = 1;
+}
+message DeleteNotificationResponse {
+  bool deleted = 1;
+}
+
+message FindNotificationRequest {
+  NotificationFilter filter = 1;
+}
+message FindNotificationResponse {
+  Notification notification = 1;
+}
+
+message FindNotificationsRequest {
+  NotificationsFilter filter = 1;
+}
+message FindNotificationsResponse {
+  repeated Notification notifications = 1;
+}

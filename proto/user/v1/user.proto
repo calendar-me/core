@@ -1,0 +1,133 @@
+syntax = "proto3";
+package user.v1;
+
+import "common/v1/common.proto";
+import "google/protobuf/empty.proto";
+
+/* model */
+message User {
+  enum Gender {
+    MALE = 0;
+    FEMALE = 1;
+  }
+
+  string id = 1;
+  string firstname = 2;
+  string lastname = 3;
+  string email = 4;
+  string phone = 5;
+  Gender gender = 6;
+}
+
+/* subscriptions */
+enum UserSubscriptions {
+  CREATE_USER = 0;
+  DELETE_USER = 1;
+}
+
+message CreateUserPayload {
+  User user = 1;
+}
+message DeleteUserPayload {
+  User user = 1;
+}
+
+/* events */
+enum UserEvents {
+  USER_CREATED = 0;
+  USER_DELETED = 1;
+}
+
+message UserCreatedEvent {
+  User user = 1;
+}
+message UserDeletedEvent {
+  User user = 1;
+}
+
+/* filters */
+message UsersFilter {
+  repeated string ids = 1;
+  optional common.v1.QueryParams params = 2;
+}
+
+message UserFilter {
+  oneof parameters {
+    string id = 1;
+    string email = 2;
+    string phone = 3;
+  }
+}
+
+/* service */
+service UserService {
+  rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
+  rpc GetCurrentUser(google.protobuf.Empty) returns (GetCurrentUserResponse);
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
+}
+
+message GetUsersRequest {
+  UsersFilter filters = 1;
+}
+message GetUsersResponse {
+  repeated User users = 1;
+}
+
+message GetUserRequest {
+  UserFilter filters = 1;
+}
+message GetUserResponse {
+  User user = 1;
+}
+
+message GetCurrentUserResponse {
+  User user = 1;
+}
+
+message RegisterUserRequest {
+  User user = 1;
+}
+message RegisterUserResponse {
+  User user = 1;
+}
+
+/* storage */
+service UserStorage {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc FindUser(FindUserRequest) returns (FindUserResponse);
+  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
+}
+
+message FindUsersRequest {
+  UsersFilter filters = 1;
+}
+message FindUsersResponse {
+  repeated User users = 1;
+}
+
+message FindUserRequest {
+  UserFilter filters = 1;
+}
+message FindUserResponse {
+  User user = 1;
+}
+
+message DeleteUserRequest {
+  oneof parameters {
+    string id = 1;
+    string email = 2;
+    string phone = 3;
+  }
+}
+message DeleteUserResponse {
+  bool deleted = 1;
+}
+
+message CreateUserRequest {
+  User user = 1;
+}
+message CreateUserResponse {
+  User user = 1;
+}

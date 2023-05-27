@@ -1,0 +1,17 @@
+syntax = "proto3";
+package external.v1;
+
+import "booking/v1/booking.proto";
+import "user/v1/user.proto";
+
+service ProviderService {
+  rpc RegisterSlots(RegisterSlotsRequest) returns (RegisterSlotsResponse);
+}
+
+message RegisterSlotsRequest {
+  repeated booking.v1.Slot slots = 1;
+  user.v1.User user = 2;
+}
+message RegisterSlotsResponse {
+  bool registered = 1;
+}

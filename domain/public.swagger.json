@@ -1,0 +1,1225 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Calendar Me Services",
+    "description": "Provides the functionalities endpoint for the calendar.me service.",
+    "version": "1.0",
+    "contact": {
+      "name": "Calendar.Me",
+      "url": "https://gtihub.com/calendar-me/core",
+      "email": "support@calendar.me"
+    }
+  },
+  "tags": [
+    {
+      "name": "UserService"
+    },
+    {
+      "name": "UserStorage"
+    },
+    {
+      "name": "BusinessService"
+    },
+    {
+      "name": "BusinessStorage"
+    },
+    {
+      "name": "BookingService"
+    },
+    {
+      "name": "BookingStorage"
+    },
+    {
+      "name": "ProviderService"
+    },
+    {
+      "name": "NotificationService"
+    },
+    {
+      "name": "NotificationStorage"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "ActionRegisterUser": {
+      "type": "object"
+    },
+    "NotificationAction": {
+      "type": "object",
+      "properties": {
+        "registerUser": {
+          "$ref": "#/definitions/ActionRegisterUser"
+        }
+      }
+    },
+    "NotificationState": {
+      "type": "string",
+      "enum": [
+        "SEEN",
+        "UNSEEN"
+      ],
+      "default": "SEEN"
+    },
+    "ServiceKind": {
+      "type": "string",
+      "enum": [
+        "BUSINESS_KIND_1"
+      ],
+      "default": "BUSINESS_KIND_1"
+    },
+    "UserGender": {
+      "type": "string",
+      "enum": [
+        "MALE",
+        "FEMALE"
+      ],
+      "default": "MALE"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1AddAvailabilitiesResponse": {
+      "type": "object",
+      "properties": {
+        "availabilityIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "v1AddNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "added": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1AvailabilitiesFilter": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "$ref": "#/definitions/v1Service"
+        },
+        "from": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1Availability": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "type": {
+          "$ref": "#/definitions/v1AvailabilityType"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "step": {
+          "type": "string"
+        },
+        "frequency": {
+          "type": "string",
+          "format": "int64"
+        },
+        "repeat": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "slots": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "service": {
+          "$ref": "#/definitions/v1Service"
+        }
+      }
+    },
+    "v1AvailabilityFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1AvailabilityType": {
+      "type": "string",
+      "enum": [
+        "AVAILABLE",
+        "UNAVAILABLE"
+      ],
+      "default": "AVAILABLE"
+    },
+    "v1BookResponse": {
+      "type": "object",
+      "properties": {
+        "slot": {
+          "$ref": "#/definitions/v1Slot"
+        }
+      }
+    },
+    "v1Business": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Service"
+          }
+        }
+      }
+    },
+    "v1BusinessFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1BusinessesFilter": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/definitions/ServiceKind"
+        },
+        "type": {
+          "$ref": "#/definitions/v1ServiceType"
+        },
+        "params": {
+          "$ref": "#/definitions/v1QueryParams"
+        }
+      }
+    },
+    "v1CalendarSlotsResponse": {
+      "type": "object",
+      "properties": {
+        "slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Slot"
+          }
+        }
+      }
+    },
+    "v1CancelResponse": {
+      "type": "object",
+      "properties": {
+        "canceled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CheckInResponse": {
+      "type": "object",
+      "properties": {
+        "ticket": {
+          "$ref": "#/definitions/v1Ticket"
+        }
+      }
+    },
+    "v1CheckTicketResponse": {
+      "type": "object",
+      "properties": {
+        "ticket": {
+          "$ref": "#/definitions/v1Ticket"
+        }
+      }
+    },
+    "v1ConfirmResponse": {
+      "type": "object",
+      "properties": {
+        "confirmed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateAvailabilityResponse": {
+      "type": "object",
+      "properties": {
+        "availabilityId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "businessId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateRoleResponse": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1CreateServiceResponse": {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateSlotResponse": {
+      "type": "object",
+      "properties": {
+        "slot": {
+          "$ref": "#/definitions/v1Slot"
+        }
+      }
+    },
+    "v1CreateTicketResponse": {
+      "type": "object",
+      "properties": {
+        "ticketId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CreateUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1DeleteAvailabilityResponse": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DeleteBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DeleteNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DeleteRoleResponse": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DeleteServiceResponse": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DeleteSlotResponse": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1DeleteUserResponse": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1EditNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "edited": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1FindAvailabilitiesResponse": {
+      "type": "object",
+      "properties": {
+        "availabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Availability"
+          }
+        }
+      }
+    },
+    "v1FindAvailabilityResponse": {
+      "type": "object",
+      "properties": {
+        "availability": {
+          "$ref": "#/definitions/v1Availability"
+        }
+      }
+    },
+    "v1FindBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        }
+      }
+    },
+    "v1FindBusinessesResponse": {
+      "type": "object",
+      "properties": {
+        "businesses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Business"
+          }
+        }
+      }
+    },
+    "v1FindNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "notification": {
+          "$ref": "#/definitions/v1Notification"
+        }
+      }
+    },
+    "v1FindNotificationsResponse": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Notification"
+          }
+        }
+      }
+    },
+    "v1FindRoleResponse": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/v1Role"
+        }
+      }
+    },
+    "v1FindRolesResponse": {
+      "type": "object",
+      "properties": {
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Role"
+          }
+        }
+      }
+    },
+    "v1FindServiceResponse": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "$ref": "#/definitions/v1Service"
+        }
+      }
+    },
+    "v1FindServicesResponse": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Service"
+          }
+        }
+      }
+    },
+    "v1FindSlotResponse": {
+      "type": "object",
+      "properties": {
+        "slot": {
+          "$ref": "#/definitions/v1Slot"
+        }
+      }
+    },
+    "v1FindSlotsResponse": {
+      "type": "object",
+      "properties": {
+        "slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Slot"
+          }
+        }
+      }
+    },
+    "v1FindTicketResponse": {
+      "type": "object",
+      "properties": {
+        "ticket": {
+          "$ref": "#/definitions/v1Ticket"
+        }
+      }
+    },
+    "v1FindTicketsResponse": {
+      "type": "object",
+      "properties": {
+        "tickets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Ticket"
+          }
+        }
+      }
+    },
+    "v1FindUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1FindUsersResponse": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1User"
+          }
+        }
+      }
+    },
+    "v1GetAvailabilitiesResponse": {
+      "type": "object",
+      "properties": {
+        "availabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Availability"
+          }
+        }
+      }
+    },
+    "v1GetBookingResponse": {
+      "type": "object",
+      "properties": {
+        "slot": {
+          "$ref": "#/definitions/v1Slot"
+        }
+      }
+    },
+    "v1GetBookingsResponse": {
+      "type": "object",
+      "properties": {
+        "slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Slot"
+          }
+        }
+      }
+    },
+    "v1GetBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        }
+      }
+    },
+    "v1GetBusinessesResponse": {
+      "type": "object",
+      "properties": {
+        "businesses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Business"
+          }
+        }
+      }
+    },
+    "v1GetCurrentUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1GetNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "notification": {
+          "$ref": "#/definitions/v1Notification"
+        }
+      }
+    },
+    "v1GetNotificationsResponse": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Notification"
+          }
+        }
+      }
+    },
+    "v1GetRolesResponse": {
+      "type": "object",
+      "properties": {
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Role"
+          }
+        }
+      }
+    },
+    "v1GetServiceResponse": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "$ref": "#/definitions/v1Service"
+        }
+      }
+    },
+    "v1GetServicesResponse": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Service"
+          }
+        }
+      }
+    },
+    "v1GetTicketResponse": {
+      "type": "object",
+      "properties": {
+        "ticket": {
+          "$ref": "#/definitions/v1Ticket"
+        }
+      }
+    },
+    "v1GetUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1GetUsersResponse": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1User"
+          }
+        }
+      }
+    },
+    "v1GrantRolesResponse": {
+      "type": "object",
+      "properties": {
+        "granted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1Notification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/v1NotificationType"
+        },
+        "state": {
+          "$ref": "#/definitions/NotificationState"
+        },
+        "action": {
+          "$ref": "#/definitions/NotificationAction"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1NotificationFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1NotificationType": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "INFORMATION",
+        "WARNING",
+        "ERROR"
+      ],
+      "default": "SUCCESS"
+    },
+    "v1NotificationsFilter": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        },
+        "params": {
+          "$ref": "#/definitions/v1QueryParams"
+        }
+      }
+    },
+    "v1PreviewSlotsResponse": {
+      "type": "object",
+      "properties": {
+        "slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Slot"
+          }
+        }
+      }
+    },
+    "v1QueryParams": {
+      "type": "object",
+      "properties": {
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "order": {
+          "type": "string"
+        }
+      }
+    },
+    "v1RegisterBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "businessId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1RegisterServiceResponse": {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string"
+        }
+      }
+    },
+    "v1RegisterSlotsResponse": {
+      "type": "object",
+      "properties": {
+        "registered": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1RegisterUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1RevokeRolesResponse": {
+      "type": "object",
+      "properties": {
+        "revoked": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1Role": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/v1RoleType"
+        },
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        },
+        "service": {
+          "$ref": "#/definitions/v1Service"
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
+    },
+    "v1RoleFilter": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "$ref": "#/definitions/v1Role"
+        }
+      }
+    },
+    "v1RoleType": {
+      "type": "string",
+      "enum": [
+        "ADMIN",
+        "EDITOR"
+      ],
+      "default": "ADMIN"
+    },
+    "v1RolesFilter": {
+      "type": "object",
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1RoleType"
+          }
+        },
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        },
+        "service": {
+          "$ref": "#/definitions/v1Service"
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        },
+        "params": {
+          "$ref": "#/definitions/v1QueryParams"
+        }
+      }
+    },
+    "v1Service": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "kind": {
+          "$ref": "#/definitions/ServiceKind"
+        },
+        "type": {
+          "$ref": "#/definitions/v1ServiceType"
+        },
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        },
+        "availabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Availability"
+          }
+        }
+      }
+    },
+    "v1ServiceFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1ServiceType": {
+      "type": "string",
+      "enum": [
+        "BUSINESS_TYPE_1"
+      ],
+      "default": "BUSINESS_TYPE_1"
+    },
+    "v1ServicesFilter": {
+      "type": "object",
+      "properties": {
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        },
+        "kind": {
+          "$ref": "#/definitions/ServiceKind"
+        },
+        "type": {
+          "$ref": "#/definitions/v1ServiceType"
+        },
+        "params": {
+          "$ref": "#/definitions/v1QueryParams"
+        }
+      }
+    },
+    "v1ShiftResponse": {
+      "type": "object",
+      "properties": {
+        "shifted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1Slot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/v1AvailabilityType"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        },
+        "availability": {
+          "$ref": "#/definitions/v1Availability"
+        }
+      }
+    },
+    "v1SlotFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "index": {
+          "$ref": "#/definitions/v1SlotFilterIndex"
+        },
+        "type": {
+          "$ref": "#/definitions/v1AvailabilityType"
+        }
+      }
+    },
+    "v1SlotFilterIndex": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1User"
+        },
+        "availability": {
+          "$ref": "#/definitions/v1Availability"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "v1SlotsFilter": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        },
+        "availability": {
+          "$ref": "#/definitions/v1Availability"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "$ref": "#/definitions/v1AvailabilityType"
+        },
+        "params": {
+          "$ref": "#/definitions/v1QueryParams"
+        }
+      }
+    },
+    "v1Ticket": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/v1TicketType"
+        },
+        "slot": {
+          "$ref": "#/definitions/v1Slot"
+        }
+      }
+    },
+    "v1TicketFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "v1TicketType": {
+      "type": "string",
+      "enum": [
+        "IN_LINE",
+        "CHECKED",
+        "CANCELED"
+      ],
+      "default": "IN_LINE"
+    },
+    "v1TicketsFilter": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/v1User"
+        },
+        "availability": {
+          "$ref": "#/definitions/v1Availability"
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "$ref": "#/definitions/v1TicketType"
+        },
+        "params": {
+          "$ref": "#/definitions/v1QueryParams"
+        }
+      }
+    },
+    "v1UpdateAvailabilityResponse": {
+      "type": "object",
+      "properties": {
+        "update": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1UpdateBusinessResponse": {
+      "type": "object",
+      "properties": {
+        "updated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1UpdateNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "updated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1UpdateServiceResponse": {
+      "type": "object",
+      "properties": {
+        "updated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1UpdateSlotResponse": {
+      "type": "object",
+      "properties": {
+        "updated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1UpdateTicketResponse": {
+      "type": "object",
+      "properties": {
+        "updated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "gender": {
+          "$ref": "#/definitions/UserGender"
+        }
+      },
+      "title": "model"
+    },
+    "v1UserFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "v1UsersFilter": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "params": {
+          "$ref": "#/definitions/v1QueryParams"
+        }
+      },
+      "title": "filters"
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ]
+}
