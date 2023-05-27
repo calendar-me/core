@@ -1,0 +1,16 @@
+syntax = "proto3";
+package booking.v1;
+
+message Ticket {
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    STATE_IN_LINE = 1;
+    STATE_CHECKED = 2;
+    STATE_CANCELED = 3;
+  }
+
+  string id = 1;
+  string slot_id = 2 [json_name = "slot_id"];
+  int32 number = 3;
+  State state = 4;
+}

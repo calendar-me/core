@@ -1,106 +1,97 @@
 syntax = "proto3";
 package booking.v1;
 
-import "business/v1/business.proto";
-import "common/v1/common.proto";
+import "booking/v1/slot.proto";
+import "booking/v1/ticket.proto";
+import "business/v1/availability.proto";
+import "business/v1/service.proto";
+import "common/v1/request.proto";
+import "common/v1/response.proto";
+import "google/api/annotations.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
-import "user/v1/user.proto";
-
-/* models */
-
-message Slot {
-  string id = 1;
-  business.v1.Availability.Type type = 2;
-  google.protobuf.Timestamp start = 3;
-
-  user.v1.User user = 4;
-  business.v1.Availability availability = 5;
-}
-
-message Ticket {
-  enum Type {
-    IN_LINE = 0;
-    CHECKED = 1;
-    CANCELED = 2;
-  }
-
-  string id = 1;
-  int32 number = 2;
-  Type type = 3;
-
-  Slot slot = 4;
-}
-
-/* filters */
-
-message SlotFilter {
-  message Index {
-    user.v1.User user = 1;
-    business.v1.Availability availability = 2;
-    google.protobuf.Timestamp start = 3;
-  }
-
-  optional string id = 1;
-  optional Index index = 2;
-  optional business.v1.Availability.Type type = 3;
-}
-message SlotsFilter {
-  repeated string ids = 1;
-  optional user.v1.User user = 2;
-  optional business.v1.Availability availability = 3;
-  optional google.protobuf.Timestamp start = 4;
-  optional business.v1.Availability.Type type = 5;
-  optional common.v1.QueryParams params = 6;
-}
-
-message TicketFilter {
-  message Index {
-    user.v1.User user = 1;
-    Slot slot = 2;
-  }
-
-  optional string id = 1;
-}
-message TicketsFilter {
-  repeated string ids = 1;
-  optional user.v1.User user = 2;
-  optional business.v1.Availability availability = 3;
-  optional google.protobuf.Timestamp start = 4;
-  optional Ticket.Type type = 5;
-  optional common.v1.QueryParams params = 6;
-}
-
-/* service */
 
 service BookingService {
-  rpc CalendarSlots(CalendarSlotsRequest) returns (CalendarSlotsResponse);
-  rpc PreviewSlots(PreviewSlotsRequest) returns (PreviewSlotsResponse);
+  rpc GetBookings(GetBookingsRequest) returns (GetBookingsResponse) {
+    option (google.api.http) = {get: "/bookings"};
+  }
+  rpc GetBooking(GetBookingRequest) returns (GetBookingResponse) {
+    option (google.api.http) = {get: "/bookings/{id}"};
+  }
+  rpc Book(BookRequest) returns (BookResponse) {
+    option (google.api.http) = {
+      post: "/bookings"
+      body: "*"
+    };
+  }
+  rpc UpdateBooking(UpdateBookingRequest) returns (common.v1.BoolResponse) {
+    option (google.api.http) = {
+      put: "/bookings/{id}"
+      body: "type"
+    };
+  }
 
-  rpc Book(BookRequest) returns (BookResponse);
-  rpc GetBooking(GetBookingRequest) returns (GetBookingResponse);
-  rpc GetBookings(GetBookingsRequest) returns (GetBookingsResponse);
+  rpc GetSlots(GetSlotsRequest) returns (GetSlotsResponse) {
+    option (google.api.http) = {get: "/bookings/slots"};
+  }
+  rpc PreviewSlots(PreviewSlotsRequest) returns (PreviewSlotsResponse) {
+    option (google.api.http) = {
+      post: "/bookings/slots/preview"
+      body: "*"
+    };
+  }
 
-  rpc Confirm(ConfirmRequest) returns (ConfirmResponse);
-  rpc CheckIn(CheckInRequest) returns (CheckInResponse);
-  rpc Cancel(CancelRequest) returns (CancelResponse);
-  rpc Shift(ShiftRequest) returns (ShiftResponse);
-
-  rpc GetTicket(GetTicketRequest) returns (GetTicketResponse);
-  rpc CheckTicket(CheckTicketRequest) returns (CheckTicketResponse);
+  rpc GetTickets(GetTicketsRequest) returns (GetTicketsResponse) {
+    option (google.api.http) = {get: "/bookings/{service_id}/tickets"};
+  }
+  rpc GetTicket(GetTicketRequest) returns (GetTicketResponse) {
+    option (google.api.http) = {get: "/bookings/tickets/{id}"};
+  }
+  rpc UpdateTicket(UpdateTicketRequest) returns (common.v1.BoolResponse) {
+    option (google.api.http) = {
+      put: "/bookings/tickets/{id}"
+      body: "state"
+    };
+  }
 }
 
-message CalendarSlotsRequest {
-  business.v1.Service service = 1;
+message GetBookingsRequest {}
+message GetBookingsResponse {
+  repeated Slot slots = 1;
+}
+
+message GetBookingRequest {
+  string id = 1; // slot's id
+}
+message GetBookingResponse {
+  Slot slot = 1;
+}
+
+message BookRequest {
+  string service_id = 1 [json_name = "service_id"];
+  google.protobuf.Timestamp from = 2;
+  google.protobuf.Duration duration = 3;
+}
+message BookResponse {
+  Slot slot = 1;
+}
+
+message UpdateBookingRequest {
+  string id = 1; // slot's id
+  business.v1.Availability.Type type = 2;
+}
+
+message GetSlotsRequest {
+  string service_id = 1 [json_name = "service_id"];
   google.protobuf.Timestamp from = 2;
   google.protobuf.Timestamp to = 3;
 }
-message CalendarSlotsResponse {
+message GetSlotsResponse {
   repeated Slot slots = 1;
 }
 
 message PreviewSlotsRequest {
-  business.v1.Service service = 1;
+  string service_id = 1 [json_name = "service_id"];
   google.protobuf.Timestamp from = 2;
   google.protobuf.Timestamp to = 3;
   repeated business.v1.Availability availabilities = 4;
@@ -109,148 +100,21 @@ message PreviewSlotsResponse {
   repeated Slot slots = 1;
 }
 
-message BookRequest {
-  business.v1.Service service = 1;
-  google.protobuf.Timestamp from = 2;
-  google.protobuf.Duration duration = 3;
+message GetTicketsRequest {
+  string service_id = 1 [json_name = "service_id"];
 }
-message BookResponse {
-  Slot slot = 1;
-}
-
-message GetBookingRequest {
-  SlotFilter filter = 1;
-}
-message GetBookingResponse {
-  Slot slot = 1;
-}
-
-message GetBookingsRequest {
-  SlotsFilter filter = 1;
-}
-message GetBookingsResponse {
-  repeated Slot slots = 1;
-}
-
-message ConfirmRequest {
-  Slot slot = 1;
-}
-message ConfirmResponse {
-  bool confirmed = 1;
-}
-
-message CheckInRequest {
-  Slot slot = 1;
-}
-message CheckInResponse {
-  Ticket ticket = 1;
-}
-
-message CancelRequest {
-  Slot slot = 1;
-}
-message CancelResponse {
-  bool canceled = 1;
-}
-
-message ShiftRequest {
-  Slot slot = 1;
-  google.protobuf.Timestamp from = 2;
-}
-message ShiftResponse {
-  bool shifted = 1;
+message GetTicketsResponse {
+  repeated Ticket tickets = 1;
 }
 
 message GetTicketRequest {
-  TicketFilter filter = 1;
+  string id = 1;
 }
 message GetTicketResponse {
   Ticket ticket = 1;
 }
 
-message CheckTicketRequest {
-  TicketFilter filter = 1;
-}
-message CheckTicketResponse {
-  Ticket ticket = 1;
-}
-
-/* storage */
-
-service BookingStorage {
-  rpc CreateSlot(CreateSlotRequest) returns (CreateSlotResponse);
-  rpc UpdateSlot(UpdateSlotRequest) returns (UpdateSlotResponse);
-  rpc DeleteSlot(DeleteSlotRequest) returns (DeleteSlotResponse);
-  rpc FindSlot(FindSlotRequest) returns (FindSlotResponse);
-  rpc FindSlots(FindSlotsRequest) returns (FindSlotsResponse);
-
-  rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse);
-  rpc UpdateTicket(UpdateTicketRequest) returns (UpdateTicketResponse);
-  rpc FindTicket(FindTicketRequest) returns (FindTicketResponse);
-  rpc FindTickets(FindTicketsRequest) returns (FindTicketsResponse);
-
-  // booking streaming
-}
-
-message CreateSlotRequest {
-  Slot slot = 1;
-}
-message CreateSlotResponse {
-  Slot slot = 1;
-}
-
-message UpdateSlotRequest {
-  Slot slot = 2;
-}
-message UpdateSlotResponse {
-  bool updated = 1;
-}
-
-message DeleteSlotRequest {
-  Slot slot = 1;
-}
-message DeleteSlotResponse {
-  bool deleted = 1;
-}
-
-message FindSlotRequest {
-  SlotFilter filter = 1;
-}
-message FindSlotResponse {
-  Slot slot = 1;
-}
-
-message FindSlotsRequest {
-  SlotsFilter filter = 1;
-}
-message FindSlotsResponse {
-  repeated Slot slots = 1;
-}
-
-message CreateTicketRequest {
-  Ticket ticket = 1;
-}
-message CreateTicketResponse {
-  string ticket_id = 1;
-}
-
 message UpdateTicketRequest {
-  Ticket ticket = 1;
-}
-message UpdateTicketResponse {
-  bool updated = 1;
-}
-
-message FindTicketRequest {
-  TicketFilter filter = 1;
-}
-message FindTicketResponse {
-  Ticket ticket = 1;
-}
-
-message FindTicketsRequest {
-  TicketsFilter filter = 1;
-}
-message FindTicketsResponse {
-  repeated Ticket tickets = 1;
+  string id = 1;
+  Ticket.State state = 2;
 }

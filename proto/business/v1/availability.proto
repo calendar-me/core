@@ -1,0 +1,28 @@
+syntax = "proto3";
+package business.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+message Availability {
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_AVAILABLE = 1;
+    TYPE_UNAVAILABLE = 2;
+  }
+
+  string id = 1;
+  string name = 2;
+  bool active = 3;
+  Type type = 4;
+
+  google.protobuf.Timestamp start = 5;
+  google.protobuf.Timestamp end = 6;
+  google.protobuf.Duration duration = 7;
+  google.protobuf.Duration step = 8;
+  int64 frequency = 9;
+  int32 repeat = 10;
+  int32 slots = 11;
+
+  string service_id = 12 [json_name = "service_id"];
+}

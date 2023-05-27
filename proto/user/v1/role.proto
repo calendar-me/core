@@ -1,0 +1,17 @@
+syntax = "proto3";
+package user.v1;
+
+message Role {
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_ADMIN = 1;
+    TYPE_EDITOR = 2;
+  }
+
+  Type type = 1;
+  string user_id = 2 [json_name = "user_id"];
+  oneof element {
+    string business_id = 3 [json_name = "business_id"];
+    string service_id = 4 [json_name = "service_id"];
+  }
+}

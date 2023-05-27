@@ -1,48 +1,31 @@
 syntax = "proto3";
 package user.v1;
 
-import "common/v1/common.proto";
+import "common/v1/request.proto";
+import "common/v1/response.proto";
+import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";
+import "user/v1/role.proto";
 
 /* model */
 message User {
   enum Gender {
-    MALE = 0;
-    FEMALE = 1;
+    GENDER_UNSPECIFIED = 0;
+    GENDER_MALE = 1;
+    GENDER_FEMALE = 2;
+  }
+
+  message Details {
+    string firstname = 1;
+    string lastname = 2;
+    string avatar = 3;
+    string phone = 4;
+    Gender gender = 5;
   }
 
   string id = 1;
-  string firstname = 2;
-  string lastname = 3;
-  string email = 4;
-  string phone = 5;
-  Gender gender = 6;
-}
-
-/* subscriptions */
-enum UserSubscriptions {
-  CREATE_USER = 0;
-  DELETE_USER = 1;
-}
-
-message CreateUserPayload {
-  User user = 1;
-}
-message DeleteUserPayload {
-  User user = 1;
-}
-
-/* events */
-enum UserEvents {
-  USER_CREATED = 0;
-  USER_DELETED = 1;
-}
-
-message UserCreatedEvent {
-  User user = 1;
-}
-message UserDeletedEvent {
-  User user = 1;
+  string email = 2;
+  optional Details details = 3;
 }
 
 /* filters */
@@ -51,20 +34,42 @@ message UsersFilter {
   optional common.v1.QueryParams params = 2;
 }
 
-message UserFilter {
-  oneof parameters {
-    string id = 1;
-    string email = 2;
-    string phone = 3;
-  }
-}
-
-/* service */
 service UserService {
-  rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
-  rpc GetCurrentUser(google.protobuf.Empty) returns (GetCurrentUserResponse);
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
-  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse);
+  rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
+    option (google.api.http) = {get: "/users"};
+  }
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    option (google.api.http) = {get: "/users/{id}"};
+  }
+  rpc GetCurrentUser(google.protobuf.Empty) returns (GetCurrentUserResponse) {
+    option (google.api.http) = {get: "/users/me"};
+  }
+
+  rpc UpdateUser(UpdateUserRequest) returns (common.v1.BoolResponse) {
+    option (google.api.http) = {
+      put: "/users/{id}"
+      body: "request"
+    };
+  }
+  rpc DeleteUser(DeleteUserRequest) returns (common.v1.BoolResponse) {
+    option (google.api.http) = {delete: "/users/{id}"};
+  }
+
+  rpc GetRoles(GetRolesRequest) returns (GetRolesResponse) {
+    option (google.api.http) = {get: "/users/{id}/roles"};
+  }
+  rpc GrantRoles(GrantRolesRequest) returns (common.v1.BoolResponse) {
+    option (google.api.http) = {
+      post: "/users/{id}/roles/grant"
+      body: "roles"
+    };
+  }
+  rpc RevokeRoles(RevokeRolesRequest) returns (common.v1.BoolResponse) {
+    option (google.api.http) = {
+      post: "/users/{id}/roles/revoke"
+      body: "roles"
+    };
+  }
 }
 
 message GetUsersRequest {
@@ -75,7 +80,7 @@ message GetUsersResponse {
 }
 
 message GetUserRequest {
-  UserFilter filters = 1;
+  string id = 1;
 }
 message GetUserResponse {
   User user = 1;
@@ -85,49 +90,29 @@ message GetCurrentUserResponse {
   User user = 1;
 }
 
-message RegisterUserRequest {
-  User user = 1;
-}
-message RegisterUserResponse {
-  User user = 1;
-}
-
-/* storage */
-service UserStorage {
-  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
-  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
-  rpc FindUser(FindUserRequest) returns (FindUserResponse);
-  rpc FindUsers(FindUsersRequest) returns (FindUsersResponse);
-}
-
-message FindUsersRequest {
-  UsersFilter filters = 1;
-}
-message FindUsersResponse {
-  repeated User users = 1;
-}
-
-message FindUserRequest {
-  UserFilter filters = 1;
-}
-message FindUserResponse {
-  User user = 1;
+message UpdateUserRequest {
+  string id = 1;
+  User.Details request = 2;
 }
 
 message DeleteUserRequest {
-  oneof parameters {
-    string id = 1;
-    string email = 2;
-    string phone = 3;
-  }
-}
-message DeleteUserResponse {
-  bool deleted = 1;
+  string id = 1;
 }
 
-message CreateUserRequest {
-  User user = 1;
+message GetRolesRequest {
+  string id = 1; // user's id
+  optional string business_id = 2 [json_name = "business_id"];
+  optional string service_id = 3 [json_name = "service_id"];
 }
-message CreateUserResponse {
-  User user = 1;
+message GetRolesResponse {
+  repeated Role roles = 1;
+}
+
+message GrantRolesRequest {
+  string id = 1;
+  repeated Role roles = 2;
+}
+message RevokeRolesRequest {
+  string id = 1;
+  repeated Role roles = 2;
 }

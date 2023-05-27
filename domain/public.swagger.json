@@ -12,31 +12,16 @@
   },
   "tags": [
     {
-      "name": "UserService"
+      "name": "BookingService"
     },
     {
-      "name": "UserStorage"
+      "name": "UserService"
     },
     {
       "name": "BusinessService"
     },
     {
-      "name": "BusinessStorage"
-    },
-    {
-      "name": "BookingService"
-    },
-    {
-      "name": "BookingStorage"
-    },
-    {
-      "name": "ProviderService"
-    },
-    {
       "name": "NotificationService"
-    },
-    {
-      "name": "NotificationStorage"
     }
   ],
   "schemes": [
@@ -48,7 +33,1714 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/availabilities": {
+      "get": {
+        "operationId": "BusinessService_GetAvailabilities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetAvailabilitiesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BusinessService"
+        ]
+      },
+      "post": {
+        "operationId": "BusinessService_AddAvailabilities",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AddAvailabilitiesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AddAvailabilitiesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      }
+    },
+    "/bookings": {
+      "get": {
+        "operationId": "BookingService_GetBookings",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBookingsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BookingService"
+        ]
+      },
+      "post": {
+        "operationId": "BookingService_Book",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BookResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1BookRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      }
+    },
+    "/bookings/slots": {
+      "get": {
+        "operationId": "BookingService_GetSlots",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetSlotsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      }
+    },
+    "/bookings/slots/preview": {
+      "post": {
+        "operationId": "BookingService_PreviewSlots",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PreviewSlotsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PreviewSlotsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      }
+    },
+    "/bookings/tickets/{id}": {
+      "get": {
+        "operationId": "BookingService_GetTicket",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTicketResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      },
+      "put": {
+        "operationId": "BookingService_UpdateTicket",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1TicketState"
+            }
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      }
+    },
+    "/bookings/{id}": {
+      "get": {
+        "operationId": "BookingService_GetBooking",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBookingResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "slot's id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      },
+      "put": {
+        "operationId": "BookingService_UpdateBooking",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "slot's id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1AvailabilityType"
+            }
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      }
+    },
+    "/bookings/{service_id}/tickets": {
+      "get": {
+        "operationId": "BookingService_GetTickets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetTicketsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "service_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BookingService"
+        ]
+      }
+    },
+    "/business": {
+      "get": {
+        "operationId": "BusinessService_GetBusinesses",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBusinessesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BusinessService"
+        ]
+      },
+      "post": {
+        "operationId": "BusinessService_RegisterBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterBusinessResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RegisterBusinessRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      }
+    },
+    "/business/{id}": {
+      "get": {
+        "operationId": "BusinessService_GetBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetBusinessResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      },
+      "delete": {
+        "summary": "TODO: Update Business Details",
+        "operationId": "BusinessService_DeleteBusiness",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      }
+    },
+    "/notifications": {
+      "get": {
+        "operationId": "NotificationService_GetNotifications",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNotificationsResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "params.page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "params.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "params.order",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
+    "/notifications/{id}": {
+      "get": {
+        "operationId": "NotificationService_GetNotification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNotificationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      },
+      "put": {
+        "operationId": "NotificationService_UpdateNotification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1NotificationState"
+            }
+          }
+        ],
+        "tags": [
+          "NotificationService"
+        ]
+      }
+    },
+    "/services": {
+      "get": {
+        "operationId": "BusinessService_GetServices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetServicesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "BusinessService"
+        ]
+      },
+      "post": {
+        "operationId": "BusinessService_RegisterService",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterServiceResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1RegisterServiceRequest"
+            }
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      }
+    },
+    "/services/{id}": {
+      "get": {
+        "operationId": "BusinessService_GetService",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetServiceResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      },
+      "delete": {
+        "operationId": "BusinessService_DeleteService",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "BusinessService"
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "operationId": "UserService_GetUsers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUsersResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filters.ids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filters.params.page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filters.params.offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "filters.params.order",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/me": {
+      "get": {
+        "operationId": "UserService_GetCurrentUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetCurrentUserResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "UserService_GetUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetUserResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      },
+      "delete": {
+        "operationId": "UserService_DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      },
+      "put": {
+        "operationId": "UserService_UpdateUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserDetails"
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/{id}/roles": {
+      "get": {
+        "operationId": "UserService_GetRoles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRolesResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "user's id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "business_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "service_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/{id}/roles/grant": {
+      "post": {
+        "operationId": "UserService_GrantRoles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roles",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1Role"
+              }
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    },
+    "/users/{id}/roles/revoke": {
+      "post": {
+        "operationId": "UserService_RevokeRoles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1BoolResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/v1ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "500": {
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/protobufEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "roles",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/v1Role"
+              }
+            }
+          }
+        ],
+        "tags": [
+          "UserService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "ActionRegisterUser": {
       "type": "object"
@@ -56,33 +1748,39 @@
     "NotificationAction": {
       "type": "object",
       "properties": {
-        "registerUser": {
+        "register_user": {
           "$ref": "#/definitions/ActionRegisterUser"
         }
       }
     },
-    "NotificationState": {
-      "type": "string",
-      "enum": [
-        "SEEN",
-        "UNSEEN"
-      ],
-      "default": "SEEN"
-    },
-    "ServiceKind": {
-      "type": "string",
-      "enum": [
-        "BUSINESS_KIND_1"
-      ],
-      "default": "BUSINESS_KIND_1"
+    "UserDetails": {
+      "type": "object",
+      "properties": {
+        "firstname": {
+          "type": "string"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "gender": {
+          "$ref": "#/definitions/UserGender"
+        }
+      }
     },
     "UserGender": {
       "type": "string",
       "enum": [
-        "MALE",
-        "FEMALE"
+        "GENDER_UNSPECIFIED",
+        "GENDER_MALE",
+        "GENDER_FEMALE"
       ],
-      "default": "MALE"
+      "default": "GENDER_UNSPECIFIED"
     },
     "protobufAny": {
       "type": "object",
@@ -92,6 +1790,11 @@
         }
       },
       "additionalProperties": {}
+    },
+    "protobufEmpty": {
+      "type": "object",
+      "description": "service Foo {\n      rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);\n    }",
+      "title": "A generic empty message that you can re-use to avoid defining duplicated\nempty messages in your APIs. A typical example is to use it as the request\nor the response type of an API method. For instance:"
     },
     "rpcStatus": {
       "type": "object",
@@ -111,6 +1814,17 @@
         }
       }
     },
+    "v1AddAvailabilitiesRequest": {
+      "type": "object",
+      "properties": {
+        "availabilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Availability"
+          }
+        }
+      }
+    },
     "v1AddAvailabilitiesResponse": {
       "type": "object",
       "properties": {
@@ -119,26 +1833,6 @@
           "items": {
             "type": "string"
           }
-        }
-      }
-    },
-    "v1AddNotificationResponse": {
-      "type": "object",
-      "properties": {
-        "added": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1AvailabilitiesFilter": {
-      "type": "object",
-      "properties": {
-        "service": {
-          "$ref": "#/definitions/v1Service"
-        },
-        "from": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
@@ -183,15 +1877,7 @@
           "type": "integer",
           "format": "int32"
         },
-        "service": {
-          "$ref": "#/definitions/v1Service"
-        }
-      }
-    },
-    "v1AvailabilityFilter": {
-      "type": "object",
-      "properties": {
-        "id": {
+        "service_id": {
           "type": "string"
         }
       }
@@ -199,16 +1885,40 @@
     "v1AvailabilityType": {
       "type": "string",
       "enum": [
-        "AVAILABLE",
-        "UNAVAILABLE"
+        "TYPE_UNSPECIFIED",
+        "TYPE_AVAILABLE",
+        "TYPE_UNAVAILABLE"
       ],
-      "default": "AVAILABLE"
+      "default": "TYPE_UNSPECIFIED"
+    },
+    "v1BookRequest": {
+      "type": "object",
+      "properties": {
+        "service_id": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "duration": {
+          "type": "string"
+        }
+      }
     },
     "v1BookResponse": {
       "type": "object",
       "properties": {
         "slot": {
           "$ref": "#/definitions/v1Slot"
+        }
+      }
+    },
+    "v1BoolResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
         }
       }
     },
@@ -232,348 +1942,11 @@
         }
       }
     },
-    "v1BusinessFilter": {
+    "v1ErrorResponse": {
       "type": "object",
       "properties": {
-        "id": {
+        "message": {
           "type": "string"
-        }
-      }
-    },
-    "v1BusinessesFilter": {
-      "type": "object",
-      "properties": {
-        "kind": {
-          "$ref": "#/definitions/ServiceKind"
-        },
-        "type": {
-          "$ref": "#/definitions/v1ServiceType"
-        },
-        "params": {
-          "$ref": "#/definitions/v1QueryParams"
-        }
-      }
-    },
-    "v1CalendarSlotsResponse": {
-      "type": "object",
-      "properties": {
-        "slots": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Slot"
-          }
-        }
-      }
-    },
-    "v1CancelResponse": {
-      "type": "object",
-      "properties": {
-        "canceled": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1CheckInResponse": {
-      "type": "object",
-      "properties": {
-        "ticket": {
-          "$ref": "#/definitions/v1Ticket"
-        }
-      }
-    },
-    "v1CheckTicketResponse": {
-      "type": "object",
-      "properties": {
-        "ticket": {
-          "$ref": "#/definitions/v1Ticket"
-        }
-      }
-    },
-    "v1ConfirmResponse": {
-      "type": "object",
-      "properties": {
-        "confirmed": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1CreateAvailabilityResponse": {
-      "type": "object",
-      "properties": {
-        "availabilityId": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateBusinessResponse": {
-      "type": "object",
-      "properties": {
-        "businessId": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateNotificationResponse": {
-      "type": "object",
-      "properties": {
-        "created": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1CreateRoleResponse": {
-      "type": "object",
-      "properties": {
-        "created": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1CreateServiceResponse": {
-      "type": "object",
-      "properties": {
-        "serviceId": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateSlotResponse": {
-      "type": "object",
-      "properties": {
-        "slot": {
-          "$ref": "#/definitions/v1Slot"
-        }
-      }
-    },
-    "v1CreateTicketResponse": {
-      "type": "object",
-      "properties": {
-        "ticketId": {
-          "type": "string"
-        }
-      }
-    },
-    "v1CreateUserResponse": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/v1User"
-        }
-      }
-    },
-    "v1DeleteAvailabilityResponse": {
-      "type": "object",
-      "properties": {
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1DeleteBusinessResponse": {
-      "type": "object",
-      "properties": {
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1DeleteNotificationResponse": {
-      "type": "object",
-      "properties": {
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1DeleteRoleResponse": {
-      "type": "object",
-      "properties": {
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1DeleteServiceResponse": {
-      "type": "object",
-      "properties": {
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1DeleteSlotResponse": {
-      "type": "object",
-      "properties": {
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1DeleteUserResponse": {
-      "type": "object",
-      "properties": {
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1EditNotificationResponse": {
-      "type": "object",
-      "properties": {
-        "edited": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1FindAvailabilitiesResponse": {
-      "type": "object",
-      "properties": {
-        "availabilities": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Availability"
-          }
-        }
-      }
-    },
-    "v1FindAvailabilityResponse": {
-      "type": "object",
-      "properties": {
-        "availability": {
-          "$ref": "#/definitions/v1Availability"
-        }
-      }
-    },
-    "v1FindBusinessResponse": {
-      "type": "object",
-      "properties": {
-        "business": {
-          "$ref": "#/definitions/v1Business"
-        }
-      }
-    },
-    "v1FindBusinessesResponse": {
-      "type": "object",
-      "properties": {
-        "businesses": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Business"
-          }
-        }
-      }
-    },
-    "v1FindNotificationResponse": {
-      "type": "object",
-      "properties": {
-        "notification": {
-          "$ref": "#/definitions/v1Notification"
-        }
-      }
-    },
-    "v1FindNotificationsResponse": {
-      "type": "object",
-      "properties": {
-        "notifications": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Notification"
-          }
-        }
-      }
-    },
-    "v1FindRoleResponse": {
-      "type": "object",
-      "properties": {
-        "role": {
-          "$ref": "#/definitions/v1Role"
-        }
-      }
-    },
-    "v1FindRolesResponse": {
-      "type": "object",
-      "properties": {
-        "roles": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Role"
-          }
-        }
-      }
-    },
-    "v1FindServiceResponse": {
-      "type": "object",
-      "properties": {
-        "service": {
-          "$ref": "#/definitions/v1Service"
-        }
-      }
-    },
-    "v1FindServicesResponse": {
-      "type": "object",
-      "properties": {
-        "services": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Service"
-          }
-        }
-      }
-    },
-    "v1FindSlotResponse": {
-      "type": "object",
-      "properties": {
-        "slot": {
-          "$ref": "#/definitions/v1Slot"
-        }
-      }
-    },
-    "v1FindSlotsResponse": {
-      "type": "object",
-      "properties": {
-        "slots": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Slot"
-          }
-        }
-      }
-    },
-    "v1FindTicketResponse": {
-      "type": "object",
-      "properties": {
-        "ticket": {
-          "$ref": "#/definitions/v1Ticket"
-        }
-      }
-    },
-    "v1FindTicketsResponse": {
-      "type": "object",
-      "properties": {
-        "tickets": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1Ticket"
-          }
-        }
-      }
-    },
-    "v1FindUserResponse": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/v1User"
-        }
-      }
-    },
-    "v1FindUsersResponse": {
-      "type": "object",
-      "properties": {
-        "users": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1User"
-          }
         }
       }
     },
@@ -683,11 +2056,33 @@
         }
       }
     },
+    "v1GetSlotsResponse": {
+      "type": "object",
+      "properties": {
+        "slots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Slot"
+          }
+        }
+      }
+    },
     "v1GetTicketResponse": {
       "type": "object",
       "properties": {
         "ticket": {
           "$ref": "#/definitions/v1Ticket"
+        }
+      }
+    },
+    "v1GetTicketsResponse": {
+      "type": "object",
+      "properties": {
+        "tickets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Ticket"
+          }
         }
       }
     },
@@ -710,25 +2105,20 @@
         }
       }
     },
-    "v1GrantRolesResponse": {
-      "type": "object",
-      "properties": {
-        "granted": {
-          "type": "boolean"
-        }
-      }
-    },
     "v1Notification": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
+        "user_id": {
+          "type": "string"
+        },
         "type": {
           "$ref": "#/definitions/v1NotificationType"
         },
         "state": {
-          "$ref": "#/definitions/NotificationState"
+          "$ref": "#/definitions/v1NotificationState"
         },
         "action": {
           "$ref": "#/definitions/NotificationAction"
@@ -736,44 +2126,48 @@
         "created": {
           "type": "string",
           "format": "date-time"
-        },
-        "user": {
-          "$ref": "#/definitions/v1User"
         }
       }
     },
-    "v1NotificationFilter": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      }
+    "v1NotificationState": {
+      "type": "string",
+      "enum": [
+        "STATE_UNSPECIFIED",
+        "STATE_SEEN",
+        "STATE_UNSEEN"
+      ],
+      "default": "STATE_UNSPECIFIED"
     },
     "v1NotificationType": {
       "type": "string",
       "enum": [
-        "SUCCESS",
-        "INFORMATION",
-        "WARNING",
-        "ERROR"
+        "TYPE_UNSPECIFIED",
+        "TYPE_SUCCESS",
+        "TYPE_INFORMATION",
+        "TYPE_WARNING",
+        "TYPE_ERROR"
       ],
-      "default": "SUCCESS"
+      "default": "TYPE_UNSPECIFIED"
     },
-    "v1NotificationsFilter": {
+    "v1PreviewSlotsRequest": {
       "type": "object",
       "properties": {
-        "ids": {
+        "service_id": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "to": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "availabilities": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/v1Availability"
           }
-        },
-        "user": {
-          "$ref": "#/definitions/v1User"
-        },
-        "params": {
-          "$ref": "#/definitions/v1QueryParams"
         }
       }
     },
@@ -804,43 +2198,35 @@
         }
       }
     },
+    "v1RegisterBusinessRequest": {
+      "type": "object",
+      "properties": {
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        }
+      }
+    },
     "v1RegisterBusinessResponse": {
       "type": "object",
       "properties": {
-        "businessId": {
-          "type": "string"
+        "business": {
+          "$ref": "#/definitions/v1Business"
+        }
+      }
+    },
+    "v1RegisterServiceRequest": {
+      "type": "object",
+      "properties": {
+        "service": {
+          "$ref": "#/definitions/v1Service"
         }
       }
     },
     "v1RegisterServiceResponse": {
       "type": "object",
       "properties": {
-        "serviceId": {
-          "type": "string"
-        }
-      }
-    },
-    "v1RegisterSlotsResponse": {
-      "type": "object",
-      "properties": {
-        "registered": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1RegisterUserResponse": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/v1User"
-        }
-      }
-    },
-    "v1RevokeRolesResponse": {
-      "type": "object",
-      "properties": {
-        "revoked": {
-          "type": "boolean"
+        "service": {
+          "$ref": "#/definitions/v1Service"
         }
       }
     },
@@ -850,55 +2236,25 @@
         "type": {
           "$ref": "#/definitions/v1RoleType"
         },
-        "business": {
-          "$ref": "#/definitions/v1Business"
+        "user_id": {
+          "type": "string"
         },
-        "service": {
-          "$ref": "#/definitions/v1Service"
+        "business_id": {
+          "type": "string"
         },
-        "user": {
-          "$ref": "#/definitions/v1User"
-        }
-      }
-    },
-    "v1RoleFilter": {
-      "type": "object",
-      "properties": {
-        "role": {
-          "$ref": "#/definitions/v1Role"
+        "service_id": {
+          "type": "string"
         }
       }
     },
     "v1RoleType": {
       "type": "string",
       "enum": [
-        "ADMIN",
-        "EDITOR"
+        "TYPE_UNSPECIFIED",
+        "TYPE_ADMIN",
+        "TYPE_EDITOR"
       ],
-      "default": "ADMIN"
-    },
-    "v1RolesFilter": {
-      "type": "object",
-      "properties": {
-        "types": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/v1RoleType"
-          }
-        },
-        "business": {
-          "$ref": "#/definitions/v1Business"
-        },
-        "service": {
-          "$ref": "#/definitions/v1Service"
-        },
-        "user": {
-          "$ref": "#/definitions/v1User"
-        },
-        "params": {
-          "$ref": "#/definitions/v1QueryParams"
-        }
-      }
+      "default": "TYPE_UNSPECIFIED"
     },
     "v1Service": {
       "type": "object",
@@ -912,14 +2268,8 @@
         "active": {
           "type": "boolean"
         },
-        "kind": {
-          "$ref": "#/definitions/ServiceKind"
-        },
-        "type": {
-          "$ref": "#/definitions/v1ServiceType"
-        },
-        "business": {
-          "$ref": "#/definitions/v1Business"
+        "business_id": {
+          "type": "string"
         },
         "availabilities": {
           "type": "array",
@@ -929,120 +2279,21 @@
         }
       }
     },
-    "v1ServiceFilter": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      }
-    },
-    "v1ServiceType": {
-      "type": "string",
-      "enum": [
-        "BUSINESS_TYPE_1"
-      ],
-      "default": "BUSINESS_TYPE_1"
-    },
-    "v1ServicesFilter": {
-      "type": "object",
-      "properties": {
-        "business": {
-          "$ref": "#/definitions/v1Business"
-        },
-        "kind": {
-          "$ref": "#/definitions/ServiceKind"
-        },
-        "type": {
-          "$ref": "#/definitions/v1ServiceType"
-        },
-        "params": {
-          "$ref": "#/definitions/v1QueryParams"
-        }
-      }
-    },
-    "v1ShiftResponse": {
-      "type": "object",
-      "properties": {
-        "shifted": {
-          "type": "boolean"
-        }
-      }
-    },
     "v1Slot": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "type": {
-          "$ref": "#/definitions/v1AvailabilityType"
-        },
-        "start": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "user": {
-          "$ref": "#/definitions/v1User"
-        },
-        "availability": {
-          "$ref": "#/definitions/v1Availability"
-        }
-      }
-    },
-    "v1SlotFilter": {
-      "type": "object",
-      "properties": {
-        "id": {
+        "user_id": {
           "type": "string"
         },
-        "index": {
-          "$ref": "#/definitions/v1SlotFilterIndex"
-        },
         "type": {
           "$ref": "#/definitions/v1AvailabilityType"
-        }
-      }
-    },
-    "v1SlotFilterIndex": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/v1User"
-        },
-        "availability": {
-          "$ref": "#/definitions/v1Availability"
         },
         "start": {
           "type": "string",
           "format": "date-time"
-        }
-      }
-    },
-    "v1SlotsFilter": {
-      "type": "object",
-      "properties": {
-        "ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "user": {
-          "$ref": "#/definitions/v1User"
-        },
-        "availability": {
-          "$ref": "#/definitions/v1Availability"
-        },
-        "start": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "type": {
-          "$ref": "#/definitions/v1AvailabilityType"
-        },
-        "params": {
-          "$ref": "#/definitions/v1QueryParams"
         }
       }
     },
@@ -1052,109 +2303,27 @@
         "id": {
           "type": "string"
         },
+        "slot_id": {
+          "type": "string"
+        },
         "number": {
           "type": "integer",
           "format": "int32"
         },
-        "type": {
-          "$ref": "#/definitions/v1TicketType"
-        },
-        "slot": {
-          "$ref": "#/definitions/v1Slot"
+        "state": {
+          "$ref": "#/definitions/v1TicketState"
         }
       }
     },
-    "v1TicketFilter": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      }
-    },
-    "v1TicketType": {
+    "v1TicketState": {
       "type": "string",
       "enum": [
-        "IN_LINE",
-        "CHECKED",
-        "CANCELED"
+        "STATE_UNSPECIFIED",
+        "STATE_IN_LINE",
+        "STATE_CHECKED",
+        "STATE_CANCELED"
       ],
-      "default": "IN_LINE"
-    },
-    "v1TicketsFilter": {
-      "type": "object",
-      "properties": {
-        "ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "user": {
-          "$ref": "#/definitions/v1User"
-        },
-        "availability": {
-          "$ref": "#/definitions/v1Availability"
-        },
-        "start": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "type": {
-          "$ref": "#/definitions/v1TicketType"
-        },
-        "params": {
-          "$ref": "#/definitions/v1QueryParams"
-        }
-      }
-    },
-    "v1UpdateAvailabilityResponse": {
-      "type": "object",
-      "properties": {
-        "update": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1UpdateBusinessResponse": {
-      "type": "object",
-      "properties": {
-        "updated": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1UpdateNotificationResponse": {
-      "type": "object",
-      "properties": {
-        "updated": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1UpdateServiceResponse": {
-      "type": "object",
-      "properties": {
-        "updated": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1UpdateSlotResponse": {
-      "type": "object",
-      "properties": {
-        "updated": {
-          "type": "boolean"
-        }
-      }
-    },
-    "v1UpdateTicketResponse": {
-      "type": "object",
-      "properties": {
-        "updated": {
-          "type": "boolean"
-        }
-      }
+      "default": "STATE_UNSPECIFIED"
     },
     "v1User": {
       "type": "object",
@@ -1162,37 +2331,14 @@
         "id": {
           "type": "string"
         },
-        "firstname": {
-          "type": "string"
-        },
-        "lastname": {
-          "type": "string"
-        },
         "email": {
           "type": "string"
         },
-        "phone": {
-          "type": "string"
-        },
-        "gender": {
-          "$ref": "#/definitions/UserGender"
+        "details": {
+          "$ref": "#/definitions/UserDetails"
         }
       },
       "title": "model"
-    },
-    "v1UserFilter": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "phone": {
-          "type": "string"
-        }
-      }
     },
     "v1UsersFilter": {
       "type": "object",

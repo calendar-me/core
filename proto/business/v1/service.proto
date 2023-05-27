@@ -1,0 +1,13 @@
+syntax = "proto3";
+package business.v1;
+
+import "business/v1/availability.proto";
+
+message Service {
+  string id = 1;
+  string name = 2;
+  bool active = 3;
+
+  string business_id = 6 [json_name = "business_id"];
+  repeated Availability availabilities = 7;
+}

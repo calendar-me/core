@@ -8,6 +8,7 @@ package businessv1
 
 import (
 	context "context"
+	v1 "github.com/calendar-me/core/domain/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,17 +23,17 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BusinessServiceClient interface {
-	RegisterBusiness(ctx context.Context, in *RegisterBusinessRequest, opts ...grpc.CallOption) (*RegisterBusinessResponse, error)
-	GetBusiness(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*GetBusinessResponse, error)
 	GetBusinesses(ctx context.Context, in *GetBusinessesRequest, opts ...grpc.CallOption) (*GetBusinessesResponse, error)
-	RegisterService(ctx context.Context, in *RegisterServiceRequest, opts ...grpc.CallOption) (*RegisterServiceResponse, error)
-	GetService(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error)
+	GetBusiness(ctx context.Context, in *GetBusinessRequest, opts ...grpc.CallOption) (*GetBusinessResponse, error)
+	RegisterBusiness(ctx context.Context, in *RegisterBusinessRequest, opts ...grpc.CallOption) (*RegisterBusinessResponse, error)
+	// TODO: Update Business Details
+	DeleteBusiness(ctx context.Context, in *DeleteBusinessRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error)
 	GetServices(ctx context.Context, in *GetServicesRequest, opts ...grpc.CallOption) (*GetServicesResponse, error)
-	AddAvailabilities(ctx context.Context, in *AddAvailabilitiesRequest, opts ...grpc.CallOption) (*AddAvailabilitiesResponse, error)
+	GetService(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error)
+	RegisterService(ctx context.Context, in *RegisterServiceRequest, opts ...grpc.CallOption) (*RegisterServiceResponse, error)
+	DeleteService(ctx context.Context, in *DeleteServiceRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error)
 	GetAvailabilities(ctx context.Context, in *GetAvailabilitiesRequest, opts ...grpc.CallOption) (*GetAvailabilitiesResponse, error)
-	GrantRoles(ctx context.Context, in *GrantRolesRequest, opts ...grpc.CallOption) (*GrantRolesResponse, error)
-	RevokeRoles(ctx context.Context, in *RevokeRolesRequest, opts ...grpc.CallOption) (*RevokeRolesResponse, error)
-	GetRoles(ctx context.Context, in *GetRolesRequest, opts ...grpc.CallOption) (*GetRolesResponse, error)
+	AddAvailabilities(ctx context.Context, in *AddAvailabilitiesRequest, opts ...grpc.CallOption) (*AddAvailabilitiesResponse, error)
 }
 
 type businessServiceClient struct {
@@ -43,9 +44,9 @@ func NewBusinessServiceClient(cc grpc.ClientConnInterface) BusinessServiceClient
 	return &businessServiceClient{cc}
 }
 
-func (c *businessServiceClient) RegisterBusiness(ctx context.Context, in *RegisterBusinessRequest, opts ...grpc.CallOption) (*RegisterBusinessResponse, error) {
-	out := new(RegisterBusinessResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/RegisterBusiness", in, out, opts...)
+func (c *businessServiceClient) GetBusinesses(ctx context.Context, in *GetBusinessesRequest, opts ...grpc.CallOption) (*GetBusinessesResponse, error) {
+	out := new(GetBusinessesResponse)
+	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/GetBusinesses", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,27 +62,18 @@ func (c *businessServiceClient) GetBusiness(ctx context.Context, in *GetBusiness
 	return out, nil
 }
 
-func (c *businessServiceClient) GetBusinesses(ctx context.Context, in *GetBusinessesRequest, opts ...grpc.CallOption) (*GetBusinessesResponse, error) {
-	out := new(GetBusinessesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/GetBusinesses", in, out, opts...)
+func (c *businessServiceClient) RegisterBusiness(ctx context.Context, in *RegisterBusinessRequest, opts ...grpc.CallOption) (*RegisterBusinessResponse, error) {
+	out := new(RegisterBusinessResponse)
+	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/RegisterBusiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *businessServiceClient) RegisterService(ctx context.Context, in *RegisterServiceRequest, opts ...grpc.CallOption) (*RegisterServiceResponse, error) {
-	out := new(RegisterServiceResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/RegisterService", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessServiceClient) GetService(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error) {
-	out := new(GetServiceResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/GetService", in, out, opts...)
+func (c *businessServiceClient) DeleteBusiness(ctx context.Context, in *DeleteBusinessRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error) {
+	out := new(v1.BoolResponse)
+	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/DeleteBusiness", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,9 +89,27 @@ func (c *businessServiceClient) GetServices(ctx context.Context, in *GetServices
 	return out, nil
 }
 
-func (c *businessServiceClient) AddAvailabilities(ctx context.Context, in *AddAvailabilitiesRequest, opts ...grpc.CallOption) (*AddAvailabilitiesResponse, error) {
-	out := new(AddAvailabilitiesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/AddAvailabilities", in, out, opts...)
+func (c *businessServiceClient) GetService(ctx context.Context, in *GetServiceRequest, opts ...grpc.CallOption) (*GetServiceResponse, error) {
+	out := new(GetServiceResponse)
+	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/GetService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *businessServiceClient) RegisterService(ctx context.Context, in *RegisterServiceRequest, opts ...grpc.CallOption) (*RegisterServiceResponse, error) {
+	out := new(RegisterServiceResponse)
+	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/RegisterService", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *businessServiceClient) DeleteService(ctx context.Context, in *DeleteServiceRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error) {
+	out := new(v1.BoolResponse)
+	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/DeleteService", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,27 +125,9 @@ func (c *businessServiceClient) GetAvailabilities(ctx context.Context, in *GetAv
 	return out, nil
 }
 
-func (c *businessServiceClient) GrantRoles(ctx context.Context, in *GrantRolesRequest, opts ...grpc.CallOption) (*GrantRolesResponse, error) {
-	out := new(GrantRolesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/GrantRoles", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessServiceClient) RevokeRoles(ctx context.Context, in *RevokeRolesRequest, opts ...grpc.CallOption) (*RevokeRolesResponse, error) {
-	out := new(RevokeRolesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/RevokeRoles", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessServiceClient) GetRoles(ctx context.Context, in *GetRolesRequest, opts ...grpc.CallOption) (*GetRolesResponse, error) {
-	out := new(GetRolesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/GetRoles", in, out, opts...)
+func (c *businessServiceClient) AddAvailabilities(ctx context.Context, in *AddAvailabilitiesRequest, opts ...grpc.CallOption) (*AddAvailabilitiesResponse, error) {
+	out := new(AddAvailabilitiesResponse)
+	err := c.cc.Invoke(ctx, "/business.v1.BusinessService/AddAvailabilities", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -146,17 +138,17 @@ func (c *businessServiceClient) GetRoles(ctx context.Context, in *GetRolesReques
 // All implementations must embed UnimplementedBusinessServiceServer
 // for forward compatibility
 type BusinessServiceServer interface {
-	RegisterBusiness(context.Context, *RegisterBusinessRequest) (*RegisterBusinessResponse, error)
-	GetBusiness(context.Context, *GetBusinessRequest) (*GetBusinessResponse, error)
 	GetBusinesses(context.Context, *GetBusinessesRequest) (*GetBusinessesResponse, error)
-	RegisterService(context.Context, *RegisterServiceRequest) (*RegisterServiceResponse, error)
-	GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error)
+	GetBusiness(context.Context, *GetBusinessRequest) (*GetBusinessResponse, error)
+	RegisterBusiness(context.Context, *RegisterBusinessRequest) (*RegisterBusinessResponse, error)
+	// TODO: Update Business Details
+	DeleteBusiness(context.Context, *DeleteBusinessRequest) (*v1.BoolResponse, error)
 	GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error)
-	AddAvailabilities(context.Context, *AddAvailabilitiesRequest) (*AddAvailabilitiesResponse, error)
+	GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error)
+	RegisterService(context.Context, *RegisterServiceRequest) (*RegisterServiceResponse, error)
+	DeleteService(context.Context, *DeleteServiceRequest) (*v1.BoolResponse, error)
 	GetAvailabilities(context.Context, *GetAvailabilitiesRequest) (*GetAvailabilitiesResponse, error)
-	GrantRoles(context.Context, *GrantRolesRequest) (*GrantRolesResponse, error)
-	RevokeRoles(context.Context, *RevokeRolesRequest) (*RevokeRolesResponse, error)
-	GetRoles(context.Context, *GetRolesRequest) (*GetRolesResponse, error)
+	AddAvailabilities(context.Context, *AddAvailabilitiesRequest) (*AddAvailabilitiesResponse, error)
 	mustEmbedUnimplementedBusinessServiceServer()
 }
 
@@ -164,38 +156,35 @@ type BusinessServiceServer interface {
 type UnimplementedBusinessServiceServer struct {
 }
 
-func (UnimplementedBusinessServiceServer) RegisterBusiness(context.Context, *RegisterBusinessRequest) (*RegisterBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterBusiness not implemented")
+func (UnimplementedBusinessServiceServer) GetBusinesses(context.Context, *GetBusinessesRequest) (*GetBusinessesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBusinesses not implemented")
 }
 func (UnimplementedBusinessServiceServer) GetBusiness(context.Context, *GetBusinessRequest) (*GetBusinessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBusiness not implemented")
 }
-func (UnimplementedBusinessServiceServer) GetBusinesses(context.Context, *GetBusinessesRequest) (*GetBusinessesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBusinesses not implemented")
+func (UnimplementedBusinessServiceServer) RegisterBusiness(context.Context, *RegisterBusinessRequest) (*RegisterBusinessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterBusiness not implemented")
 }
-func (UnimplementedBusinessServiceServer) RegisterService(context.Context, *RegisterServiceRequest) (*RegisterServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterService not implemented")
-}
-func (UnimplementedBusinessServiceServer) GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetService not implemented")
+func (UnimplementedBusinessServiceServer) DeleteBusiness(context.Context, *DeleteBusinessRequest) (*v1.BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBusiness not implemented")
 }
 func (UnimplementedBusinessServiceServer) GetServices(context.Context, *GetServicesRequest) (*GetServicesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetServices not implemented")
 }
-func (UnimplementedBusinessServiceServer) AddAvailabilities(context.Context, *AddAvailabilitiesRequest) (*AddAvailabilitiesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddAvailabilities not implemented")
+func (UnimplementedBusinessServiceServer) GetService(context.Context, *GetServiceRequest) (*GetServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetService not implemented")
+}
+func (UnimplementedBusinessServiceServer) RegisterService(context.Context, *RegisterServiceRequest) (*RegisterServiceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterService not implemented")
+}
+func (UnimplementedBusinessServiceServer) DeleteService(context.Context, *DeleteServiceRequest) (*v1.BoolResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteService not implemented")
 }
 func (UnimplementedBusinessServiceServer) GetAvailabilities(context.Context, *GetAvailabilitiesRequest) (*GetAvailabilitiesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAvailabilities not implemented")
 }
-func (UnimplementedBusinessServiceServer) GrantRoles(context.Context, *GrantRolesRequest) (*GrantRolesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GrantRoles not implemented")
-}
-func (UnimplementedBusinessServiceServer) RevokeRoles(context.Context, *RevokeRolesRequest) (*RevokeRolesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RevokeRoles not implemented")
-}
-func (UnimplementedBusinessServiceServer) GetRoles(context.Context, *GetRolesRequest) (*GetRolesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRoles not implemented")
+func (UnimplementedBusinessServiceServer) AddAvailabilities(context.Context, *AddAvailabilitiesRequest) (*AddAvailabilitiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddAvailabilities not implemented")
 }
 func (UnimplementedBusinessServiceServer) mustEmbedUnimplementedBusinessServiceServer() {}
 
@@ -210,20 +199,20 @@ func RegisterBusinessServiceServer(s grpc.ServiceRegistrar, srv BusinessServiceS
 	s.RegisterService(&BusinessService_ServiceDesc, srv)
 }
 
-func _BusinessService_RegisterBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterBusinessRequest)
+func _BusinessService_GetBusinesses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBusinessesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BusinessServiceServer).RegisterBusiness(ctx, in)
+		return srv.(BusinessServiceServer).GetBusinesses(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/RegisterBusiness",
+		FullMethod: "/business.v1.BusinessService/GetBusinesses",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).RegisterBusiness(ctx, req.(*RegisterBusinessRequest))
+		return srv.(BusinessServiceServer).GetBusinesses(ctx, req.(*GetBusinessesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -246,56 +235,38 @@ func _BusinessService_GetBusiness_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BusinessService_GetBusinesses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBusinessesRequest)
+func _BusinessService_RegisterBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterBusinessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BusinessServiceServer).GetBusinesses(ctx, in)
+		return srv.(BusinessServiceServer).RegisterBusiness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/GetBusinesses",
+		FullMethod: "/business.v1.BusinessService/RegisterBusiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).GetBusinesses(ctx, req.(*GetBusinessesRequest))
+		return srv.(BusinessServiceServer).RegisterBusiness(ctx, req.(*RegisterBusinessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BusinessService_RegisterService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterServiceRequest)
+func _BusinessService_DeleteBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteBusinessRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BusinessServiceServer).RegisterService(ctx, in)
+		return srv.(BusinessServiceServer).DeleteBusiness(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/RegisterService",
+		FullMethod: "/business.v1.BusinessService/DeleteBusiness",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).RegisterService(ctx, req.(*RegisterServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessService_GetService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).GetService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/GetService",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).GetService(ctx, req.(*GetServiceRequest))
+		return srv.(BusinessServiceServer).DeleteBusiness(ctx, req.(*DeleteBusinessRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -318,20 +289,56 @@ func _BusinessService_GetServices_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BusinessService_AddAvailabilities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddAvailabilitiesRequest)
+func _BusinessService_GetService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetServiceRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BusinessServiceServer).AddAvailabilities(ctx, in)
+		return srv.(BusinessServiceServer).GetService(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/AddAvailabilities",
+		FullMethod: "/business.v1.BusinessService/GetService",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).AddAvailabilities(ctx, req.(*AddAvailabilitiesRequest))
+		return srv.(BusinessServiceServer).GetService(ctx, req.(*GetServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BusinessService_RegisterService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BusinessServiceServer).RegisterService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/business.v1.BusinessService/RegisterService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BusinessServiceServer).RegisterService(ctx, req.(*RegisterServiceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BusinessService_DeleteService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteServiceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BusinessServiceServer).DeleteService(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/business.v1.BusinessService/DeleteService",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BusinessServiceServer).DeleteService(ctx, req.(*DeleteServiceRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -354,56 +361,20 @@ func _BusinessService_GetAvailabilities_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BusinessService_GrantRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GrantRolesRequest)
+func _BusinessService_AddAvailabilities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddAvailabilitiesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BusinessServiceServer).GrantRoles(ctx, in)
+		return srv.(BusinessServiceServer).AddAvailabilities(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/GrantRoles",
+		FullMethod: "/business.v1.BusinessService/AddAvailabilities",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).GrantRoles(ctx, req.(*GrantRolesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessService_RevokeRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevokeRolesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).RevokeRoles(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/RevokeRoles",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).RevokeRoles(ctx, req.(*RevokeRolesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessService_GetRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRolesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessServiceServer).GetRoles(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessService/GetRoles",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessServiceServer).GetRoles(ctx, req.(*GetRolesRequest))
+		return srv.(BusinessServiceServer).AddAvailabilities(ctx, req.(*AddAvailabilitiesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -416,782 +387,44 @@ var BusinessService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*BusinessServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "RegisterBusiness",
-			Handler:    _BusinessService_RegisterBusiness_Handler,
+			MethodName: "GetBusinesses",
+			Handler:    _BusinessService_GetBusinesses_Handler,
 		},
 		{
 			MethodName: "GetBusiness",
 			Handler:    _BusinessService_GetBusiness_Handler,
 		},
 		{
-			MethodName: "GetBusinesses",
-			Handler:    _BusinessService_GetBusinesses_Handler,
+			MethodName: "RegisterBusiness",
+			Handler:    _BusinessService_RegisterBusiness_Handler,
 		},
 		{
-			MethodName: "RegisterService",
-			Handler:    _BusinessService_RegisterService_Handler,
-		},
-		{
-			MethodName: "GetService",
-			Handler:    _BusinessService_GetService_Handler,
+			MethodName: "DeleteBusiness",
+			Handler:    _BusinessService_DeleteBusiness_Handler,
 		},
 		{
 			MethodName: "GetServices",
 			Handler:    _BusinessService_GetServices_Handler,
 		},
 		{
-			MethodName: "AddAvailabilities",
-			Handler:    _BusinessService_AddAvailabilities_Handler,
+			MethodName: "GetService",
+			Handler:    _BusinessService_GetService_Handler,
+		},
+		{
+			MethodName: "RegisterService",
+			Handler:    _BusinessService_RegisterService_Handler,
+		},
+		{
+			MethodName: "DeleteService",
+			Handler:    _BusinessService_DeleteService_Handler,
 		},
 		{
 			MethodName: "GetAvailabilities",
 			Handler:    _BusinessService_GetAvailabilities_Handler,
 		},
 		{
-			MethodName: "GrantRoles",
-			Handler:    _BusinessService_GrantRoles_Handler,
-		},
-		{
-			MethodName: "RevokeRoles",
-			Handler:    _BusinessService_RevokeRoles_Handler,
-		},
-		{
-			MethodName: "GetRoles",
-			Handler:    _BusinessService_GetRoles_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "business/v1/business.proto",
-}
-
-// BusinessStorageClient is the client API for BusinessStorage service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type BusinessStorageClient interface {
-	CreateBusiness(ctx context.Context, in *CreateBusinessRequest, opts ...grpc.CallOption) (*CreateBusinessResponse, error)
-	UpdateBusiness(ctx context.Context, in *UpdateBusinessRequest, opts ...grpc.CallOption) (*UpdateBusinessResponse, error)
-	DeleteBusiness(ctx context.Context, in *DeleteBusinessRequest, opts ...grpc.CallOption) (*DeleteBusinessResponse, error)
-	FindBusiness(ctx context.Context, in *FindBusinessRequest, opts ...grpc.CallOption) (*FindBusinessResponse, error)
-	FindBusinesses(ctx context.Context, in *FindBusinessesRequest, opts ...grpc.CallOption) (*FindBusinessesResponse, error)
-	CreateService(ctx context.Context, in *CreateServiceRequest, opts ...grpc.CallOption) (*CreateServiceResponse, error)
-	UpdateService(ctx context.Context, in *UpdateServiceRequest, opts ...grpc.CallOption) (*UpdateServiceResponse, error)
-	DeleteService(ctx context.Context, in *DeleteServiceRequest, opts ...grpc.CallOption) (*DeleteServiceResponse, error)
-	FindService(ctx context.Context, in *FindServiceRequest, opts ...grpc.CallOption) (*FindServiceResponse, error)
-	FindServices(ctx context.Context, in *FindServicesRequest, opts ...grpc.CallOption) (*FindServicesResponse, error)
-	CreateAvailability(ctx context.Context, in *CreateAvailabilityRequest, opts ...grpc.CallOption) (*CreateAvailabilityResponse, error)
-	UpdateAvailability(ctx context.Context, in *UpdateAvailabilityRequest, opts ...grpc.CallOption) (*UpdateAvailabilityResponse, error)
-	DeleteAvailability(ctx context.Context, in *DeleteAvailabilityRequest, opts ...grpc.CallOption) (*DeleteAvailabilityResponse, error)
-	FindAvailability(ctx context.Context, in *FindAvailabilityRequest, opts ...grpc.CallOption) (*FindAvailabilityResponse, error)
-	FindAvailabilities(ctx context.Context, in *FindAvailabilitiesRequest, opts ...grpc.CallOption) (*FindAvailabilitiesResponse, error)
-	CreateRole(ctx context.Context, in *CreateRoleRequest, opts ...grpc.CallOption) (*CreateRoleResponse, error)
-	DeleteRole(ctx context.Context, in *DeleteRoleRequest, opts ...grpc.CallOption) (*DeleteRoleResponse, error)
-	FindRole(ctx context.Context, in *FindRoleRequest, opts ...grpc.CallOption) (*FindRoleResponse, error)
-	FindRoles(ctx context.Context, in *FindRolesRequest, opts ...grpc.CallOption) (*FindRolesResponse, error)
-}
-
-type businessStorageClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewBusinessStorageClient(cc grpc.ClientConnInterface) BusinessStorageClient {
-	return &businessStorageClient{cc}
-}
-
-func (c *businessStorageClient) CreateBusiness(ctx context.Context, in *CreateBusinessRequest, opts ...grpc.CallOption) (*CreateBusinessResponse, error) {
-	out := new(CreateBusinessResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/CreateBusiness", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) UpdateBusiness(ctx context.Context, in *UpdateBusinessRequest, opts ...grpc.CallOption) (*UpdateBusinessResponse, error) {
-	out := new(UpdateBusinessResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/UpdateBusiness", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) DeleteBusiness(ctx context.Context, in *DeleteBusinessRequest, opts ...grpc.CallOption) (*DeleteBusinessResponse, error) {
-	out := new(DeleteBusinessResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/DeleteBusiness", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindBusiness(ctx context.Context, in *FindBusinessRequest, opts ...grpc.CallOption) (*FindBusinessResponse, error) {
-	out := new(FindBusinessResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindBusiness", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindBusinesses(ctx context.Context, in *FindBusinessesRequest, opts ...grpc.CallOption) (*FindBusinessesResponse, error) {
-	out := new(FindBusinessesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindBusinesses", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) CreateService(ctx context.Context, in *CreateServiceRequest, opts ...grpc.CallOption) (*CreateServiceResponse, error) {
-	out := new(CreateServiceResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/CreateService", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) UpdateService(ctx context.Context, in *UpdateServiceRequest, opts ...grpc.CallOption) (*UpdateServiceResponse, error) {
-	out := new(UpdateServiceResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/UpdateService", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) DeleteService(ctx context.Context, in *DeleteServiceRequest, opts ...grpc.CallOption) (*DeleteServiceResponse, error) {
-	out := new(DeleteServiceResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/DeleteService", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindService(ctx context.Context, in *FindServiceRequest, opts ...grpc.CallOption) (*FindServiceResponse, error) {
-	out := new(FindServiceResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindService", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindServices(ctx context.Context, in *FindServicesRequest, opts ...grpc.CallOption) (*FindServicesResponse, error) {
-	out := new(FindServicesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindServices", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) CreateAvailability(ctx context.Context, in *CreateAvailabilityRequest, opts ...grpc.CallOption) (*CreateAvailabilityResponse, error) {
-	out := new(CreateAvailabilityResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/CreateAvailability", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) UpdateAvailability(ctx context.Context, in *UpdateAvailabilityRequest, opts ...grpc.CallOption) (*UpdateAvailabilityResponse, error) {
-	out := new(UpdateAvailabilityResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/UpdateAvailability", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) DeleteAvailability(ctx context.Context, in *DeleteAvailabilityRequest, opts ...grpc.CallOption) (*DeleteAvailabilityResponse, error) {
-	out := new(DeleteAvailabilityResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/DeleteAvailability", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindAvailability(ctx context.Context, in *FindAvailabilityRequest, opts ...grpc.CallOption) (*FindAvailabilityResponse, error) {
-	out := new(FindAvailabilityResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindAvailability", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindAvailabilities(ctx context.Context, in *FindAvailabilitiesRequest, opts ...grpc.CallOption) (*FindAvailabilitiesResponse, error) {
-	out := new(FindAvailabilitiesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindAvailabilities", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) CreateRole(ctx context.Context, in *CreateRoleRequest, opts ...grpc.CallOption) (*CreateRoleResponse, error) {
-	out := new(CreateRoleResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/CreateRole", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) DeleteRole(ctx context.Context, in *DeleteRoleRequest, opts ...grpc.CallOption) (*DeleteRoleResponse, error) {
-	out := new(DeleteRoleResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/DeleteRole", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindRole(ctx context.Context, in *FindRoleRequest, opts ...grpc.CallOption) (*FindRoleResponse, error) {
-	out := new(FindRoleResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindRole", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *businessStorageClient) FindRoles(ctx context.Context, in *FindRolesRequest, opts ...grpc.CallOption) (*FindRolesResponse, error) {
-	out := new(FindRolesResponse)
-	err := c.cc.Invoke(ctx, "/business.v1.BusinessStorage/FindRoles", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// BusinessStorageServer is the server API for BusinessStorage service.
-// All implementations must embed UnimplementedBusinessStorageServer
-// for forward compatibility
-type BusinessStorageServer interface {
-	CreateBusiness(context.Context, *CreateBusinessRequest) (*CreateBusinessResponse, error)
-	UpdateBusiness(context.Context, *UpdateBusinessRequest) (*UpdateBusinessResponse, error)
-	DeleteBusiness(context.Context, *DeleteBusinessRequest) (*DeleteBusinessResponse, error)
-	FindBusiness(context.Context, *FindBusinessRequest) (*FindBusinessResponse, error)
-	FindBusinesses(context.Context, *FindBusinessesRequest) (*FindBusinessesResponse, error)
-	CreateService(context.Context, *CreateServiceRequest) (*CreateServiceResponse, error)
-	UpdateService(context.Context, *UpdateServiceRequest) (*UpdateServiceResponse, error)
-	DeleteService(context.Context, *DeleteServiceRequest) (*DeleteServiceResponse, error)
-	FindService(context.Context, *FindServiceRequest) (*FindServiceResponse, error)
-	FindServices(context.Context, *FindServicesRequest) (*FindServicesResponse, error)
-	CreateAvailability(context.Context, *CreateAvailabilityRequest) (*CreateAvailabilityResponse, error)
-	UpdateAvailability(context.Context, *UpdateAvailabilityRequest) (*UpdateAvailabilityResponse, error)
-	DeleteAvailability(context.Context, *DeleteAvailabilityRequest) (*DeleteAvailabilityResponse, error)
-	FindAvailability(context.Context, *FindAvailabilityRequest) (*FindAvailabilityResponse, error)
-	FindAvailabilities(context.Context, *FindAvailabilitiesRequest) (*FindAvailabilitiesResponse, error)
-	CreateRole(context.Context, *CreateRoleRequest) (*CreateRoleResponse, error)
-	DeleteRole(context.Context, *DeleteRoleRequest) (*DeleteRoleResponse, error)
-	FindRole(context.Context, *FindRoleRequest) (*FindRoleResponse, error)
-	FindRoles(context.Context, *FindRolesRequest) (*FindRolesResponse, error)
-	mustEmbedUnimplementedBusinessStorageServer()
-}
-
-// UnimplementedBusinessStorageServer must be embedded to have forward compatible implementations.
-type UnimplementedBusinessStorageServer struct {
-}
-
-func (UnimplementedBusinessStorageServer) CreateBusiness(context.Context, *CreateBusinessRequest) (*CreateBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateBusiness not implemented")
-}
-func (UnimplementedBusinessStorageServer) UpdateBusiness(context.Context, *UpdateBusinessRequest) (*UpdateBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateBusiness not implemented")
-}
-func (UnimplementedBusinessStorageServer) DeleteBusiness(context.Context, *DeleteBusinessRequest) (*DeleteBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteBusiness not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindBusiness(context.Context, *FindBusinessRequest) (*FindBusinessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindBusiness not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindBusinesses(context.Context, *FindBusinessesRequest) (*FindBusinessesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindBusinesses not implemented")
-}
-func (UnimplementedBusinessStorageServer) CreateService(context.Context, *CreateServiceRequest) (*CreateServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateService not implemented")
-}
-func (UnimplementedBusinessStorageServer) UpdateService(context.Context, *UpdateServiceRequest) (*UpdateServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateService not implemented")
-}
-func (UnimplementedBusinessStorageServer) DeleteService(context.Context, *DeleteServiceRequest) (*DeleteServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteService not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindService(context.Context, *FindServiceRequest) (*FindServiceResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindService not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindServices(context.Context, *FindServicesRequest) (*FindServicesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindServices not implemented")
-}
-func (UnimplementedBusinessStorageServer) CreateAvailability(context.Context, *CreateAvailabilityRequest) (*CreateAvailabilityResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateAvailability not implemented")
-}
-func (UnimplementedBusinessStorageServer) UpdateAvailability(context.Context, *UpdateAvailabilityRequest) (*UpdateAvailabilityResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateAvailability not implemented")
-}
-func (UnimplementedBusinessStorageServer) DeleteAvailability(context.Context, *DeleteAvailabilityRequest) (*DeleteAvailabilityResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteAvailability not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindAvailability(context.Context, *FindAvailabilityRequest) (*FindAvailabilityResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindAvailability not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindAvailabilities(context.Context, *FindAvailabilitiesRequest) (*FindAvailabilitiesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindAvailabilities not implemented")
-}
-func (UnimplementedBusinessStorageServer) CreateRole(context.Context, *CreateRoleRequest) (*CreateRoleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateRole not implemented")
-}
-func (UnimplementedBusinessStorageServer) DeleteRole(context.Context, *DeleteRoleRequest) (*DeleteRoleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteRole not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindRole(context.Context, *FindRoleRequest) (*FindRoleResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindRole not implemented")
-}
-func (UnimplementedBusinessStorageServer) FindRoles(context.Context, *FindRolesRequest) (*FindRolesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindRoles not implemented")
-}
-func (UnimplementedBusinessStorageServer) mustEmbedUnimplementedBusinessStorageServer() {}
-
-// UnsafeBusinessStorageServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to BusinessStorageServer will
-// result in compilation errors.
-type UnsafeBusinessStorageServer interface {
-	mustEmbedUnimplementedBusinessStorageServer()
-}
-
-func RegisterBusinessStorageServer(s grpc.ServiceRegistrar, srv BusinessStorageServer) {
-	s.RegisterService(&BusinessStorage_ServiceDesc, srv)
-}
-
-func _BusinessStorage_CreateBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateBusinessRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).CreateBusiness(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/CreateBusiness",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).CreateBusiness(ctx, req.(*CreateBusinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_UpdateBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateBusinessRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).UpdateBusiness(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/UpdateBusiness",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).UpdateBusiness(ctx, req.(*UpdateBusinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_DeleteBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteBusinessRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).DeleteBusiness(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/DeleteBusiness",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).DeleteBusiness(ctx, req.(*DeleteBusinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindBusiness_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindBusinessRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindBusiness(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindBusiness",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindBusiness(ctx, req.(*FindBusinessRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindBusinesses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindBusinessesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindBusinesses(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindBusinesses",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindBusinesses(ctx, req.(*FindBusinessesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_CreateService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).CreateService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/CreateService",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).CreateService(ctx, req.(*CreateServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_UpdateService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).UpdateService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/UpdateService",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).UpdateService(ctx, req.(*UpdateServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_DeleteService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).DeleteService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/DeleteService",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).DeleteService(ctx, req.(*DeleteServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindService_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindServiceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindService(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindService",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindService(ctx, req.(*FindServiceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindServicesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindServices(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindServices",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindServices(ctx, req.(*FindServicesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_CreateAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateAvailabilityRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).CreateAvailability(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/CreateAvailability",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).CreateAvailability(ctx, req.(*CreateAvailabilityRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_UpdateAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateAvailabilityRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).UpdateAvailability(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/UpdateAvailability",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).UpdateAvailability(ctx, req.(*UpdateAvailabilityRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_DeleteAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteAvailabilityRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).DeleteAvailability(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/DeleteAvailability",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).DeleteAvailability(ctx, req.(*DeleteAvailabilityRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindAvailabilityRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindAvailability(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindAvailability",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindAvailability(ctx, req.(*FindAvailabilityRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindAvailabilities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindAvailabilitiesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindAvailabilities(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindAvailabilities",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindAvailabilities(ctx, req.(*FindAvailabilitiesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_CreateRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRoleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).CreateRole(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/CreateRole",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).CreateRole(ctx, req.(*CreateRoleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_DeleteRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRoleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).DeleteRole(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/DeleteRole",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).DeleteRole(ctx, req.(*DeleteRoleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindRoleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindRole(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindRole",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindRole(ctx, req.(*FindRoleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BusinessStorage_FindRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindRolesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BusinessStorageServer).FindRoles(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/business.v1.BusinessStorage/FindRoles",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BusinessStorageServer).FindRoles(ctx, req.(*FindRolesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// BusinessStorage_ServiceDesc is the grpc.ServiceDesc for BusinessStorage service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var BusinessStorage_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "business.v1.BusinessStorage",
-	HandlerType: (*BusinessStorageServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreateBusiness",
-			Handler:    _BusinessStorage_CreateBusiness_Handler,
-		},
-		{
-			MethodName: "UpdateBusiness",
-			Handler:    _BusinessStorage_UpdateBusiness_Handler,
-		},
-		{
-			MethodName: "DeleteBusiness",
-			Handler:    _BusinessStorage_DeleteBusiness_Handler,
-		},
-		{
-			MethodName: "FindBusiness",
-			Handler:    _BusinessStorage_FindBusiness_Handler,
-		},
-		{
-			MethodName: "FindBusinesses",
-			Handler:    _BusinessStorage_FindBusinesses_Handler,
-		},
-		{
-			MethodName: "CreateService",
-			Handler:    _BusinessStorage_CreateService_Handler,
-		},
-		{
-			MethodName: "UpdateService",
-			Handler:    _BusinessStorage_UpdateService_Handler,
-		},
-		{
-			MethodName: "DeleteService",
-			Handler:    _BusinessStorage_DeleteService_Handler,
-		},
-		{
-			MethodName: "FindService",
-			Handler:    _BusinessStorage_FindService_Handler,
-		},
-		{
-			MethodName: "FindServices",
-			Handler:    _BusinessStorage_FindServices_Handler,
-		},
-		{
-			MethodName: "CreateAvailability",
-			Handler:    _BusinessStorage_CreateAvailability_Handler,
-		},
-		{
-			MethodName: "UpdateAvailability",
-			Handler:    _BusinessStorage_UpdateAvailability_Handler,
-		},
-		{
-			MethodName: "DeleteAvailability",
-			Handler:    _BusinessStorage_DeleteAvailability_Handler,
-		},
-		{
-			MethodName: "FindAvailability",
-			Handler:    _BusinessStorage_FindAvailability_Handler,
-		},
-		{
-			MethodName: "FindAvailabilities",
-			Handler:    _BusinessStorage_FindAvailabilities_Handler,
-		},
-		{
-			MethodName: "CreateRole",
-			Handler:    _BusinessStorage_CreateRole_Handler,
-		},
-		{
-			MethodName: "DeleteRole",
-			Handler:    _BusinessStorage_DeleteRole_Handler,
-		},
-		{
-			MethodName: "FindRole",
-			Handler:    _BusinessStorage_FindRole_Handler,
-		},
-		{
-			MethodName: "FindRoles",
-			Handler:    _BusinessStorage_FindRoles_Handler,
+			MethodName: "AddAvailabilities",
+			Handler:    _BusinessService_AddAvailabilities_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
