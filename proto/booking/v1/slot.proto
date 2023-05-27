@@ -9,4 +9,5 @@ message Slot {
   string user_id = 2 [json_name = "user_id"];
   business.v1.Availability.Type type = 3;
   google.protobuf.Timestamp start = 4;
+  business.v1.Availability availability = 5;
 }
