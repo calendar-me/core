@@ -1,6 +1,6 @@
 {
   "name": "calendar-me-core",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "index.js",
   "repository": "https://github.com/calendar-me/services",
   "author": "Amaury Diaz",

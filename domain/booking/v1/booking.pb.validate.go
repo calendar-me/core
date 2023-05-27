@@ -36,7 +36,7 @@ var (
 	_ = anypb.Any{}
 	_ = sort.Sort
 
-	_ = businessv1.Availability_Type(0)
+	_ = businessv1.Availability_State(0)
 )
 
 // Validate checks the field values on GetBookingsRequest with the rules
@@ -823,7 +823,7 @@ func (m *UpdateBookingRequest) validate(all bool) error {
 
 	// no validation rules for Id
 
-	// no validation rules for Type
+	// no validation rules for State
 
 	if len(errors) > 0 {
 		return UpdateBookingRequestMultiError(errors)

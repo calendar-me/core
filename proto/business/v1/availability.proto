@@ -5,16 +5,16 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 message Availability {
-  enum Type {
-    TYPE_UNSPECIFIED = 0;
-    TYPE_AVAILABLE = 1;
-    TYPE_UNAVAILABLE = 2;
+  enum State {
+    STATE_UNSPECIFIED = 0;
+    STATE_AVAILABLE = 1;
+    STATE_UNAVAILABLE = 2;
   }
 
   string id = 1;
   string name = 2;
   bool active = 3;
-  Type type = 4;
+  State state = 4;
 
   google.protobuf.Timestamp start = 5;
   google.protobuf.Timestamp end = 6;

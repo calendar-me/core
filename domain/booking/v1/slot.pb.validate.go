@@ -36,7 +36,7 @@ var (
 	_ = anypb.Any{}
 	_ = sort.Sort
 
-	_ = businessv1.Availability_Type(0)
+	_ = businessv1.Availability_State(0)
 )
 
 // Validate checks the field values on Slot with the rules defined in the proto
@@ -64,7 +64,7 @@ func (m *Slot) validate(all bool) error {
 
 	// no validation rules for UserId
 
-	// no validation rules for Type
+	// no validation rules for State
 
 	if all {
 		switch v := interface{}(m.GetStart()).(type) {

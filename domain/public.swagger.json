@@ -575,11 +575,11 @@
             "type": "string"
           },
           {
-            "name": "type",
+            "name": "state",
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1AvailabilityType"
+              "$ref": "#/definitions/v1AvailabilityState"
             }
           }
         ],
@@ -1848,8 +1848,8 @@
         "active": {
           "type": "boolean"
         },
-        "type": {
-          "$ref": "#/definitions/v1AvailabilityType"
+        "state": {
+          "$ref": "#/definitions/v1AvailabilityState"
         },
         "start": {
           "type": "string",
@@ -1882,14 +1882,14 @@
         }
       }
     },
-    "v1AvailabilityType": {
+    "v1AvailabilityState": {
       "type": "string",
       "enum": [
-        "TYPE_UNSPECIFIED",
-        "TYPE_AVAILABLE",
-        "TYPE_UNAVAILABLE"
+        "STATE_UNSPECIFIED",
+        "STATE_AVAILABLE",
+        "STATE_UNAVAILABLE"
       ],
-      "default": "TYPE_UNSPECIFIED"
+      "default": "STATE_UNSPECIFIED"
     },
     "v1BookRequest": {
       "type": "object",
@@ -2288,8 +2288,8 @@
         "user_id": {
           "type": "string"
         },
-        "type": {
-          "$ref": "#/definitions/v1AvailabilityType"
+        "state": {
+          "$ref": "#/definitions/v1AvailabilityState"
         },
         "start": {
           "type": "string",

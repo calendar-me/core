@@ -27,7 +27,7 @@ service BookingService {
   rpc UpdateBooking(UpdateBookingRequest) returns (common.v1.BoolResponse) {
     option (google.api.http) = {
       put: "/bookings/{id}"
-      body: "type"
+      body: "state"
     };
   }
 
@@ -78,7 +78,7 @@ message BookResponse {
 
 message UpdateBookingRequest {
   string id = 1; // slot's id
-  business.v1.Availability.Type type = 2;
+  business.v1.Availability.State state = 2;
 }
 
 message GetSlotsRequest {

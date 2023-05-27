@@ -63,7 +63,7 @@ func (m *Availability) validate(all bool) error {
 
 	// no validation rules for Active
 
-	// no validation rules for Type
+	// no validation rules for State
 
 	if all {
 		switch v := interface{}(m.GetStart()).(type) {
