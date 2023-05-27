@@ -1,0 +1,6 @@
+syntax = "proto3";
+package event.v1;
+
+enum Topic {
+  TOPIC_UNSPECIFIED = 0;
+}
