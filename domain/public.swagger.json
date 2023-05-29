@@ -417,7 +417,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BoolResponse"
+              "$ref": "#/definitions/v1UpdateTicketResponse"
             }
           },
           "400": {
@@ -532,7 +532,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BoolResponse"
+              "$ref": "#/definitions/v1UpdateBookingResponse"
             }
           },
           "400": {
@@ -992,7 +992,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BoolResponse"
+              "$ref": "#/definitions/v1UpdateNotificationResponse"
             }
           },
           "400": {
@@ -1488,7 +1488,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1BoolResponse"
+              "$ref": "#/definitions/v1UpdateUserResponse"
             }
           },
           "400": {
@@ -2327,6 +2327,38 @@
         "STATE_CANCELED"
       ],
       "default": "STATE_UNSPECIFIED"
+    },
+    "v1UpdateBookingResponse": {
+      "type": "object",
+      "properties": {
+        "slot": {
+          "$ref": "#/definitions/v1Slot"
+        }
+      }
+    },
+    "v1UpdateNotificationResponse": {
+      "type": "object",
+      "properties": {
+        "notification": {
+          "$ref": "#/definitions/v1Notification"
+        }
+      }
+    },
+    "v1UpdateTicketResponse": {
+      "type": "object",
+      "properties": {
+        "ticket": {
+          "$ref": "#/definitions/v1Ticket"
+        }
+      }
+    },
+    "v1UpdateUserResponse": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/v1User"
+        }
+      }
     },
     "v1User": {
       "type": "object",

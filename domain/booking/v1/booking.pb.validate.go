@@ -905,6 +905,137 @@ var _ interface {
 	ErrorName() string
 } = UpdateBookingRequestValidationError{}
 
+// Validate checks the field values on UpdateBookingResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UpdateBookingResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateBookingResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateBookingResponseMultiError, or nil if none found.
+func (m *UpdateBookingResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateBookingResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetSlot()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateBookingResponseValidationError{
+					field:  "Slot",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateBookingResponseValidationError{
+					field:  "Slot",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetSlot()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateBookingResponseValidationError{
+				field:  "Slot",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return UpdateBookingResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// UpdateBookingResponseMultiError is an error wrapping multiple validation
+// errors returned by UpdateBookingResponse.ValidateAll() if the designated
+// constraints aren't met.
+type UpdateBookingResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateBookingResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateBookingResponseMultiError) AllErrors() []error { return m }
+
+// UpdateBookingResponseValidationError is the validation error returned by
+// UpdateBookingResponse.Validate if the designated constraints aren't met.
+type UpdateBookingResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateBookingResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateBookingResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateBookingResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateBookingResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateBookingResponseValidationError) ErrorName() string {
+	return "UpdateBookingResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateBookingResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateBookingResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateBookingResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateBookingResponseValidationError{}
+
 // Validate checks the field values on GetSlotsRequest with the rules defined
 // in the proto definition for this message. If any rules are violated, the
 // first error encountered is returned, or nil if there are no violations.
@@ -2109,3 +2240,134 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = UpdateTicketRequestValidationError{}
+
+// Validate checks the field values on UpdateTicketResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UpdateTicketResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UpdateTicketResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UpdateTicketResponseMultiError, or nil if none found.
+func (m *UpdateTicketResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UpdateTicketResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetTicket()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateTicketResponseValidationError{
+					field:  "Ticket",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateTicketResponseValidationError{
+					field:  "Ticket",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetTicket()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateTicketResponseValidationError{
+				field:  "Ticket",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return UpdateTicketResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// UpdateTicketResponseMultiError is an error wrapping multiple validation
+// errors returned by UpdateTicketResponse.ValidateAll() if the designated
+// constraints aren't met.
+type UpdateTicketResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UpdateTicketResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UpdateTicketResponseMultiError) AllErrors() []error { return m }
+
+// UpdateTicketResponseValidationError is the validation error returned by
+// UpdateTicketResponse.Validate if the designated constraints aren't met.
+type UpdateTicketResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UpdateTicketResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UpdateTicketResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UpdateTicketResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UpdateTicketResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UpdateTicketResponseValidationError) ErrorName() string {
+	return "UpdateTicketResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UpdateTicketResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUpdateTicketResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UpdateTicketResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UpdateTicketResponseValidationError{}

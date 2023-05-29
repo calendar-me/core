@@ -24,7 +24,7 @@ service BookingService {
       body: "*"
     };
   }
-  rpc UpdateBooking(UpdateBookingRequest) returns (common.v1.BoolResponse) {
+  rpc UpdateBooking(UpdateBookingRequest) returns (UpdateBookingResponse) {
     option (google.api.http) = {
       put: "/bookings/{id}"
       body: "state"
@@ -47,7 +47,7 @@ service BookingService {
   rpc GetTicket(GetTicketRequest) returns (GetTicketResponse) {
     option (google.api.http) = {get: "/bookings/tickets/{id}"};
   }
-  rpc UpdateTicket(UpdateTicketRequest) returns (common.v1.BoolResponse) {
+  rpc UpdateTicket(UpdateTicketRequest) returns (UpdateTicketResponse) {
     option (google.api.http) = {
       put: "/bookings/tickets/{id}"
       body: "state"
@@ -79,6 +79,10 @@ message BookResponse {
 message UpdateBookingRequest {
   string id = 1; // slot's id
   business.v1.Availability.State state = 2;
+}
+
+message UpdateBookingResponse {
+  Slot slot = 1;
 }
 
 message GetSlotsRequest {
@@ -117,4 +121,8 @@ message GetTicketResponse {
 message UpdateTicketRequest {
   string id = 1;
   Ticket.State state = 2;
+}
+
+message UpdateTicketResponse {
+  Ticket ticket = 1;
 }

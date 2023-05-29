@@ -45,7 +45,7 @@ service UserService {
     option (google.api.http) = {get: "/users/me"};
   }
 
-  rpc UpdateUser(UpdateUserRequest) returns (common.v1.BoolResponse) {
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
     option (google.api.http) = {
       put: "/users/{id}"
       body: "request"
@@ -93,6 +93,9 @@ message GetCurrentUserResponse {
 message UpdateUserRequest {
   string id = 1;
   User.Details request = 2;
+}
+message UpdateUserResponse {
+  User user = 1;
 }
 
 message DeleteUserRequest {

@@ -45,7 +45,7 @@ service NotificationService {
     option (google.api.http) = {get: "/notifications/{id}"};
   }
 
-  rpc UpdateNotification(UpdateNotificationRequest) returns (common.v1.BoolResponse) {
+  rpc UpdateNotification(UpdateNotificationRequest) returns (UpdateNotificationResponse) {
     option (google.api.http) = {
       put: "/notifications/{id}"
       body: "state"
@@ -72,4 +72,7 @@ message GetNotificationResponse {
 message UpdateNotificationRequest {
   string id = 1;
   Notification.State state = 2;
+}
+message UpdateNotificationResponse {
+  Notification notification = 1;
 }

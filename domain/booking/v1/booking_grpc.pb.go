@@ -8,7 +8,6 @@ package bookingv1
 
 import (
 	context "context"
-	v1 "github.com/calendar-me/core/domain/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -26,12 +25,12 @@ type BookingServiceClient interface {
 	GetBookings(ctx context.Context, in *GetBookingsRequest, opts ...grpc.CallOption) (*GetBookingsResponse, error)
 	GetBooking(ctx context.Context, in *GetBookingRequest, opts ...grpc.CallOption) (*GetBookingResponse, error)
 	Book(ctx context.Context, in *BookRequest, opts ...grpc.CallOption) (*BookResponse, error)
-	UpdateBooking(ctx context.Context, in *UpdateBookingRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error)
+	UpdateBooking(ctx context.Context, in *UpdateBookingRequest, opts ...grpc.CallOption) (*UpdateBookingResponse, error)
 	GetSlots(ctx context.Context, in *GetSlotsRequest, opts ...grpc.CallOption) (*GetSlotsResponse, error)
 	PreviewSlots(ctx context.Context, in *PreviewSlotsRequest, opts ...grpc.CallOption) (*PreviewSlotsResponse, error)
 	GetTickets(ctx context.Context, in *GetTicketsRequest, opts ...grpc.CallOption) (*GetTicketsResponse, error)
 	GetTicket(ctx context.Context, in *GetTicketRequest, opts ...grpc.CallOption) (*GetTicketResponse, error)
-	UpdateTicket(ctx context.Context, in *UpdateTicketRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error)
+	UpdateTicket(ctx context.Context, in *UpdateTicketRequest, opts ...grpc.CallOption) (*UpdateTicketResponse, error)
 }
 
 type bookingServiceClient struct {
@@ -69,8 +68,8 @@ func (c *bookingServiceClient) Book(ctx context.Context, in *BookRequest, opts .
 	return out, nil
 }
 
-func (c *bookingServiceClient) UpdateBooking(ctx context.Context, in *UpdateBookingRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error) {
-	out := new(v1.BoolResponse)
+func (c *bookingServiceClient) UpdateBooking(ctx context.Context, in *UpdateBookingRequest, opts ...grpc.CallOption) (*UpdateBookingResponse, error) {
+	out := new(UpdateBookingResponse)
 	err := c.cc.Invoke(ctx, "/booking.v1.BookingService/UpdateBooking", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -114,8 +113,8 @@ func (c *bookingServiceClient) GetTicket(ctx context.Context, in *GetTicketReque
 	return out, nil
 }
 
-func (c *bookingServiceClient) UpdateTicket(ctx context.Context, in *UpdateTicketRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error) {
-	out := new(v1.BoolResponse)
+func (c *bookingServiceClient) UpdateTicket(ctx context.Context, in *UpdateTicketRequest, opts ...grpc.CallOption) (*UpdateTicketResponse, error) {
+	out := new(UpdateTicketResponse)
 	err := c.cc.Invoke(ctx, "/booking.v1.BookingService/UpdateTicket", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -130,12 +129,12 @@ type BookingServiceServer interface {
 	GetBookings(context.Context, *GetBookingsRequest) (*GetBookingsResponse, error)
 	GetBooking(context.Context, *GetBookingRequest) (*GetBookingResponse, error)
 	Book(context.Context, *BookRequest) (*BookResponse, error)
-	UpdateBooking(context.Context, *UpdateBookingRequest) (*v1.BoolResponse, error)
+	UpdateBooking(context.Context, *UpdateBookingRequest) (*UpdateBookingResponse, error)
 	GetSlots(context.Context, *GetSlotsRequest) (*GetSlotsResponse, error)
 	PreviewSlots(context.Context, *PreviewSlotsRequest) (*PreviewSlotsResponse, error)
 	GetTickets(context.Context, *GetTicketsRequest) (*GetTicketsResponse, error)
 	GetTicket(context.Context, *GetTicketRequest) (*GetTicketResponse, error)
-	UpdateTicket(context.Context, *UpdateTicketRequest) (*v1.BoolResponse, error)
+	UpdateTicket(context.Context, *UpdateTicketRequest) (*UpdateTicketResponse, error)
 	mustEmbedUnimplementedBookingServiceServer()
 }
 
@@ -152,7 +151,7 @@ func (UnimplementedBookingServiceServer) GetBooking(context.Context, *GetBooking
 func (UnimplementedBookingServiceServer) Book(context.Context, *BookRequest) (*BookResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Book not implemented")
 }
-func (UnimplementedBookingServiceServer) UpdateBooking(context.Context, *UpdateBookingRequest) (*v1.BoolResponse, error) {
+func (UnimplementedBookingServiceServer) UpdateBooking(context.Context, *UpdateBookingRequest) (*UpdateBookingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateBooking not implemented")
 }
 func (UnimplementedBookingServiceServer) GetSlots(context.Context, *GetSlotsRequest) (*GetSlotsResponse, error) {
@@ -167,7 +166,7 @@ func (UnimplementedBookingServiceServer) GetTickets(context.Context, *GetTickets
 func (UnimplementedBookingServiceServer) GetTicket(context.Context, *GetTicketRequest) (*GetTicketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTicket not implemented")
 }
-func (UnimplementedBookingServiceServer) UpdateTicket(context.Context, *UpdateTicketRequest) (*v1.BoolResponse, error) {
+func (UnimplementedBookingServiceServer) UpdateTicket(context.Context, *UpdateTicketRequest) (*UpdateTicketResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTicket not implemented")
 }
 func (UnimplementedBookingServiceServer) mustEmbedUnimplementedBookingServiceServer() {}

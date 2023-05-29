@@ -8,7 +8,6 @@ package notificationv1
 
 import (
 	context "context"
-	v1 "github.com/calendar-me/core/domain/common/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type NotificationServiceClient interface {
 	GetNotifications(ctx context.Context, in *GetNotificationsRequest, opts ...grpc.CallOption) (*GetNotificationsResponse, error)
 	GetNotification(ctx context.Context, in *GetNotificationRequest, opts ...grpc.CallOption) (*GetNotificationResponse, error)
-	UpdateNotification(ctx context.Context, in *UpdateNotificationRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error)
+	UpdateNotification(ctx context.Context, in *UpdateNotificationRequest, opts ...grpc.CallOption) (*UpdateNotificationResponse, error)
 }
 
 type notificationServiceClient struct {
@@ -54,8 +53,8 @@ func (c *notificationServiceClient) GetNotification(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (c *notificationServiceClient) UpdateNotification(ctx context.Context, in *UpdateNotificationRequest, opts ...grpc.CallOption) (*v1.BoolResponse, error) {
-	out := new(v1.BoolResponse)
+func (c *notificationServiceClient) UpdateNotification(ctx context.Context, in *UpdateNotificationRequest, opts ...grpc.CallOption) (*UpdateNotificationResponse, error) {
+	out := new(UpdateNotificationResponse)
 	err := c.cc.Invoke(ctx, "/notification.v1.NotificationService/UpdateNotification", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -69,7 +68,7 @@ func (c *notificationServiceClient) UpdateNotification(ctx context.Context, in *
 type NotificationServiceServer interface {
 	GetNotifications(context.Context, *GetNotificationsRequest) (*GetNotificationsResponse, error)
 	GetNotification(context.Context, *GetNotificationRequest) (*GetNotificationResponse, error)
-	UpdateNotification(context.Context, *UpdateNotificationRequest) (*v1.BoolResponse, error)
+	UpdateNotification(context.Context, *UpdateNotificationRequest) (*UpdateNotificationResponse, error)
 	mustEmbedUnimplementedNotificationServiceServer()
 }
 
@@ -83,7 +82,7 @@ func (UnimplementedNotificationServiceServer) GetNotifications(context.Context, 
 func (UnimplementedNotificationServiceServer) GetNotification(context.Context, *GetNotificationRequest) (*GetNotificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNotification not implemented")
 }
-func (UnimplementedNotificationServiceServer) UpdateNotification(context.Context, *UpdateNotificationRequest) (*v1.BoolResponse, error) {
+func (UnimplementedNotificationServiceServer) UpdateNotification(context.Context, *UpdateNotificationRequest) (*UpdateNotificationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateNotification not implemented")
 }
 func (UnimplementedNotificationServiceServer) mustEmbedUnimplementedNotificationServiceServer() {}
