@@ -1296,7 +1296,7 @@
         },
         "parameters": [
           {
-            "name": "filters.ids",
+            "name": "filters.keys",
             "in": "query",
             "required": false,
             "type": "array",
@@ -1377,7 +1377,7 @@
         ]
       }
     },
-    "/v1/users/{id}": {
+    "/v1/users/{key}": {
       "get": {
         "operationId": "UserService_GetUser",
         "responses": {
@@ -1420,7 +1420,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "key",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1472,7 +1472,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "key",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1524,7 +1524,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "key",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1543,7 +1543,7 @@
         ]
       }
     },
-    "/v1/users/{id}/roles": {
+    "/v1/users/{key}/roles": {
       "get": {
         "operationId": "UserService_GetRoles",
         "responses": {
@@ -1586,7 +1586,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "key",
             "description": "user's id",
             "in": "path",
             "required": true,
@@ -1610,7 +1610,7 @@
         ]
       }
     },
-    "/v1/users/{id}/roles/grant": {
+    "/v1/users/{key}/roles/grant": {
       "post": {
         "operationId": "UserService_GrantRoles",
         "responses": {
@@ -1653,7 +1653,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "key",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1675,7 +1675,7 @@
         ]
       }
     },
-    "/v1/users/{id}/roles/revoke": {
+    "/v1/users/{key}/roles/revoke": {
       "post": {
         "operationId": "UserService_RevokeRoles",
         "responses": {
@@ -1718,7 +1718,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "key",
             "in": "path",
             "required": true,
             "type": "string"
@@ -2363,7 +2363,7 @@
     "v1User": {
       "type": "object",
       "properties": {
-        "id": {
+        "_key": {
           "type": "string"
         },
         "email": {
@@ -2378,7 +2378,7 @@
     "v1UsersFilter": {
       "type": "object",
       "properties": {
-        "ids": {
+        "keys": {
           "type": "array",
           "items": {
             "type": "string"

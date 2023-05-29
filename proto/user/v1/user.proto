@@ -23,14 +23,14 @@ message User {
     Gender gender = 5;
   }
 
-  string id = 1;
+  string key = 1 [json_name = "_key"];
   string email = 2;
   optional Details details = 3;
 }
 
 /* filters */
 message UsersFilter {
-  repeated string ids = 1;
+  repeated string keys = 1;
   optional common.v1.QueryParams params = 2;
 }
 
@@ -39,7 +39,7 @@ service UserService {
     option (google.api.http) = {get: "/v1/users"};
   }
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {
-    option (google.api.http) = {get: "/v1/users/{id}"};
+    option (google.api.http) = {get: "/v1/users/{key}"};
   }
   rpc GetCurrentUser(google.protobuf.Empty) returns (GetCurrentUserResponse) {
     option (google.api.http) = {get: "/v1/users/me"};
@@ -47,26 +47,26 @@ service UserService {
 
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
     option (google.api.http) = {
-      put: "/v1/users/{id}"
+      put: "/v1/users/{key}"
       body: "request"
     };
   }
   rpc DeleteUser(DeleteUserRequest) returns (common.v1.BoolResponse) {
-    option (google.api.http) = {delete: "/v1/users/{id}"};
+    option (google.api.http) = {delete: "/v1/users/{key}"};
   }
 
   rpc GetRoles(GetRolesRequest) returns (GetRolesResponse) {
-    option (google.api.http) = {get: "/v1/users/{id}/roles"};
+    option (google.api.http) = {get: "/v1/users/{key}/roles"};
   }
   rpc GrantRoles(GrantRolesRequest) returns (common.v1.BoolResponse) {
     option (google.api.http) = {
-      post: "/v1/users/{id}/roles/grant"
+      post: "/v1/users/{key}/roles/grant"
       body: "roles"
     };
   }
   rpc RevokeRoles(RevokeRolesRequest) returns (common.v1.BoolResponse) {
     option (google.api.http) = {
-      post: "/v1/users/{id}/roles/revoke"
+      post: "/v1/users/{key}/roles/revoke"
       body: "roles"
     };
   }
@@ -80,7 +80,7 @@ message GetUsersResponse {
 }
 
 message GetUserRequest {
-  string id = 1;
+  string key = 1;
 }
 message GetUserResponse {
   User user = 1;
@@ -91,7 +91,7 @@ message GetCurrentUserResponse {
 }
 
 message UpdateUserRequest {
-  string id = 1;
+  string key = 1;
   User.Details request = 2;
 }
 message UpdateUserResponse {
@@ -99,11 +99,11 @@ message UpdateUserResponse {
 }
 
 message DeleteUserRequest {
-  string id = 1;
+  string key = 1;
 }
 
 message GetRolesRequest {
-  string id = 1; // user's id
+  string key = 1; // user's id
   optional string business_id = 2 [json_name = "business_id"];
   optional string service_id = 3 [json_name = "service_id"];
 }
@@ -112,10 +112,10 @@ message GetRolesResponse {
 }
 
 message GrantRolesRequest {
-  string id = 1;
+  string key = 1;
   repeated Role roles = 2;
 }
 message RevokeRolesRequest {
-  string id = 1;
+  string key = 1;
   repeated Role roles = 2;
 }

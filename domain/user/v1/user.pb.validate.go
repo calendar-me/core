@@ -56,7 +56,7 @@ func (m *User) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Key
 
 	// no validation rules for Email
 
@@ -587,7 +587,7 @@ func (m *GetUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Key
 
 	if len(errors) > 0 {
 		return GetUserRequestMultiError(errors)
@@ -949,7 +949,7 @@ func (m *UpdateUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Key
 
 	if all {
 		switch v := interface{}(m.GetRequest()).(type) {
@@ -1213,7 +1213,7 @@ func (m *DeleteUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Key
 
 	if len(errors) > 0 {
 		return DeleteUserRequestMultiError(errors)
@@ -1317,7 +1317,7 @@ func (m *GetRolesRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Key
 
 	if m.BusinessId != nil {
 		// no validation rules for BusinessId
@@ -1561,7 +1561,7 @@ func (m *GrantRolesRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Key
 
 	for idx, item := range m.GetRoles() {
 		_, _ = idx, item
@@ -1699,7 +1699,7 @@ func (m *RevokeRolesRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	// no validation rules for Key
 
 	for idx, item := range m.GetRoles() {
 		_, _ = idx, item
