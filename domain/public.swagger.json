@@ -34,7 +34,7 @@
     "application/json"
   ],
   "paths": {
-    "/availabilities": {
+    "/v1/availabilities": {
       "get": {
         "operationId": "BusinessService_GetAvailabilities",
         "responses": {
@@ -134,7 +134,7 @@
         ]
       }
     },
-    "/bookings": {
+    "/v1/bookings": {
       "get": {
         "operationId": "BookingService_GetBookings",
         "responses": {
@@ -234,7 +234,7 @@
         ]
       }
     },
-    "/bookings/slots": {
+    "/v1/bookings/slots": {
       "get": {
         "operationId": "BookingService_GetSlots",
         "responses": {
@@ -302,7 +302,7 @@
         ]
       }
     },
-    "/bookings/slots/preview": {
+    "/v1/bookings/slots/preview": {
       "post": {
         "operationId": "BookingService_PreviewSlots",
         "responses": {
@@ -358,7 +358,7 @@
         ]
       }
     },
-    "/bookings/tickets/{id}": {
+    "/v1/bookings/tickets/{id}": {
       "get": {
         "operationId": "BookingService_GetTicket",
         "responses": {
@@ -472,7 +472,7 @@
         ]
       }
     },
-    "/bookings/{id}": {
+    "/v1/bookings/{id}": {
       "get": {
         "operationId": "BookingService_GetBooking",
         "responses": {
@@ -588,7 +588,7 @@
         ]
       }
     },
-    "/bookings/{service_id}/tickets": {
+    "/v1/bookings/{service_id}/tickets": {
       "get": {
         "operationId": "BookingService_GetTickets",
         "responses": {
@@ -642,7 +642,7 @@
         ]
       }
     },
-    "/business": {
+    "/v1/business": {
       "get": {
         "operationId": "BusinessService_GetBusinesses",
         "responses": {
@@ -742,7 +742,7 @@
         ]
       }
     },
-    "/business/{id}": {
+    "/v1/business/{id}": {
       "get": {
         "operationId": "BusinessService_GetBusiness",
         "responses": {
@@ -849,7 +849,7 @@
         ]
       }
     },
-    "/notifications": {
+    "/v1/notifications": {
       "get": {
         "operationId": "NotificationService_GetNotifications",
         "responses": {
@@ -933,7 +933,7 @@
         ]
       }
     },
-    "/notifications/{id}": {
+    "/v1/notifications/{id}": {
       "get": {
         "operationId": "NotificationService_GetNotification",
         "responses": {
@@ -1047,7 +1047,7 @@
         ]
       }
     },
-    "/services": {
+    "/v1/services": {
       "get": {
         "operationId": "BusinessService_GetServices",
         "responses": {
@@ -1147,7 +1147,7 @@
         ]
       }
     },
-    "/services/{id}": {
+    "/v1/services/{id}": {
       "get": {
         "operationId": "BusinessService_GetService",
         "responses": {
@@ -1253,7 +1253,7 @@
         ]
       }
     },
-    "/users": {
+    "/v1/users": {
       "get": {
         "operationId": "UserService_GetUsers",
         "responses": {
@@ -1331,7 +1331,7 @@
         ]
       }
     },
-    "/users/me": {
+    "/v1/users/me": {
       "get": {
         "operationId": "UserService_GetCurrentUser",
         "responses": {
@@ -1377,7 +1377,7 @@
         ]
       }
     },
-    "/users/{id}": {
+    "/v1/users/{id}": {
       "get": {
         "operationId": "UserService_GetUser",
         "responses": {
@@ -1543,7 +1543,7 @@
         ]
       }
     },
-    "/users/{id}/roles": {
+    "/v1/users/{id}/roles": {
       "get": {
         "operationId": "UserService_GetRoles",
         "responses": {
@@ -1610,7 +1610,7 @@
         ]
       }
     },
-    "/users/{id}/roles/grant": {
+    "/v1/users/{id}/roles/grant": {
       "post": {
         "operationId": "UserService_GrantRoles",
         "responses": {
@@ -1675,7 +1675,7 @@
         ]
       }
     },
-    "/users/{id}/roles/revoke": {
+    "/v1/users/{id}/roles/revoke": {
       "post": {
         "operationId": "UserService_RevokeRoles",
         "responses": {

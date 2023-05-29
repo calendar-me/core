@@ -459,7 +459,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetBookings", runtime.WithHTTPPathPattern("/bookings"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetBookings", runtime.WithHTTPPathPattern("/v1/bookings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -484,7 +484,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetBooking", runtime.WithHTTPPathPattern("/bookings/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetBooking", runtime.WithHTTPPathPattern("/v1/bookings/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -509,7 +509,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/Book", runtime.WithHTTPPathPattern("/bookings"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/Book", runtime.WithHTTPPathPattern("/v1/bookings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -534,7 +534,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/UpdateBooking", runtime.WithHTTPPathPattern("/bookings/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/UpdateBooking", runtime.WithHTTPPathPattern("/v1/bookings/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -559,7 +559,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetSlots", runtime.WithHTTPPathPattern("/bookings/slots"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetSlots", runtime.WithHTTPPathPattern("/v1/bookings/slots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -584,7 +584,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/PreviewSlots", runtime.WithHTTPPathPattern("/bookings/slots/preview"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/PreviewSlots", runtime.WithHTTPPathPattern("/v1/bookings/slots/preview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -609,7 +609,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetTickets", runtime.WithHTTPPathPattern("/bookings/{service_id}/tickets"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetTickets", runtime.WithHTTPPathPattern("/v1/bookings/{service_id}/tickets"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -634,7 +634,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetTicket", runtime.WithHTTPPathPattern("/bookings/tickets/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/GetTicket", runtime.WithHTTPPathPattern("/v1/bookings/tickets/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -659,7 +659,7 @@ func RegisterBookingServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/UpdateTicket", runtime.WithHTTPPathPattern("/bookings/tickets/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/booking.v1.BookingService/UpdateTicket", runtime.WithHTTPPathPattern("/v1/bookings/tickets/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -723,7 +723,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetBookings", runtime.WithHTTPPathPattern("/bookings"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetBookings", runtime.WithHTTPPathPattern("/v1/bookings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -745,7 +745,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetBooking", runtime.WithHTTPPathPattern("/bookings/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetBooking", runtime.WithHTTPPathPattern("/v1/bookings/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -767,7 +767,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/Book", runtime.WithHTTPPathPattern("/bookings"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/Book", runtime.WithHTTPPathPattern("/v1/bookings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -789,7 +789,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/UpdateBooking", runtime.WithHTTPPathPattern("/bookings/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/UpdateBooking", runtime.WithHTTPPathPattern("/v1/bookings/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -811,7 +811,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetSlots", runtime.WithHTTPPathPattern("/bookings/slots"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetSlots", runtime.WithHTTPPathPattern("/v1/bookings/slots"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -833,7 +833,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/PreviewSlots", runtime.WithHTTPPathPattern("/bookings/slots/preview"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/PreviewSlots", runtime.WithHTTPPathPattern("/v1/bookings/slots/preview"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -855,7 +855,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetTickets", runtime.WithHTTPPathPattern("/bookings/{service_id}/tickets"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetTickets", runtime.WithHTTPPathPattern("/v1/bookings/{service_id}/tickets"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -877,7 +877,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetTicket", runtime.WithHTTPPathPattern("/bookings/tickets/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/GetTicket", runtime.WithHTTPPathPattern("/v1/bookings/tickets/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -899,7 +899,7 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/UpdateTicket", runtime.WithHTTPPathPattern("/bookings/tickets/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/booking.v1.BookingService/UpdateTicket", runtime.WithHTTPPathPattern("/v1/bookings/tickets/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -919,23 +919,23 @@ func RegisterBookingServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_BookingService_GetBookings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"bookings"}, ""))
+	pattern_BookingService_GetBookings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "bookings"}, ""))
 
-	pattern_BookingService_GetBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"bookings", "id"}, ""))
+	pattern_BookingService_GetBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "bookings", "id"}, ""))
 
-	pattern_BookingService_Book_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"bookings"}, ""))
+	pattern_BookingService_Book_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "bookings"}, ""))
 
-	pattern_BookingService_UpdateBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"bookings", "id"}, ""))
+	pattern_BookingService_UpdateBooking_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "bookings", "id"}, ""))
 
-	pattern_BookingService_GetSlots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"bookings", "slots"}, ""))
+	pattern_BookingService_GetSlots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "bookings", "slots"}, ""))
 
-	pattern_BookingService_PreviewSlots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"bookings", "slots", "preview"}, ""))
+	pattern_BookingService_PreviewSlots_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"v1", "bookings", "slots", "preview"}, ""))
 
-	pattern_BookingService_GetTickets_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1, 2, 2}, []string{"bookings", "service_id", "tickets"}, ""))
+	pattern_BookingService_GetTickets_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "bookings", "service_id", "tickets"}, ""))
 
-	pattern_BookingService_GetTicket_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"bookings", "tickets", "id"}, ""))
+	pattern_BookingService_GetTicket_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "bookings", "tickets", "id"}, ""))
 
-	pattern_BookingService_UpdateTicket_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"bookings", "tickets", "id"}, ""))
+	pattern_BookingService_UpdateTicket_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "bookings", "tickets", "id"}, ""))
 )
 
 var (

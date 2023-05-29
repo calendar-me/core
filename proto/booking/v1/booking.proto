@@ -13,43 +13,43 @@ import "google/protobuf/timestamp.proto";
 
 service BookingService {
   rpc GetBookings(GetBookingsRequest) returns (GetBookingsResponse) {
-    option (google.api.http) = {get: "/bookings"};
+    option (google.api.http) = {get: "/v1/bookings"};
   }
   rpc GetBooking(GetBookingRequest) returns (GetBookingResponse) {
-    option (google.api.http) = {get: "/bookings/{id}"};
+    option (google.api.http) = {get: "/v1/bookings/{id}"};
   }
   rpc Book(BookRequest) returns (BookResponse) {
     option (google.api.http) = {
-      post: "/bookings"
+      post: "/v1/bookings"
       body: "*"
     };
   }
   rpc UpdateBooking(UpdateBookingRequest) returns (UpdateBookingResponse) {
     option (google.api.http) = {
-      put: "/bookings/{id}"
+      put: "/v1/bookings/{id}"
       body: "state"
     };
   }
 
   rpc GetSlots(GetSlotsRequest) returns (GetSlotsResponse) {
-    option (google.api.http) = {get: "/bookings/slots"};
+    option (google.api.http) = {get: "/v1/bookings/slots"};
   }
   rpc PreviewSlots(PreviewSlotsRequest) returns (PreviewSlotsResponse) {
     option (google.api.http) = {
-      post: "/bookings/slots/preview"
+      post: "/v1/bookings/slots/preview"
       body: "*"
     };
   }
 
   rpc GetTickets(GetTicketsRequest) returns (GetTicketsResponse) {
-    option (google.api.http) = {get: "/bookings/{service_id}/tickets"};
+    option (google.api.http) = {get: "/v1/bookings/{service_id}/tickets"};
   }
   rpc GetTicket(GetTicketRequest) returns (GetTicketResponse) {
-    option (google.api.http) = {get: "/bookings/tickets/{id}"};
+    option (google.api.http) = {get: "/v1/bookings/tickets/{id}"};
   }
   rpc UpdateTicket(UpdateTicketRequest) returns (UpdateTicketResponse) {
     option (google.api.http) = {
-      put: "/bookings/tickets/{id}"
+      put: "/v1/bookings/tickets/{id}"
       body: "state"
     };
   }

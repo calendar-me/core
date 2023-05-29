@@ -36,37 +36,37 @@ message UsersFilter {
 
 service UserService {
   rpc GetUsers(GetUsersRequest) returns (GetUsersResponse) {
-    option (google.api.http) = {get: "/users"};
+    option (google.api.http) = {get: "/v1/users"};
   }
   rpc GetUser(GetUserRequest) returns (GetUserResponse) {
-    option (google.api.http) = {get: "/users/{id}"};
+    option (google.api.http) = {get: "/v1/users/{id}"};
   }
   rpc GetCurrentUser(google.protobuf.Empty) returns (GetCurrentUserResponse) {
-    option (google.api.http) = {get: "/users/me"};
+    option (google.api.http) = {get: "/v1/users/me"};
   }
 
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
     option (google.api.http) = {
-      put: "/users/{id}"
+      put: "/v1/users/{id}"
       body: "request"
     };
   }
   rpc DeleteUser(DeleteUserRequest) returns (common.v1.BoolResponse) {
-    option (google.api.http) = {delete: "/users/{id}"};
+    option (google.api.http) = {delete: "/v1/users/{id}"};
   }
 
   rpc GetRoles(GetRolesRequest) returns (GetRolesResponse) {
-    option (google.api.http) = {get: "/users/{id}/roles"};
+    option (google.api.http) = {get: "/v1/users/{id}/roles"};
   }
   rpc GrantRoles(GrantRolesRequest) returns (common.v1.BoolResponse) {
     option (google.api.http) = {
-      post: "/users/{id}/roles/grant"
+      post: "/v1/users/{id}/roles/grant"
       body: "roles"
     };
   }
   rpc RevokeRoles(RevokeRolesRequest) returns (common.v1.BoolResponse) {
     option (google.api.http) = {
-      post: "/users/{id}/roles/revoke"
+      post: "/v1/users/{id}/roles/revoke"
       body: "roles"
     };
   }

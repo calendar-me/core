@@ -20,44 +20,44 @@ message Business {
 
 service BusinessService {
   rpc GetBusinesses(GetBusinessesRequest) returns (GetBusinessesResponse) {
-    option (google.api.http) = {get: "/business"};
+    option (google.api.http) = {get: "/v1/business"};
   }
   rpc GetBusiness(GetBusinessRequest) returns (GetBusinessResponse) {
-    option (google.api.http) = {get: "/business/{id}"};
+    option (google.api.http) = {get: "/v1/business/{id}"};
   }
   rpc RegisterBusiness(RegisterBusinessRequest) returns (RegisterBusinessResponse) {
     option (google.api.http) = {
-      post: "/business"
+      post: "/v1/business"
       body: "*"
     };
   }
   // TODO: Update Business Details
   rpc DeleteBusiness(DeleteBusinessRequest) returns (common.v1.BoolResponse) {
-    option (google.api.http) = {delete: "/business/{id}"};
+    option (google.api.http) = {delete: "/v1/business/{id}"};
   }
 
   rpc GetServices(GetServicesRequest) returns (GetServicesResponse) {
-    option (google.api.http) = {get: "/services"};
+    option (google.api.http) = {get: "/v1/services"};
   }
   rpc GetService(GetServiceRequest) returns (GetServiceResponse) {
-    option (google.api.http) = {get: "/services/{id}"};
+    option (google.api.http) = {get: "/v1/services/{id}"};
   }
   rpc RegisterService(RegisterServiceRequest) returns (RegisterServiceResponse) {
     option (google.api.http) = {
-      post: "/services"
+      post: "/v1/services"
       body: "*"
     };
   }
   rpc DeleteService(DeleteServiceRequest) returns (common.v1.BoolResponse) {
-    option (google.api.http) = {delete: "/services/{id}"};
+    option (google.api.http) = {delete: "/v1/services/{id}"};
   }
 
   rpc GetAvailabilities(GetAvailabilitiesRequest) returns (GetAvailabilitiesResponse) {
-    option (google.api.http) = {get: "/availabilities"};
+    option (google.api.http) = {get: "/v1/availabilities"};
   }
   rpc AddAvailabilities(AddAvailabilitiesRequest) returns (AddAvailabilitiesResponse) {
     option (google.api.http) = {
-      post: "/availabilities"
+      post: "/v1/availabilities"
       body: "*"
     };
   }

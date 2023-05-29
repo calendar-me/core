@@ -409,7 +409,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetBusinesses", runtime.WithHTTPPathPattern("/business"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetBusinesses", runtime.WithHTTPPathPattern("/v1/business"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -434,7 +434,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetBusiness", runtime.WithHTTPPathPattern("/business/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetBusiness", runtime.WithHTTPPathPattern("/v1/business/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -459,7 +459,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/RegisterBusiness", runtime.WithHTTPPathPattern("/business"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/RegisterBusiness", runtime.WithHTTPPathPattern("/v1/business"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -484,7 +484,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/DeleteBusiness", runtime.WithHTTPPathPattern("/business/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/DeleteBusiness", runtime.WithHTTPPathPattern("/v1/business/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -509,7 +509,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetServices", runtime.WithHTTPPathPattern("/services"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetServices", runtime.WithHTTPPathPattern("/v1/services"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -534,7 +534,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetService", runtime.WithHTTPPathPattern("/services/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetService", runtime.WithHTTPPathPattern("/v1/services/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -559,7 +559,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/RegisterService", runtime.WithHTTPPathPattern("/services"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/RegisterService", runtime.WithHTTPPathPattern("/v1/services"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -584,7 +584,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/DeleteService", runtime.WithHTTPPathPattern("/services/{id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/DeleteService", runtime.WithHTTPPathPattern("/v1/services/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -609,7 +609,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetAvailabilities", runtime.WithHTTPPathPattern("/availabilities"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/GetAvailabilities", runtime.WithHTTPPathPattern("/v1/availabilities"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -634,7 +634,7 @@ func RegisterBusinessServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/AddAvailabilities", runtime.WithHTTPPathPattern("/availabilities"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/business.v1.BusinessService/AddAvailabilities", runtime.WithHTTPPathPattern("/v1/availabilities"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -698,7 +698,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetBusinesses", runtime.WithHTTPPathPattern("/business"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetBusinesses", runtime.WithHTTPPathPattern("/v1/business"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -720,7 +720,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetBusiness", runtime.WithHTTPPathPattern("/business/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetBusiness", runtime.WithHTTPPathPattern("/v1/business/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -742,7 +742,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/RegisterBusiness", runtime.WithHTTPPathPattern("/business"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/RegisterBusiness", runtime.WithHTTPPathPattern("/v1/business"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -764,7 +764,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/DeleteBusiness", runtime.WithHTTPPathPattern("/business/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/DeleteBusiness", runtime.WithHTTPPathPattern("/v1/business/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -786,7 +786,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetServices", runtime.WithHTTPPathPattern("/services"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetServices", runtime.WithHTTPPathPattern("/v1/services"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -808,7 +808,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetService", runtime.WithHTTPPathPattern("/services/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetService", runtime.WithHTTPPathPattern("/v1/services/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -830,7 +830,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/RegisterService", runtime.WithHTTPPathPattern("/services"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/RegisterService", runtime.WithHTTPPathPattern("/v1/services"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -852,7 +852,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/DeleteService", runtime.WithHTTPPathPattern("/services/{id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/DeleteService", runtime.WithHTTPPathPattern("/v1/services/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -874,7 +874,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetAvailabilities", runtime.WithHTTPPathPattern("/availabilities"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/GetAvailabilities", runtime.WithHTTPPathPattern("/v1/availabilities"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -896,7 +896,7 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/AddAvailabilities", runtime.WithHTTPPathPattern("/availabilities"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/business.v1.BusinessService/AddAvailabilities", runtime.WithHTTPPathPattern("/v1/availabilities"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -916,25 +916,25 @@ func RegisterBusinessServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_BusinessService_GetBusinesses_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"business"}, ""))
+	pattern_BusinessService_GetBusinesses_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "business"}, ""))
 
-	pattern_BusinessService_GetBusiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"business", "id"}, ""))
+	pattern_BusinessService_GetBusiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "business", "id"}, ""))
 
-	pattern_BusinessService_RegisterBusiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"business"}, ""))
+	pattern_BusinessService_RegisterBusiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "business"}, ""))
 
-	pattern_BusinessService_DeleteBusiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"business", "id"}, ""))
+	pattern_BusinessService_DeleteBusiness_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "business", "id"}, ""))
 
-	pattern_BusinessService_GetServices_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"services"}, ""))
+	pattern_BusinessService_GetServices_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "services"}, ""))
 
-	pattern_BusinessService_GetService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"services", "id"}, ""))
+	pattern_BusinessService_GetService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "services", "id"}, ""))
 
-	pattern_BusinessService_RegisterService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"services"}, ""))
+	pattern_BusinessService_RegisterService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "services"}, ""))
 
-	pattern_BusinessService_DeleteService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"services", "id"}, ""))
+	pattern_BusinessService_DeleteService_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "services", "id"}, ""))
 
-	pattern_BusinessService_GetAvailabilities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"availabilities"}, ""))
+	pattern_BusinessService_GetAvailabilities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "availabilities"}, ""))
 
-	pattern_BusinessService_AddAvailabilities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"availabilities"}, ""))
+	pattern_BusinessService_AddAvailabilities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "availabilities"}, ""))
 )
 
 var (

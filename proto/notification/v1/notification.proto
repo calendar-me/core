@@ -39,15 +39,15 @@ message Notification {
 
 service NotificationService {
   rpc GetNotifications(GetNotificationsRequest) returns (GetNotificationsResponse) {
-    option (google.api.http) = {get: "/notifications"};
+    option (google.api.http) = {get: "/v1/notifications"};
   }
   rpc GetNotification(GetNotificationRequest) returns (GetNotificationResponse) {
-    option (google.api.http) = {get: "/notifications/{id}"};
+    option (google.api.http) = {get: "/v1/notifications/{id}"};
   }
 
   rpc UpdateNotification(UpdateNotificationRequest) returns (UpdateNotificationResponse) {
     option (google.api.http) = {
-      put: "/notifications/{id}"
+      put: "/v1/notifications/{id}"
       body: "state"
     };
   }
